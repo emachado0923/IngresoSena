@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 // Database Connection
 mongoose.connect(process.env.URLDB,{ useNewUrlParser: true , useUnifiedTopology: true})
     .then(()=>{
-        console.log('connection successfully')
+        console.log('¡Connection Successfully!')
     });
 
 
@@ -34,9 +34,10 @@ app.use(function(req, res, next) {
 
 //Routes
 app.use("/api/publico", require('./Routes/publicoRoutes'));
+app.use("/api/aprendiz", require('./Routes/aprendizRoutes'));
 
 
 // Run the server
 app.listen(process.env.PORT,()=>{
-    console.log(`Servidor corriendo en el puerto ${process.env.PORT}...\n`);
+    console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);
 });

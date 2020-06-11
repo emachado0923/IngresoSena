@@ -1,5 +1,5 @@
 'use strict'
-
+require('mongoose-type-email');
 const { Schema, model } = require("mongoose");
 require('mongoose-type-email');
 
@@ -8,7 +8,8 @@ const publicoSchema  = new Schema(
         documentoIdentidad: {
             type: String,
             required:true,
-            max: 20
+            max: 20,
+            unique: true
         },
         nombre: {
             type: String,
@@ -26,9 +27,10 @@ const publicoSchema  = new Schema(
             max: 50
         },
         email: {
-            type: mongoose.SchemaTypes.Email,
+            type: String,
             required: true,
-            max: 50
+            max: 50,
+            unique: true
         },
         celular: {
             type: String,
@@ -61,10 +63,10 @@ const publicoSchema  = new Schema(
             default:false
         },
         horaEntrada: {
-            type: timestamps
+            type: Date, default: Date.now
         },
         horaSalida: {
-            type: timestamps
+            type: Date, default: Date.now
         }
     },
 )

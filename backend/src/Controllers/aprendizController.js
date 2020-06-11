@@ -1,23 +1,23 @@
-const Publico = require('../Models/tbl_publico');
+const Aprendiz = require('../Models/tbl_aprendiz');
 const Mail = require('../Controllers/mailController');
 
-exports.publico_create = function (req, res) {
+exports.aprenidz_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.documentoIdentidad || !req.body.nombre || !req.body.apellido || !req.body.dependencia || !req.body.email || !req.body.celular || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre){
+    if (!req.body.documentoIdentidad || !req.body.nombre || !req.body.apellido || !req.body.ficha || !req.body.programaDeFormacion || !req.body.email || !req.body.celular || !req.body.telefono || !req.body.torre ||  !req.body.direccionResidencia || !req.body.eps){
         return res.status(400).send({
             success: false,
-            message: "Porfavor rellene todos los campos solicitados"
+            message: "Por favor rellene todos los campos solicitados"
         });
     }
 
 
 // Create a public
-let publico = new Publico(
-    ({ documentoIdentidad, nombre, apellido, dependencia, email, celular, telefono, direccionResidencia, eps, torre} = req.body)
+let aprendiz = new Aprendiz(
+    ({ documentoIdentidad, nombre, apellido, ficha, programaDeFormacion, email, celular, telefono, torre, direccionResidencia, eps} = req.body)
 );
 
 // ------------- save public in the database -----------
-publico
+aprendiz
     .save()
     .then(data => {
         res.send({
@@ -37,12 +37,12 @@ publico
 }
 
 // ------------- retrieve and return all public ------------------
-exports.all_publico = (req, res) => {
-    Publico.find()
+exports.all_aprendices = (req, res) => {
+    Aprendiz.find()
         .then(data => {
             var message = "";
-            if (data === undefined || data.length == 0) message = "Personas no encontradas!";
-            else message = "Publico recibido";
+            if (data === undefined || data.length == 0) message = "Aprendices no encontrados!";
+            else message = "Aprendices recibidos";
             res.send({
                 success: true,
                 message: message,
@@ -60,18 +60,18 @@ exports.all_publico = (req, res) => {
 
 
 // --------- find a public by id -------------
-exports.publico_details = (req, res) => {
-    Publico.findById(req.params.id)
+exports.aprendiz_details = (req, res) => {
+    Aprendiz.findById(req.params.id)
       .then(data => {
         if (!data) {
           return res.status(404).send({
             success: false,
-            message: "Persona no encontrada con el id" + req.params.id
+            message: "Aprendiz no encontrado con el id" + req.params.id
           });
         }
         res.send({
           success: true,
-          message: "Persona encontrada",
+          message: "Aprendiz encontrado",
           data: data
         });
       })
@@ -79,26 +79,26 @@ exports.publico_details = (req, res) => {
         if (err.kind === "ObjectId") {
           return res.status(404).send({
             success: false,
-            message: "Persona no encontrada con el id " + req.params.id
+            message: "Aprendiz no encontrada con el id " + req.params.id
           });
         }
         return res.status(500).send({
           success: false,
-          message: "Error al traer la persona con el id " + req.params.id
+          message: "Error al traer la aprendiz con el id " + req.params.id
         });
       });
   };
 
 // --------- Find public and update ----------
-exports.employee_update = (req, res) => {
+exports.aprendiz_update = (req, res) => {
     // validate request
-    if (!req.body.phone || !req.body.email) {
+    if (!req.body.documentoIdentidad || !req.body.ficha) {
       return res.status(400).send({
         success: false,
-        message: "Please enter employee phone and email"
+        message: "Por favor ingrese el documento de identidad y la ficha del aprendiz"
       });
     }
-Publico.findOneAndUpdate(
+Aprendiz.findOneAndUpdate(
     req.params.id,
     {
         $set: req.body
@@ -109,7 +109,7 @@ Publico.findOneAndUpdate(
         if (!data){
             return res.status(400).send({
                 success: false,
-                message: "Persona no encontrada con el id " + req.params.id
+                message: "Aprendiz no encontrado con el id " + req.params.id
             });
         }
         res.send({
@@ -121,41 +121,41 @@ Publico.findOneAndUpdate(
         if (err.kind === "ObjectId") {
             return res.status(404).send({
               success: false,
-              message: "Persona no encontrada con el id " + req.params.id
+              message: "Aprendiz no encontrado con el id " + req.params.id
             });
           }
           return res.status(500).send({
             success: false,
-            message: "Error actualizando la persona con el id " + req.params.id
+            message: "Error actualizando el aprendiz con el id " + req.params.id
           });
     });
 }
 
 // delete a public with the specified id.
-exports.public_delete = (req, res) => {
-    Publico.findOneAndDelete(req.params.id)
+exports.aprendiz_delete = (req, res) => {
+    Aprendiz.findOneAndDelete(req.params.id)
       .then(data => {
         if (!data) {
           return res.status(404).send({
             success: false,
-            message: "Persona no encontrada con el id " + req.params.id
+            message: "Aprendiz no encontrado con el id " + req.params.id
           });
         }
         res.send({
           success: true,
-          message: "Persona eliminada exitosamente"
+          message: "Aprendiz eliminado exitosamente"
         });
       })
       .catch(err => {
         if (err.kind === "ObjectId" || err.name === "NotFound") {
           return res.status(404).send({
             success: false,
-            message: "Persona no encontrada con el id " + req.params.id
+            message: "Aprendiz no encontrado con el id " + req.params.id
           });
         }
         return res.status(500).send({
           success: false,
-          message: "No se puede eliminar el usuario con el id " + req.params.id
+          message: "No se puede eliminar el aprendiz con el id " + req.params.id
         });
       });
   };
