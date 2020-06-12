@@ -18,7 +18,8 @@ a:hover {
     background: #707070;
     display: flex;
     justify-content: space-around;
-    padding: 12px;
+    padding: 8px;
+    margin-top: 24px;
 }
 
 .logoFooter {

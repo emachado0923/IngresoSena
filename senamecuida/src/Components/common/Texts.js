@@ -17,10 +17,10 @@ const SubTitle = ({title})=>{
 
     )
 }
-const Text = ({text})=>{
+const Text = ({text, align})=>{
     return(
         <div className='text'>
-            <p>{text}</p>
+            <p style={{textAlign: align}}>{text}</p>
         </div>
     )
 }
