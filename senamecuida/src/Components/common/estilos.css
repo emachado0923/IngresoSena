@@ -1,0 +1,69 @@
+/* Estilos de los botones */
+
+.button {
+    min-width: 5%;
+    max-width: 10%;
+    max-height: 90%;
+    border: none;
+    border-radius: 4px;
+    background: #707070;
+    color: #fff;
+    padding: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.icono {
+    padding: 4px;
+    font-size: 2.2em;
+}
+
+
+/* Estilos Títulos */
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.title h2 {
+    color: #FF6D00;
+    border-bottom: 1px solid #FF6D00;
+}
+
+
+/* Estilos Subtítulos */
+
+.subTitle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #707070;
+}
+
+
+/* Estilos parrafos */
+
+.text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    margin: 8px 0;
+}
+
+.text p {
+    width: 90%;
+    color: #707070;
+    font-weight: 300;
+}
