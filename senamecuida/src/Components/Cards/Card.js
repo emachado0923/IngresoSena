@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './estilos.css';
 
 
-const CardRol = ({ title, icon, bgColor }) => {
+const CardRol = ({ title, icon, bgColor, onClick}) => {
     return (
-        <div className='card' style={{background: bgColor }}>
+        <div onClick={onClick} className='card' style={{background: bgColor }}>
             <FontAwesomeIcon icon={icon} />
             <h5>{title}</h5>
         </div>
