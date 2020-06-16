@@ -15,4 +15,14 @@ const Input = ({ label, id, placeholder, type, required, onChage }) => {
         </div>
     )
 }
-export { Input }
+const Select = ({ label, id, value, type, required, onChage }) => {
+    return (
+        <div className='contSelect'>
+            <label htmlFor={id}>{label}</label>
+            <select id={id} value={value}>
+
+            </select>
+        </div>
+    )
+}
+export { Input, Select }

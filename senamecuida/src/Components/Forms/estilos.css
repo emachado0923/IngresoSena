@@ -1,0 +1,7 @@
+.containerForm {
+    background: #16ade1;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
