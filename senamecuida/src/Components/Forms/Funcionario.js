@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Select } from '../common/Inputs';
 import './estilos.css';
 
-const Visitante = () => {
+const Funcionario = () => {
     return (
         <div className='containerForm'>
             <Input
@@ -51,4 +51,4 @@ const Visitante = () => {
     )
 }
 
-export default Visitante;
+export default Funcionario;

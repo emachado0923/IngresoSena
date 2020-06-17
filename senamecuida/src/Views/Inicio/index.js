@@ -6,6 +6,7 @@ import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-sv
 import { Modal, Button, } from 'react-bootstrap'
 import './estilos.css'
 import Visitante from '../../Components/Forms/Visitante';
+import Aprendiz from '../../Components/Forms/Aprendiz';
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -22,7 +23,7 @@ function MyVerticallyCenteredModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Visitante></Visitante>
+                <Aprendiz/>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>

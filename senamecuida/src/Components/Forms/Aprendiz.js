@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, Select } from '../common/Inputs';
 import './estilos.css';
 
-const Visitante = () => {
+const Aprendiz = () => {
     return (
         <div className='containerForm'>
             <Input
@@ -47,8 +47,18 @@ const Visitante = () => {
                 label='EPS'
                 placeholder='Ingresa tu EPS'
             />
+            <Input
+                id='ficha'
+                label='Número de ficha'
+                placeholder='Ingresa tu número de ficha'
+            />
+            <Input
+                id='programa'
+                label='Programa de formación'
+                placeholder='Ingresa tu programa de formación'
+            />
         </div>
     )
 }
 
-export default Visitante;
+export default Aprendiz;
