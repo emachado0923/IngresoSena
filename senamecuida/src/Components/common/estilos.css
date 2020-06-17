@@ -10,7 +10,7 @@
 
 .button {
     min-width: 5%;
-    max-width: 10%;
+    max-width: 20%;
     max-height: 90%;
     border: none;
     border-radius: 4px;
@@ -23,6 +23,38 @@
 }
 
 .button:hover {
+    opacity: 0.8;
+}
+
+.icono {
+    padding: 4px;
+    font-size: 2.2em;
+}
+
+
+/* Estilos botón con href */
+
+.buttonA {
+    min-width: 5%;
+    max-width: 20%;
+    max-height: 90%;
+    border: none;
+    border-radius: 4px;
+    background: #707070;
+    color: #fff;
+    padding: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttonA a {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttonA:hover {
     opacity: 0.8;
 }
 

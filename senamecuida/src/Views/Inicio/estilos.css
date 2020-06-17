@@ -12,3 +12,8 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.modal-header {
+    justify-content: center !important;
+    padding: 8px;
+}

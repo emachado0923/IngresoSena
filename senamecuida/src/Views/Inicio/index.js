@@ -3,10 +3,13 @@ import { Title, SubTitle, Text } from '../../Components/common/Texts';
 import { CardRol } from '../../Components/Cards/Card';
 import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 
-import { Modal, Button, } from 'react-bootstrap'
-import './estilos.css'
+import { Modal } from 'react-bootstrap';
 import Visitante from '../../Components/Forms/Visitante';
 import Aprendiz from '../../Components/Forms/Aprendiz';
+import {ButtonIcon} from '../../Components/common/Button';
+import './estilos.css';
+import NavTopLanding from '../../Components/Navs/navTopLanding';
+import { Footer } from '../../Components/Footer/Footer';
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -16,9 +19,8 @@ function MyVerticallyCenteredModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-
+            <Modal.Header>
+                <Modal.Title id="contained-modal">
                     <Title title='Registro' />
                 </Modal.Title>
             </Modal.Header>
@@ -26,7 +28,9 @@ function MyVerticallyCenteredModal(props) {
                 <Aprendiz/>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
+                <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={props.onHide} />
+                <ButtonIcon bgColor='#00A7AF' title='Registrarse' onClick={props.onHide} />
+
             </Modal.Footer>
         </Modal>
     );
@@ -37,6 +41,7 @@ function Inicio() {
 
     return (
         <div className='container'>
+            <NavTopLanding/>
             <Title title='SENA ME CUIDA' />
             <SubTitle title='Para registrarte selecciona tu cargo en el Sena' />
             <div className='contCards'>
@@ -54,6 +59,7 @@ function Inicio() {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
+            <Footer/>
         </div>
     );
 }
