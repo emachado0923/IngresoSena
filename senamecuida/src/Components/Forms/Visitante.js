@@ -11,20 +11,22 @@ const Visitante = () => {
                 placeholder='Ingresa tu nombre completo'
             />
             <Input
-                id='nombre'
-                label='Nombre completo'
-                placeholder='Ingresa tu nombre completo'
+                id='correo'
+                label='Correo electrónico'
+                placeholder='Ingresa tu correo'
+            />
+            <Select label='Tipo de documento'
+                id='selectTipo'
+                option1='Cedula de ciudadania'
+                value1='Cedula'
+                option2='Tarjeta de identidad'
+                value2='Tarjeta'
             />
             <Input
-                id='nombre'
-                label='Nombre completo'
-                placeholder='Ingresa tu nombre completo'
+                id='numeroId'
+                label='Número de documento'
+                placeholder='Ingresa tu número de documento'
             />
-            <Select label='Tipo de documento' value='Selecciona el tipo de documento'>
-                <option value="Cedula">Celular</option>
-                <option value="Cedula">Celular</option>
-
-            </Select>
         </div>
     )
 }
