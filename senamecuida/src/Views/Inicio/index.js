@@ -6,7 +6,7 @@ import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-sv
 import { Modal } from 'react-bootstrap';
 import Visitante from '../../Components/Forms/Visitante';
 import Aprendiz from '../../Components/Forms/Aprendiz';
-import {ButtonIcon} from '../../Components/common/Button';
+import { ButtonIcon } from '../../Components/common/Button';
 import './estilos.css';
 import NavTopLanding from '../../Components/Navs/navTopLanding';
 import { Footer } from '../../Components/Footer/Footer';
@@ -25,7 +25,7 @@ function MyVerticallyCenteredModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Aprendiz/>
+                <Aprendiz />
             </Modal.Body>
             <Modal.Footer>
                 <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={props.onHide} />
@@ -40,26 +40,28 @@ function Inicio() {
     const [modalShow, setModalShow] = React.useState(false);
 
     return (
-        <div className='container'>
-            <NavTopLanding/>
-            <Title title='SENA ME CUIDA' />
-            <SubTitle title='Para registrarte selecciona tu cargo en el Sena' />
-            <div className='contCards'>
-                <CardRol title='Soy visitante' bgColor='#00A7AF' icon={faUserAlt} onClick={() => setModalShow(true)} />
-                <CardRol title='Soy funcionario' bgColor='#707070' icon={faUserTie} onClick={() => setModalShow(true)} />
-                <CardRol title='Soy Aprendiz' bgColor='#006164' icon={faUserGraduate} onClick={() => setModalShow(true)} />
-            </div>
-            <div className='contText'>
-                <Text
-                    align='center'
-                    text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        <div className='containerGeneral'>
+            <NavTopLanding />
+            <div className='container'>
+                <Title title='SENA ME CUIDA' />
+                <SubTitle title='Para registrarte selecciona tu cargo en el Sena' />
+                <div className='contCards'>
+                    <CardRol title='Soy visitante' bgColor='#00A7AF' icon={faUserAlt} onClick={() => setModalShow(true)} />
+                    <CardRol title='Soy funcionario' bgColor='#707070' icon={faUserTie} onClick={() => setModalShow(true)} />
+                    <CardRol title='Soy Aprendiz' bgColor='#006164' icon={faUserGraduate} onClick={() => setModalShow(true)} />
+                </div>
+                <div className='contText'>
+                    <Text
+                        align='center'
+                        text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                    />
+                </div>
+                <MyVerticallyCenteredModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
                 />
             </div>
-            <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
-            <Footer/>
+            <Footer />
         </div>
     );
 }

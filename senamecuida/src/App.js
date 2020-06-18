@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Inicio from '../src/Views/Inicio';
 import Admin from '../src/Views/Administracion/administracion'
 
@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/Admin' component={Admin} />
-        <Route path='/' component={Inicio} />
+        <Route exact path='/' component={Inicio} />
+        <Route exact path='/Admin' component={Admin} />
       </Switch>
     </BrowserRouter>
   );
