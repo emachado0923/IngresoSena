@@ -1,6 +1,7 @@
 import React from 'react';
 import './estilos.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch} from '@fortawesome/free-solid-svg-icons';
 const Input = ({ label, id, placeholder, type, required, onChage }) => {
     return (
         <div className='contInput'>
@@ -12,6 +13,21 @@ const Input = ({ label, id, placeholder, type, required, onChage }) => {
                 required={required}
                 onChange={onChage}
             />
+        </div>
+    )
+}
+
+const Search = ({ label, id, placeholder, type, required, onChage }) => {
+    return (
+        <div className='contSearch'>
+            <input
+                id={id}
+                placeholder={placeholder}
+                type={type}
+                required={required}
+                onChange={onChage}
+            />
+            <FontAwesomeIcon icon={faSearch} className='searchIcon' />
         </div>
     )
 }
@@ -30,4 +46,4 @@ const Select = ({ label, id, value, value1,value2,option1,option2 }) => {
 
 
 
-export { Input, Select }
+export { Input, Select,Search }
