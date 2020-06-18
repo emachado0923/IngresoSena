@@ -15,10 +15,8 @@ const ButtonIcon = ({ title, icon, onClick, bgColor }) => {
 const ButtonIconA = ({ title, icon, href, bgColor }) => {
     return (
             <button className='buttonA' style={{background: bgColor}}>
-                <a href={href}>
                 <FontAwesomeIcon className='icono' icon={icon} />
                 {title}
-                </a>
             </button>
     )
 }

@@ -36,7 +36,7 @@
 
 .buttonA {
     min-width: 5%;
-    max-width: 20%;
+    max-width: 100%;
     max-height: 90%;
     border: none;
     border-radius: 4px;

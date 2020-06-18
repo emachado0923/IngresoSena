@@ -1,6 +1,6 @@
 
 import Inicio from '../Views/Inicio';
-import Admin from '../Views/Administracion';
+import Admin from '../Views/Administracion/administracion';
 
 
 const routes = [

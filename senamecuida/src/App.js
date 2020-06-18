@@ -1,13 +1,20 @@
 import React from 'react';
 import './App.css'
 // import "bootstrap/dist/css/bootstrap.min.css";
-import NavTopLanding from './Components/Navs/navTopLanding';
 import Inicio from '../src/Views/Inicio';
-import { Footer } from './Components/Footer/Footer';
+import Admin from '../src/Views/Administracion/administracion'
+
+import { BrowserRouter, Route,Switch } from 'react-router-dom';
+
 
 function App() {
   return (
-        <Inicio/>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/Admin' component={Admin} />
+        <Route path='/' component={Inicio} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
