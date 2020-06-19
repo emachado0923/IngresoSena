@@ -3,6 +3,13 @@ import './estilos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
+const Button = ({ title, onClick, bgColor }) => {
+    return (
+            <button className='button' onClick={onClick} style={{background: bgColor}}>
+                {title}
+            </button>
+    )
+}
 
 const ButtonIcon = ({ title, icon, onClick, bgColor }) => {
     return (
@@ -21,4 +28,4 @@ const ButtonIconA = ({ title, icon, href, bgColor }) => {
     )
 }
 
-export {ButtonIcon, ButtonIconA};
+export {ButtonIcon, ButtonIconA, Button};

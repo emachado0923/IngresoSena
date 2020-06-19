@@ -6,14 +6,13 @@ import './estilos.css';
 
 import { Link } from 'react-router-dom';
 
-const NavTopLanding = ({ }) => {
+const NavTopLanding = () => {
     return (
         <div className='containerNav'>
             <div className='Logo'>
                 <img src={Logo} alt="" />
             </div>
-            {/* <ButtonIconA title='INGRESAR' icon={faUserCircle} href='administracion.js' /> */}
-            <Link to='/Admin'>
+            <Link to='/Login'>
                 <ButtonIconA title='INGRESAR' icon={faUserCircle} />
             </Link>
         </div>
