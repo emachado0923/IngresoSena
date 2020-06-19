@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Title } from '../../../Components/common/Texts';
 import { Input } from '../../../Components/common/Inputs';
 import { Button } from '../../../Components/common/Button';
+import Logo from '../../../Assets/image/logo/LogoSenaNaranja.png'
 import './estilos.css'
 
 class Login extends Component {
@@ -9,7 +10,9 @@ class Login extends Component {
         return (
             <div className='containerLogin'>
                 <div className='contLogin'>
-                    <Title title='INGRESO ADMINISTRACIÓN' />
+                    <div className='logoLogin'>
+                        <img src={Logo} alt=""/>
+                    </div>
                     <div className='form'>
                         <Input
                             id='usuario'
@@ -20,10 +23,10 @@ class Login extends Component {
                             id='password'
                             label='Contraseña'
                             placeholder='Ingresa tu contraseña'
+                            type='password'
                         />
                         <div className='contBtns'>
-                            <Button title='Ingresar' bgColor='#5EB318' />
-                            <Button title='Registrarse' bgColor='#00A7AF' />
+                            <Button title='Ingresar' bgColor='#FF6D00' />
                         </div>
                     </div>
                 </div>
