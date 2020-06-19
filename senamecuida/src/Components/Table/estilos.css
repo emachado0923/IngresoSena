@@ -23,5 +23,5 @@
 }
 
 td {
-    border: none;
+    border: none !important;
 }
