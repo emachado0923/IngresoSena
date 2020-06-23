@@ -11,3 +11,12 @@
     display: flex;
     align-self: flex-end;
 }
+
+
+/* Responsive */
+
+@media only screen and (max-width: 900px) {
+    .contAdmin {
+        width: 100%;
+    }
+}
