@@ -79,3 +79,22 @@ a:hover {
     align-items: center;
     color: #fff;
 }
+
+
+/* Responsive */
+
+@media only screen and (max-width: 768px) {
+    .containerFooter {
+        flex-direction: column;
+    }
+    .logoFooter {
+        display: none;
+    }
+    .listIcons {
+        width: 100%;
+        border: none;
+    }
+    .copy {
+        width: 100%;
+    }
+}

@@ -46,7 +46,7 @@ const Footer = ({ }) => {
                             <div className='icon'>
                                 <FontAwesomeIcon icon={faCalendarAlt} />
                             </div>
-                            Horarios de atención
+                            Horarios
                         </li>
                         <li>
                             <div className='icon'>
