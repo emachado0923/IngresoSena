@@ -42,9 +42,7 @@
     padding: 8px;
 }
 
-.txt .iconNavTop {
-    font-size: 30pt;
-    color: #fff;
+.txt .contIconNavTop {
     display: none;
 }
 
@@ -129,8 +127,15 @@
     .txt h2 {
         display: none;
     }
-    .txt .iconNavTop {
+    .txt .contIconNavTop {
         display: block;
+    }
+    .iconNavTop {
+        font-size: 24pt;
+    }
+    .txt a {
+        color: #000;
+        font-size: 16pt;
     }
     .contRight {
         width: 60%;
