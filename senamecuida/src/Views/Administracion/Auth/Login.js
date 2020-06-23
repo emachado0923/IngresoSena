@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Title } from '../../../Components/common/Texts';
 import { Input } from '../../../Components/common/Inputs';
 import { Button } from '../../../Components/common/Button';
 import Logo from '../../../Assets/image/logo/LogoSenaNaranja.png'
 import './estilos.css'
-import { Link, Redirect } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {

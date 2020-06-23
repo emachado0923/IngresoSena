@@ -35,3 +35,12 @@
     justify-content: space-evenly;
     align-items: center;
 }
+
+
+/* Responsive */
+
+@media only screen and (max-width: 900px) {
+    .contLogin {
+        width: 80%;
+    }
+}
