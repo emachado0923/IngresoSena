@@ -42,7 +42,13 @@
     padding: 8px;
 }
 
-.txt {
+.txt .iconNavTop {
+    font-size: 30pt;
+    color: #fff;
+    display: none;
+}
+
+.txt h2 {
     font-size: 16pt;
     color: #fff;
     font-weight: bold;
@@ -111,4 +117,25 @@
 
 .menu ul li h3 {
     margin: 0 12px;
+}
+
+
+/* Responsive */
+
+@media only screen and (max-width: 900px) {
+    .adminTop {
+        width: 100%;
+    }
+    .txt h2 {
+        display: none;
+    }
+    .txt .iconNavTop {
+        display: block;
+    }
+    .contRight {
+        width: 60%;
+    }
+    .adminLateral {
+        display: none;
+    }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faHome, faUsers} from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faHome, faUsers,faBars} from '@fortawesome/free-solid-svg-icons'
 import { Search } from '../common/Inputs';
 import LogoSena from '../../Assets/image/logo/LogoSena.png';
 import './estilos.css';
@@ -10,7 +10,8 @@ const NavAdmin = ({ }) => {
         <div className='containerNavAdmin'>
             <div className='adminTop'>
                 <div className='txt'>
-                    SENA ME CUIDA
+                    <h2>SENA ME CUIDA</h2>
+                    <FontAwesomeIcon icon={faBars} className='iconNavTop'/>
                 </div>
                 <div className='contRight'>
                     <div className='search'>
