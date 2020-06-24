@@ -39,14 +39,18 @@ const NavAdmin = ({ }) => {
                 </div>
                 <div className='menu'>
                     <ul>
-                        <li>
-                            <FontAwesomeIcon icon={faHome} />
-                            <h3>Home</h3>
-                        </li>
-                        <li>
-                            <FontAwesomeIcon icon={faUsers} />
-                            <h3>Usuarios</h3>
-                        </li>
+                        <Link to='/Admin'>
+                            <li>
+                                <FontAwesomeIcon icon={faHome} />
+                                <h3>Inicio</h3>
+                            </li>
+                        </Link>
+                        <Link to='/'>
+                            <li>
+                                <FontAwesomeIcon icon={faUsers} />
+                                <h3>Usuarios</h3>
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>
