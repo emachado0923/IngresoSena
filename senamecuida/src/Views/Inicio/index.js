@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React,{useState} from 'react';
 import { Title, SubTitle, Text } from '../../Components/common/Texts';
 import { CardRol } from '../../Components/Cards/Cards';
 import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
@@ -30,14 +30,16 @@ function MyVerticallyCenteredModal(props) {
             <Modal.Footer>
                 <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={props.onHide} />
                 <ButtonIcon bgColor='#00A7AF' title='Registrarse' onClick={props.onHide} />
-
             </Modal.Footer>
         </Modal>
     );
 }
 
+
 function Inicio() {
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [rol, setRol] = useState('');
+    console.log('Rol -->' , rol);
 
     return (
         <div className='containerGeneral'>
@@ -46,9 +48,9 @@ function Inicio() {
                 <Title title='SENA ME CUIDA' />
                 <SubTitle title='Para registrarte selecciona tu cargo en el Sena' />
                 <div className='contCards'>
-                    <CardRol title='Soy visitante' bgColor='#00A7AF' icon={faUserAlt} onClick={() => setModalShow(true)} />
-                    <CardRol title='Soy funcionario' bgColor='#707070' icon={faUserTie} onClick={() => setModalShow(true)} />
-                    <CardRol title='Soy Aprendiz' bgColor='#006164' icon={faUserGraduate} onClick={() => setModalShow(true)} />
+                    <CardRol title='Soy visitante' bgColor='#00A7AF' icon={faUserAlt} onClick={() => setModalShow(true) || setRol('Visitante')}/>
+                    <CardRol title='Soy funcionario' bgColor='#707070' icon={faUserTie} onClick={() => setModalShow(true) || setRol('Funcionario')} />
+                    <CardRol title='Soy Aprendiz' bgColor='#006164' icon={faUserGraduate} onClick={() => setModalShow(true) || setRol('Aprendiz')} />
                 </div>
                 <div className='contText'>
                     <Text
@@ -65,6 +67,8 @@ function Inicio() {
         </div>
     );
 }
+
+
 export default Inicio
 
 
