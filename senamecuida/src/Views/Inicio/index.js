@@ -21,7 +21,7 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal">
-                    <Title title='Registro' />
+                    <Title title='FORMULARIO DE REGISTRO' />
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
