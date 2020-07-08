@@ -20,7 +20,21 @@
     justify-content: space-evenly;
 }
 
+.modal-dialog {
+    max-width: 50%;
+    justify-content: center;
+}
+
 .modal-header {
-    justify-content: center !important;
-    padding: 8px;
+    justify-content: center;
+}
+
+
+/* Responsive */
+
+@media only screen and (max-width: 900px) {
+    .modal-dialog {
+        max-width: 90%;
+        margin: 0 auto !important;
+    }
 }
