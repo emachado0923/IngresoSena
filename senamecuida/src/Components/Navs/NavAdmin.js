@@ -27,7 +27,7 @@ const NavAdmin = ({ }) => {
                 </div>
                 <div className='contRight'>
                     <div className='search'>
-                        <Search placeholder='Burcar...'></Search>
+                        <Search placeholder='Buscar...'></Search>
                     </div>
                     <div className='iconAdmin'>
                         <FontAwesomeIcon icon={faUserCircle} />
