@@ -6,6 +6,7 @@ import { Search } from '../common/Inputs';
 import LogoSena from '../../Assets/image/logo/LogoSena.png';
 import './estilos.css';
 import { Link } from 'react-router-dom';
+import Select from '../Select/Select'
 
 const NavAdmin = ({ }) => {
     return (
@@ -19,8 +20,8 @@ const NavAdmin = ({ }) => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item><Link to='/Admin1'>Inicio</Link></Dropdown.Item>
-                            <Dropdown.Item><Link to='/'>Usuarios</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/Admin'>Inicio</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/Usuarios'>Usuarios</Link></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -30,6 +31,7 @@ const NavAdmin = ({ }) => {
                     </div>
                     <div className='iconAdmin'>
                         <FontAwesomeIcon icon={faUserCircle} />
+                        <Select />
                     </div>
                 </div>
             </div>
@@ -45,7 +47,7 @@ const NavAdmin = ({ }) => {
                                 <h3>Inicio</h3>
                             </li>
                         </Link>
-                        <Link to='/'>
+                        <Link to='/Usuarios'>
                             <li>
                                 <FontAwesomeIcon icon={faUsers} />
                                 <h3>Usuarios</h3>

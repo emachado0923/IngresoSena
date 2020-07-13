@@ -12,7 +12,7 @@ const NavTopLanding = () => {
             <div className='Logo'>
                 <img src={Logo} alt="" />
             </div>
-            <Link to='/Login'>
+            <Link to='/Inicio'>
                 <ButtonIconA title='INGRESAR' icon={faUserCircle} />
             </Link>
         </div>

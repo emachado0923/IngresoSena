@@ -8,6 +8,7 @@
 
 .contAdmin {
     width: 84%;
+    padding: 1%;
     display: flex;
     align-self: flex-end;
     margin: 16px 0;

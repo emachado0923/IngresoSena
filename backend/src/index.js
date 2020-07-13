@@ -33,8 +33,12 @@ app.use(function(req, res, next) {
 
 
 //Routes
-app.use("/api/publico", require('./Routes/publicoRoutes'));
+app.use("/api/visitante", require('./Routes/visitanteRoutes'));
+app.use("/api/funcionario", require('./Routes/funcionarioRoutes'));
 app.use("/api/aprendiz", require('./Routes/aprendizRoutes'));
+app.use("/api/administrador", require('./Routes/administradorRoutes'))
+app.use("/api/seguridad", require('./Routes/seguridadRoutes'))
+app.use("/api/ingresoDia", require('./Routes/ingresoDiaRoutes'))
 
 
 // Run the server

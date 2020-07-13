@@ -1,34 +1,35 @@
 const Aprendiz = require('../Models/tbl_aprendiz');
-const Mail = require('../Controllers/mailController');
+const {emailSend} = require('../Controllers/mailController');
+
+
 
 exports.aprenidz_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.documentoIdentidad || !req.body.nombre || !req.body.apellido || !req.body.ficha || !req.body.programaDeFormacion || !req.body.email || !req.body.celular || !req.body.telefono || !req.body.torre ||  !req.body.direccionResidencia || !req.body.eps){
-        return res.status(400).send({
-            success: false,
-            message: "Por favor rellene todos los campos solicitados"
-        });
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.celular || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.ficha || !req.body.programaDeFormacion ){
+        return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
-
 
 // Create a public
 let aprendiz = new Aprendiz(
-    ({ documentoIdentidad, nombre, apellido, ficha, programaDeFormacion, email, celular, telefono, torre, direccionResidencia, eps} = req.body)
+    ({ nombre, email, documentoIdentidad, celular ,telefono, direccionResidencia, eps, ficha, programaDeFormacion} = req.body)
 );
 
 // ------------- save public in the database -----------
 aprendiz
     .save()
     .then(data => {
-        res.send({
-            success: true,
-            message: "Su registro se ha guardado exitosamente",
-            data: data
-        });
+        res.send("Su registro se ha guardado exitosamente");
+    })
+    .then(dat => {
+        emailSend(req.body);
+      
+        Aprendiz.findOneAndUpdate({ email: req.body.email},(err, usuario) => {
+            if (err) return res.status(500).send({ message: 'err' })
+        })
+        return res.send("Ok")
     })
     .catch(err => {
         res.status(500).send({
-            success: false,
             message: 
                 err.message || "Ocurrio un error al crear el registro",
         });
@@ -44,14 +45,12 @@ exports.all_aprendices = (req, res) => {
             if (data === undefined || data.length == 0) message = "Aprendices no encontrados!";
             else message = "Aprendices recibidos";
             res.send({
-                success: true,
                 message: message,
                 data: data
             });
             })
             .catch(err => {
             res.status(500).send({
-                success: false,
                 message: err.message || "Ocurrio un error al traer los registros"
             });
         
@@ -65,12 +64,10 @@ exports.aprendiz_details = (req, res) => {
       .then(data => {
         if (!data) {
           return res.status(404).send({
-            success: false,
             message: "Aprendiz no encontrado con el id" + req.params.id
           });
         }
         res.send({
-          success: true,
           message: "Aprendiz encontrado",
           data: data
         });
@@ -78,12 +75,10 @@ exports.aprendiz_details = (req, res) => {
       .catch(err => {
         if (err.kind === "ObjectId") {
           return res.status(404).send({
-            success: false,
             message: "Aprendiz no encontrada con el id " + req.params.id
           });
         }
         return res.status(500).send({
-          success: false,
           message: "Error al traer la aprendiz con el id " + req.params.id
         });
       });
@@ -108,24 +103,20 @@ Aprendiz.findOneAndUpdate(
     .then(data => {
         if (!data){
             return res.status(400).send({
-                success: false,
                 message: "Aprendiz no encontrado con el id " + req.params.id
             });
         }
         res.send({
-            success: true,
             data: data
         });
     })
     .catch( err => {
         if (err.kind === "ObjectId") {
             return res.status(404).send({
-              success: false,
               message: "Aprendiz no encontrado con el id " + req.params.id
             });
           }
           return res.status(500).send({
-            success: false,
             message: "Error actualizando el aprendiz con el id " + req.params.id
           });
     });
@@ -137,25 +128,50 @@ exports.aprendiz_delete = (req, res) => {
       .then(data => {
         if (!data) {
           return res.status(404).send({
-            success: false,
             message: "Aprendiz no encontrado con el id " + req.params.id
           });
         }
         res.send({
-          success: true,
           message: "Aprendiz eliminado exitosamente"
         });
       })
       .catch(err => {
         if (err.kind === "ObjectId" || err.name === "NotFound") {
           return res.status(404).send({
-            success: false,
             message: "Aprendiz no encontrado con el id " + req.params.id
           });
         }
         return res.status(500).send({
-          success: false,
           message: "No se puede eliminar el aprendiz con el id " + req.params.id
         });
       });
   };
+
+  
+// --------- find a funcionario by documento Identidad -------------
+exports.aprendiz_ing = async (req, res) => {
+  const {documentoIdentidad} = req.body;
+  await Aprendiz.findOne({documentoIdentidad}).select({_id:0,horaEntrada:0})
+    .then(data => {
+      if (!data) {
+        return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
+      }
+      // res.send(`Bienvenido ${data.nombre} con EPS ${data.eps}`);      
+      res.send(data)
+    })
+    .catch(err => {
+      return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+    });
+};
+    
+
+// ------ Count registros ---------
+exports.countDocuments = (req, res) => {
+  Aprendiz.count({}, function(err, result) {
+    if(err){
+      console.log(err)
+    } else {
+      res.send({result})
+    }
+  })
+}

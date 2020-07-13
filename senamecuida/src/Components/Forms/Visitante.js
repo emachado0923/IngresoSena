@@ -1,52 +1,203 @@
 import React from 'react';
-import { Input, Select } from '../common/Inputs';
 import './estilos.css';
+import Swal from 'sweetalert2';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+
+
+import { Input } from '../common/Inputs';
+import { ButtonIcon } from '../../Components/common/Button';
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+  }));
 
 const Visitante = () => {
+
+    const classes = useStyles();
+
+    const [nombre, setNombre] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
+    const [celular, setCelular] = React.useState('')
+    const [telefono, setTelefono] = React.useState('')
+    const [direccionResidencia, setDireccionResidencia] = React.useState('')
+    const [eps, setEps] = React.useState('')
+    const [numeroFicha, setNumeroFicha] = React.useState('')
+    const [programaDeFormacion, setProgramaDeFormacion] = React.useState('')
+
+    const handleNombreChange = (event) => setNombre(event.target.value)
+    const handleEmailChange = (event) => setEmail(event.target.value)
+    const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
+    const handleCelularChange = (event) => setCelular(event.target.value)
+    const handleTelefonoChange = (event) => setTelefono(event.target.value)
+    const handleDireccionResidenciaChange = (event) => setDireccionResidencia(event.target.value)
+    const handleEpsChange = (event) => setEps(event.target.value)
+    const handleNumeroFichaChange = (event) => setNumeroFicha(event.target.value)
+    const handleProgramaDeFormacionChange = (event) => setProgramaDeFormacion(event.target.value)
+
+    async function registro() {
+        await fetch('http://localhost:3008/api/visitante/create', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            
+        },  
+        body: JSON.stringify({nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps, numeroFicha, programaDeFormacion})
+        })
+        .then(function (result) {
+        if(result['ok'] === true){
+            result.text().then(function(data) {
+            
+            Swal.fire({
+                icon: 'success',
+                title: '¡BIEN!',
+                text: data,
+                timer: 1500
+            })
+            })
+            }
+            else{
+            result.text().then(function(data) { 
+                Swal.fire({
+                icon: 'error',
+                title: '¡ERROR!',
+                text: data,
+                timer: 5500
+            })
+            })
+            }
+            
+        })
+        .catch (function (error) {
+        console.log(error)
+            /*Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error,
+            timer: 1500
+        })*/
+        });
+    }
+
     return (
         <div className='containerForm'>
-            <Input
+            <TextField
+                value={nombre}
+                onChange={handleNombreChange}
+                required
+                fullWidth
+                name="nombre"
                 id='nombre'
+                type='text'
                 label='Nombre completo'
                 placeholder='Ingresa tu nombre completo'
+                variant="outlined" 
             />
-            <Input
+            <TextField
+                value={email}
+                onChange={handleEmailChange}
+                required
+                fullWidth
+                name="email"
                 id='correo'
+                type='text'
                 label='Correo electrónico'
                 placeholder='Ingresa tu correo'
+                variant="outlined" 
             />
-            <Select label='Tipo de documento'
-                id='selectTipo'
-                option1='Cedula de ciudadania'
-                value1='Cedula'
-                option2='Tarjeta de identidad'
-                value2='Tarjeta'
-            />
-            <Input
+            <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Tipo de documento</InputLabel>
+                <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                label="Age"
+                >
+                <MenuItem value="">
+                    <em>None</em>
+                </MenuItem>
+                <MenuItem value={'1'}>Cedula de Ciudadania</MenuItem>
+                <MenuItem value={'2'}>Tarjeta de identidad</MenuItem>
+                </Select>
+            </FormControl>       
+            <TextField
+                value={documentoIdentidad}
+                onChange={handleDocumentoIdentidadChange}
+                required
+                fullWidth
+                name="documentoIdentidad"
                 id='numeroId'
+                type='number'
                 label='Número de documento'
                 placeholder='Ingresa tu número de documento'
+                variant="outlined" 
             />
-            <Input
+            <TextField
+                value={telefono}
+                onChange={handleTelefonoChange}
+                required
+                fullWidth
+                name="telefono"
                 id='tel1'
+                type='number'
                 label='Número de teléfono'
                 placeholder='Ingresa tu número de teléfono'
+                variant="outlined" 
             />
-            <Input
-                id='tel2'
+            <TextField
+                value={celular}
+                onChange={handleCelularChange}
+                required
+                fullWidth
+                name="celular"
+                id='celular'
+                type='number'
                 label='Número de teléfono de un familiar'
                 placeholder='Ingresa número de teléfono'
+                variant="outlined" 
             />
-            <Input
+            <TextField
+                value={direccionResidencia}
+                onChange={handleDireccionResidenciaChange}
+                required
+                fullWidth
+                name="direccionResidencia"
                 id='direccion'
+                type='text'
                 label='Dirección'
                 placeholder='Ingresa tu dirección de residencia'
+                variant="outlined" 
             />
-            <Input
+            <TextField
+                value={eps}
+                onChange={handleEpsChange}
+                required
+                fullWidth
+                name="eps"
                 id='eps'
                 label='EPS'
+                type='text'
                 placeholder='Ingresa tu EPS'
+                variant="outlined" 
             />
+            <div style={{marginTop:25}}>
+            <ButtonIcon 
+                bgColor='#00A7AF' 
+                title='Registrarse'
+                onClick={() => registro()} 
+            />
+            </div>
         </div>
     )
 }
