@@ -10,6 +10,8 @@ router.route("/details/:id").get(visitante_controller.visitante_details);
 
 router.route("/ingreso").post(visitante_controller.visitante_ing);
 
+router.route("/salida").post(visitante_controller.visitante_sal);
+
 router.route("/create").post(visitante_controller.visitante_create);
 
 router.route("/update/:id").put(visitante_controller.visitante_update);

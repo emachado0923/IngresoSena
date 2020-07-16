@@ -164,9 +164,25 @@ exports.visitante_ing = async (req, res) => {
 };
 
 
+// --------- find a funcionario by documento Identidad -------------
+exports.visitante_sal = async (req, res) => {
+  const {documentoIdentidad} = req.body;
+  await Visitante.findOne({documentoIdentidad}).select({_id:0,horaEntrada:0})
+    .then(data => {
+      if (!data) {
+        return res.status(404).send(`Persona no se encuentra de alta ${documentoIdentidad}`);
+      }
+      res.send(data)
+    })
+    .catch(err => {
+      return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+    });
+};
+
+
 // ------ Count registros ---------
 exports.countDocuments = (req, res) => {
-  Visitante.count({}, function(err, result) {
+  Visitante.estimatedDocumentCount({}, function(err, result) {
     if(err){
       console.log(err)
     } else {

@@ -1,7 +1,8 @@
+const Estado = require('../Models/tbl_estado')
 const IngresoDia = require('../Models/tbl_ingresodia')
 
 
-exports.ingresoDia_create = function (req, res) {
+exports.estado_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
     if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ){
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
@@ -9,20 +10,30 @@ exports.ingresoDia_create = function (req, res) {
 
 
 // Create a ingreso
+let estado = new Estado(
+    ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps} = req.body)
+);
 let ingresoDia = new IngresoDia(
     ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps} = req.body)
 );
 
-// let estado = new Estado(
-//     ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps} = req.body)
-// );
-
-// console.log(ingresoDia);
+// console.log(estado);
 // ------------- save ingreso in the database -----------
-ingresoDia
+estado
     .save()
     .then(data => {
         res.send("¡Su registro se ha guardado exitosamente!");
+        ingresoDia.save()
+          .then(data => {
+            res.send({data})
+          })
+          .catch(err => {
+            res.status(500).send({
+              message: 
+                  err.message || "Ocurrio un error al crear el registro",
+            });
+          console.log(err);
+          })
     })
     .catch(err => {
         res.status(500).send({
@@ -34,8 +45,8 @@ ingresoDia
 }
 
 // ------------- retrieve and return all ingresos ------------------
-exports.all_ingresos = (req, res) => {
-    IngresoDia.find()
+exports.all_estados = (req, res) => {
+    Estado.find()
         .then(data => {
             var message = "";
             if (data === undefined || data.length == 0) message = "Personas no encontradas!";
@@ -55,8 +66,8 @@ exports.all_ingresos = (req, res) => {
 
 
 // --------- find a ingreso by id -------------
-exports.ingresoDia_details = (req, res) => {
-    IngresoDia.findById(req.params.id)
+exports.estado_details = (req, res) => {
+    Estado.findById(req.params.id)
       .then(data => {
         if (!data) {
           return res.status(404).send({
@@ -81,14 +92,14 @@ exports.ingresoDia_details = (req, res) => {
   };
 
 // --------- Find ingreso and update ----------
-exports.ingresoDia_update = (req, res) => {
+exports.estado_update = (req, res) => {
     // validate request
     if (!req.body.documentoIdentidad || !req.body.email) {
       return res.status(400).send({
         message: "Please enter employee phone and email"
       });
     }
-    IngresoDia.findOneAndUpdate(
+    Estado.findOneAndUpdate(
     req.params.id,
     {
         $set: req.body
@@ -118,29 +129,37 @@ exports.ingresoDia_update = (req, res) => {
 }
 
 // delete a ingreso with the specified id.
-exports.ingresoDia_delete = (req, res) => {
-    IngresoDia.findOneAndDelete(req.params.id)
+exports.estado_delete = async (req, res) => {
+      const {documentoIdentidad} = req.body;
+      await Estado.findOneAndRemove({documentoIdentidad}).select({_id:0,horaEntrada:0})      
       .then(data => {
         if (!data) {
           return res.status(404).send({
-            message: "Persona no encontrada con el id " + req.params.id
+            message: "Persona no encontrada con el documento " + req.body.documentoIdentidad
           });
         }
-        res.send({
-          message: "Persona eliminada exitosamente"
-        });
+        res.send(data);
       })
       .catch(err => {
         if (err.kind === "ObjectId" || err.name === "NotFound") {
           return res.status(404).send({
-            message: "Persona no encontrada con el id " + req.params.id
+            message: "Persona no encontrada con el documento " + req.body.documentoIdentidad
           });
         }
         return res.status(500).send({
-          message: "No se puede eliminar el usuario con el id " + req.params.id
+          message: "No se puede eliminar el usuario con el documento " + req.body.documentoIdentidad
         });
       });
   };
 
 
-
+// ------ Count registros ---------
+exports.countDocuments = (req, res) => {
+  Estado.count({}, function(err, result) {
+    if(err){
+      console.log(err)
+    } else {
+      res.send({result})
+    }
+  })
+}

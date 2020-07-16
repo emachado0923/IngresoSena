@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 
 // Database Connection
-mongoose.connect(process.env.URLDB,{ useNewUrlParser: true , useUnifiedTopology: true})
+mongoose.connect(process.env.URLDB,{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: true})
     .then(()=>{
         console.log('¡Connection Successfully!')
     });
@@ -39,6 +39,8 @@ app.use("/api/aprendiz", require('./Routes/aprendizRoutes'));
 app.use("/api/administrador", require('./Routes/administradorRoutes'))
 app.use("/api/seguridad", require('./Routes/seguridadRoutes'))
 app.use("/api/ingresoDia", require('./Routes/ingresoDiaRoutes'))
+app.use("/api/salidaDia", require('./Routes/salidaDiaRoutes'))
+app.use("/api/estado", require('./Routes/estadoRoutes'))
 
 
 // Run the server

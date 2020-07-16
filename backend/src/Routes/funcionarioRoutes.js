@@ -10,6 +10,8 @@ router.route("/details/:id").get(funcionario_controller.funcionario_details);
 
 router.route("/ingreso").post(funcionario_controller.funcionario_ing);
 
+router.route("/salida").post(funcionario_controller.funcionario_sal);
+
 router.route("/create").post(funcionario_controller.funcionario_create);
 
 router.route("/update/:id").put(funcionario_controller.funcionario_update);

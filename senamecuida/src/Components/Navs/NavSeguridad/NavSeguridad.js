@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faHome, faUsers, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faHome, faUsers, faBars, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'react-bootstrap';
 import { Search } from '../../common/Inputs';
 import LogoSena from '../../../Assets/image/logo/LogoSena.png';
@@ -20,14 +20,14 @@ const NavAdmin = ({ }) => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item><Link to='/Seguridad'>Inicio</Link></Dropdown.Item>
-                            <Dropdown.Item><Link to='/Seguridad'>Usuarios</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/Seguridad'>Verificar Ingreso</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/SeguridadSalida'>Verificar Salida</Link></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
                 <div className='contRight'>
                     <div className='search'>
-                        <Search placeholder='Buscar...'></Search>
+                        <Search placeholder='Burcar...'></Search>
                     </div>
                     <div className='iconSeguridad'>
                         <FontAwesomeIcon icon={faUserCircle} />
@@ -45,6 +45,14 @@ const NavAdmin = ({ }) => {
                             <li>
                                 <FontAwesomeIcon icon={faHome} />
                                 <h3>Validar Ingreso</h3>
+                            </li>
+                        </Link>
+                    </ul>
+                    <ul>
+                        <Link to='/SeguridadSalida'>
+                            <li>
+                                <FontAwesomeIcon icon={faDoorOpen} />
+                                <h3>Validar Salida</h3>
                             </li>
                         </Link>
                     </ul>

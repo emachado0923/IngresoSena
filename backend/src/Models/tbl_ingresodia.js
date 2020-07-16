@@ -20,7 +20,6 @@ const ingresoDiaSchema  = new Schema(
             type: String,
             required:true,
             max: 20,
-            unique: true
         },
         celular: {
             type: String,

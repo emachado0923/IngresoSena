@@ -1,9 +1,10 @@
 'use strict'
-
+require('mongoose-type-email');
 const { Schema, model } = require("mongoose");
 require('mongoose-type-email');
 
-const aprendizSchema  = new Schema(
+
+const estadoSchema  = new Schema(
     {
         nombre: {
             type: String,
@@ -13,8 +14,7 @@ const aprendizSchema  = new Schema(
         email: {
             type: String,
             required: true,
-            max: 50,
-            unique: true
+            max: 50
         },
         documentoIdentidad: {
             type: String,
@@ -42,19 +42,12 @@ const aprendizSchema  = new Schema(
             required: true,
             max: 30
         },
-        ficha: {
-            type: String,
-            required: true,
-            max: 20
-        },
-        programaDeFormacion: {
-            type: String,
-            required: true,
-            max: 50
+        horaEntrada: {
+            type: Date,
+            default: Date.now
         },
     },
-    { timestamps: true }
 )
 
-module.exports = model("Aprendiz", aprendizSchema);
+module.exports = model("Estado", estadoSchema);
 

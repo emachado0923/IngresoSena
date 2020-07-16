@@ -40,14 +40,14 @@ const Encuesta = () => {
                 icon: 'error',
                 title: '¡No cumple con las reglas!',
                 text: 'No puede pasar!',
-                timer: 5500
+                timer: 10500
             })
         } else {
             Swal.fire({
                 icon: 'success',
                 title: '¡Cumple con las reglas!',
                 text: 'Puede pasar!',
-                timer: 1500
+                timer: 10500
             })
         }
 

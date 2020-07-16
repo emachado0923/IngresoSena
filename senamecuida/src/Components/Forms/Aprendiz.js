@@ -59,7 +59,7 @@ const Aprendiz = () => {
         .then(function (result) {
         if(result['ok'] === true){
             result.text().then(function(data) {
-            
+            console.log(data);
             Swal.fire({
                 icon: 'success',
                 title: '¡BIEN!',
@@ -70,6 +70,7 @@ const Aprendiz = () => {
             }
             else{
             result.text().then(function(data) { 
+                console.log(data);
                 Swal.fire({
                 icon: 'error',
                 title: '¡ERROR!',

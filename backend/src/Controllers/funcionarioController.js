@@ -165,9 +165,27 @@ exports.funcionario_ing = async (req, res) => {
 };
 
 
+
+// --------- find a funcionario by documento Identidad -------------
+exports.funcionario_sal = async (req, res) => {
+  const {documentoIdentidad} = req.body;
+  await Funcionario.findOne({documentoIdentidad}).select({_id:0,horaEntrada:0})
+    .then(data => {
+      if (!data) {
+        return res.status(404).send(`Persona no se encuentra de alta ${documentoIdentidad}`);
+      }
+      res.send(data)
+    })
+    .catch(err => {
+      return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+    });
+};
+
+
+
 // ------ Count registros ---------
 exports.countDocuments = (req, res) => {
-  Funcionario.count({}, function(err, result) {
+  Funcionario.estimatedDocumentCount({}, function(err, result) {
     if(err){
       console.log(err)
     } else {
@@ -177,42 +195,5 @@ exports.countDocuments = (req, res) => {
 }
 
 exports.ingresoMeses = (err, res) => {
-  Funcionario.aggregate([
-    {
-      /* Filter out users who have not yet subscribed */
-      $match: {
-        /* "joined" is an ISODate field */
-        'horaEntrada': {$ne: null}
-      }
-    },
-    {
-      /* group by year and month of the subscription event */
-      $group: {
-        _id: {
-          year: {
-            $year: '$horaEntrada'
-          },
-          month: {
-            $month: '$horaEntrada'
-          }
-        },
-        "count":{
-          $sum:1
-        },
-      }
-    },
-    {
-      /* sort descending (latest subscriptions first) */
-      $sort: {
-        '_id.year': 1,
-        '_id.month': 1
-      }
-    },
-    {
-      $limit: 100,
-    },
-  ])
-  .then(data => {
-    res.send({data})
-  })
+  
 }

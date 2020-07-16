@@ -19,7 +19,6 @@ class Table extends Component {
   async componentDidMount(){
       const res = await Axios.get('http://localhost:3008/api/aprendiz/list')
       this.setState({products: res.data.data})
-      console.log(this.state.products)
   }
 
 render(){

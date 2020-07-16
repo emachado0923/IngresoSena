@@ -11,9 +11,9 @@ import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-sv
 import { Title, SubTitle, Text } from '../../Components/common/Texts';
 import { ButtonIcon } from '../../Components/common/Button';
 
-import Visitante from '../../Components/Forms/Ingreso/IngresoVisitante';
-import Aprendiz from '../../Components/Forms/Ingreso/IngresoAprendiz';
-import Funcionario from '../../Components/Forms/Ingreso/IngresoFuncionario';
+import Visitante from '../../Components/Forms/Salida/salidaVisitante';
+import Aprendiz from '../../Components/Forms/Salida/salidaAprendiz';
+import Funcionario from '../../Components/Forms/Salida/salidaFuncionario';
 
 
 class Admin extends Component {
@@ -28,7 +28,7 @@ class Admin extends Component {
         return (
             <div className='containerSeguridad'>
                 <NavSeguridad></NavSeguridad>
-                <Title title='VERIFICAR INGRESO' />
+                <Title title='VERIFICAR SALIDA' />
                 <div className='contSeguridad'>
                     <div className='container'>
                             <SubTitle title='Para ingresar selecciona tu cargo en el Sena' />
@@ -40,7 +40,7 @@ class Admin extends Component {
                             <Modal show={this.state.openModal} className='widthModal'>
                                 <Modal.Header>
                                     <Modal.Title>
-                                        <Title title='VALIDADOR DE INGRESO' />
+                                        <Title title='VALIDADOR DE SALIDA' />
                                     </Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
