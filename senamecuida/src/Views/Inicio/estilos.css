@@ -6,6 +6,14 @@
     justify-content: space-between;
 }
 
+.fondo {
+    background-image: url(./../../Assets/fondo/sena_logo.png);
+    background-position: center;
+    background-size: 500px;
+    background-repeat: no-repeat;
+    margin-top: 30px;
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -27,7 +35,15 @@
 
 .modal-header {
     justify-content: center;
+    background-image: url(./../../Assets/fondo/sena_logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 110px;
+    
+
 }
+/* //---------------------------------------------------// */
+
 
 
 /* Responsive */
@@ -36,5 +52,9 @@
     .modal-dialog {
         max-width: 90%;
         margin: 0 auto !important;
+    }
+    .fondo {
+        background-position: center;
+        background-size: 400px;
     }
 }

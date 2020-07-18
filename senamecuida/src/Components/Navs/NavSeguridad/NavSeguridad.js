@@ -13,15 +13,15 @@ const NavAdmin = ({ }) => {
         <div className='containerNavSeguridad'>
             <div className='seguridadTop'>
                 <div className='txt'>
-                    <h2>SENA ME CUIDA</h2>
+                    
                     <Dropdown className='contIconNavTop'>
                         <Dropdown.Toggle variant="outline-light" className='iconNavTop'>
                             <FontAwesomeIcon icon={faBars} />
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item><Link to='/Seguridad'>Verificar Ingreso</Link></Dropdown.Item>
-                            <Dropdown.Item><Link to='/SeguridadSalida'>Verificar Salida</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/Seguridad'>Inicio</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/SeguridadSalida'>Usuarios</Link></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>

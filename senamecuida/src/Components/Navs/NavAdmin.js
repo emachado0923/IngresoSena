@@ -13,7 +13,7 @@ const NavAdmin = ({ }) => {
         <div className='containerNavAdmin'>
             <div className='adminTop'>
                 <div className='txt'>
-                    <h2>SENA ME CUIDA</h2>
+                    
                     <Dropdown className='contIconNavTop'>
                         <Dropdown.Toggle variant="outline-light" className='iconNavTop'>
                             <FontAwesomeIcon icon={faBars} />

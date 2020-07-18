@@ -9,6 +9,14 @@ const Title = ({title}) => {
      )
 }
 
+const TitleIng = ({titleing}) => {
+    return (
+        <div className='titleIng'>
+            <h2>{titleing}</h2>
+        </div>
+     )
+}
+
 const SubTitle = ({title})=>{
     return(
     <div className='subTitle'>
@@ -25,4 +33,4 @@ const Text = ({text, align})=>{
     )
 }
 
-export {Title, SubTitle, Text}
+export {Title, TitleIng, SubTitle, Text}

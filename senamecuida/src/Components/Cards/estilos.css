@@ -17,8 +17,10 @@
 /* Estilos CardRol */
 
 .cardRol {
-    min-width: 30%;
-    max-width: 100%;
+    position: absolute;
+    min-width: 200px;
+    max-width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -27,18 +29,103 @@
     color: #fff;
     font-size: 32pt;
     border: none;
-    border-radius: 15px;
+    border-radius:100px;
     margin: 12px 0;
+
 }
+
+.foto1{
+    position: relative;
+margin-left: 25px;
+margin-top: 30px;
+width: 150px;
+  margin-bottom: 30px;
+cursor: pointer;
+
+
+}
+.foto1:hover {
+   /* background: rgba(0, 0, 0, 0.70) !important;*/
+    cursor: pointer;
+  opacity: 0.4;
+  
+   
+}
+
+#cardf {
+    position: relative;
+    background-color: #78BECE;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18pt;
+    border: none;
+    border-radius:100px;
+    cursor: pointer;
+
+}
+
+#cardf2 {
+       position: relative;
+    background-color: #707070;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18pt;
+    border: none;
+    border-radius:100px;
+    cursor: pointer;
+
+}
+
+#cardf3 {
+       position: relative;
+    background-color: #006164;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18pt;
+    border: none;
+    border-radius:100px;
+    cursor: pointer;
+
+}
+
+#cardf:hover{
+    opacity: 0.7;
+}
+#cardf2:hover{
+    opacity: 0.7;
+}
+#cardf3:hover{
+    opacity: 0.7;
+}
+
+
 
 .cardRol h5 {
     font-weight: bold;
-    margin: 8px 0;
+    margin: 15px 0;
 }
 
 .cardRol:hover {
-    background: rgba(0, 0, 0, 0.705) !important;
+   /* background: rgba(0, 0, 0, 0.70) !important;*/
     cursor: pointer;
+    background-size: 65%!important;
+    box-shadow: 2px 2px 100px #999;
+   
 }
 
 

@@ -192,3 +192,19 @@ exports.countDocuments = (req, res) => {
 }
 
 
+exports.ingresoMeses = (req, res) => {
+  Visitante.aggregate([
+    { "$group": {
+      "_id": { "$month": { "$toDate": "$createdAt" }},
+      "total": { "$sum":1 }
+    }}
+  ], function(err, result) {
+    if(err){
+      console.log(err);
+    } else {
+      res.send({result});
+    }
+  })
+}
+
+

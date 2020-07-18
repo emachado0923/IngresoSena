@@ -63,7 +63,7 @@ const Visitante = () => {
         if (sintomas.length >= 3) {
             Swal.fire({
                 icon: 'error',
-                title: '¡No cumple con las reglas!',
+                title: '¡ACCESO DENEGADO!',
                 text: 'No puede pasar!',
                 timer: 10500
             })
@@ -100,7 +100,7 @@ const Visitante = () => {
                             } else {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: '¡BIEN, CUMPLE LAS REGLAS!',
+                                    title: '¡BIEN, ACCESO APROBADO!',
                                     text: JSON.stringify(`Bienvenido ${data.nombre} con EPS ${data.eps}`),
                                     timer: 10500
                                 })

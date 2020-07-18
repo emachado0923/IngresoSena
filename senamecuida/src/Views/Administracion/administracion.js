@@ -16,7 +16,7 @@ function Admin(){
     function actualizar(){window.location.reload(true);}
     setInterval(() => {
         actualizar()
-    }, 10000);
+    }, 100000);
         return (
             <div className='containerAdmin' >
                 <NavAdmin></NavAdmin>

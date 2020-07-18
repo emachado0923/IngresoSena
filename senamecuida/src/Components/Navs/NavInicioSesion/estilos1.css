@@ -16,11 +16,11 @@
 .Logo {
     width: 5%;
     height: 100%;
+    margin-top: 10px;
 }
 
 .Logo img {
-    height: 80%;
-    margin: 8px;
+    height: 100%;
 }
 
 

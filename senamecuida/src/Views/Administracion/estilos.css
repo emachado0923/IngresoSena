@@ -6,6 +6,9 @@
     align-items: center;
 }
 
+
+
+
 .contAdmin {
     width: 84%;
     padding: 1%;
@@ -13,6 +16,7 @@
     align-self: flex-end;
     margin: 16px 0;
 }
+
 
 .contCardsInfo {
     width: 20%;

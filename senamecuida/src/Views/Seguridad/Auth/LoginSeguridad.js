@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Input } from '../../../Components/common/Inputs';
 import { Button } from '../../../Components/common/Button';
-import Logo from '../../../Assets/image/logo/LogoSenaNaranja.png'
+import Logo from '../../../Assets/image/iconos/logo_sena_negro.png'
 import './estilos.css'
 import Swal from 'sweetalert2';
 import swal from 'bootstrap-sweetalert';
@@ -74,20 +74,20 @@ function Login() {
                         value={username}
                         onChage={handleUsernameChange}
                         id='usuario'
-                        label='Usuario'
+                        label='Usuario:'
                         placeholder='Ingresa tu usuario'
                     />
                     <Input
                         value={password}
                         onChage={handlePasswordChange}
                         id='password'
-                        label='Contraseña'
-                        placeholder='Ingresa tu contraseña'
+                        label='Contraseña:'
+                        placeholder='******************'
                         type='password'
                     />
                     <div className='contBtns'>
                         <Button title='Ingresar' bgColor='#FF6D00' onClick={() => login()} />
-                        <Button title='Volver a Inicio' bgColor='#707070' onClick={() => window.location.href="/"} />
+                        <Button title='Volver a Inicio' bgColor='#077B75' onClick={() => window.location.href="/"} />
                     </div>
                 </div>
 

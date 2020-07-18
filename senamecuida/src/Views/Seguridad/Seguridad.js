@@ -8,12 +8,13 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
 import { CardRol } from '../../Components/Cards/Cards';
 import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
-import { Title, SubTitle, Text } from '../../Components/common/Texts';
+import { TitleIng, Title, SubTitle, Text } from '../../Components/common/Texts';
 import { ButtonIcon } from '../../Components/common/Button';
 
 import Visitante from '../../Components/Forms/Ingreso/IngresoVisitante';
 import Aprendiz from '../../Components/Forms/Ingreso/IngresoAprendiz';
 import Funcionario from '../../Components/Forms/Ingreso/IngresoFuncionario';
+import foto1 from '../../Assets/image/iconos/LogoSena.png';
 
 
 class Admin extends Component {
@@ -25,39 +26,56 @@ class Admin extends Component {
         }
     }
     render() {
-        return (
+        return ( 
             <div className='containerSeguridad'>
                 <NavSeguridad></NavSeguridad>
-                <Title title='VERIFICAR INGRESO' />
-                <div className='contSeguridad'>
-                    <div className='container'>
-                            <SubTitle title='Para ingresar selecciona tu cargo en el Sena' />
-                            <div className='contCards'>
-                                <CardRol title='Soy Visitante' bgColor='#00A7AF' icon={faUserAlt} onClick={() => { this.setState({ openModal: true, rol: 'Visitante' }) }} />
-                                <CardRol title='Soy funcionario' bgColor='#707070' icon={faUserTie} onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }} />
-                                <CardRol title='Soy Aprendiz' bgColor='#707070' icon={faUserTie} onClick={() => { this.setState({ openModal: true, rol: 'Aprendiz' }) }} />
+                <TitleIng titleing='VERIFICAR INGRESO' />
+                <div class='fondo4'>
+                    <div className='contSeguridad'>
+                        <div className='container4' >
+                        <SubTitle title='Para ingresar selecciona tu cargo en el Sena' />
+                        <div className='contCards4'>
+                            <div>
+                                <CardRol  bgColor='#78BECE' onClick = {() => { this.setState({ openModal: true, rol: 'Visitante' }) } }/>
+                                <img className='foto1' src={foto1} onClick = {() => { this.setState({ openModal: true, rol: 'Visitante' }) } }/>
+                                <div id="cardf"onClick = {() => { this.setState({ openModal: true, rol: 'Visitante' }) } }>Visitante</div>
                             </div>
-                            <Modal show={this.state.openModal} className='widthModal'>
-                                <Modal.Header>
-                                    <Modal.Title>
-                                        <Title title='VALIDADOR DE INGRESO' />
-                                    </Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    {
-                                        this.state.rol === 'Visitante' ?
-                                        <Visitante /> :
-                                        this.state.rol === 'Funcionario' ?
-                                            <Funcionario /> :
-                                            <Aprendiz />
-                                    }
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={() => { this.setState({ openModal: false }) }} />
-                                    {/* <ButtonIcon bgColor='#00A7AF' title='Registrarse' /> */}
-                                </Modal.Footer>
-                            </Modal>
-                    </div>
+
+                            <div>
+                                <CardRol  bgColor='#707070'  onClick = {() => { this.setState({ openModal: true, rol: 'Funcionario' }) } }/>
+                                <img className='foto1' src={foto1} onClick = {() => { this.setState({ openModal: true, rol: 'Funcionario' }) } }/>
+                                <div id="cardf2"onClick = {() => { this.setState({ openModal: true, rol: 'Funcionario' }) } }>funcionario</div>
+                            </div>
+                            <div>
+                                <CardRol  bgColor='#006164'  onClick = {() => { this.setState({ openModal: true, rol: 'Aprendiz' }) } }/>
+                                <img className='foto1' src={foto1}  onClick = {() => { this.setState({ openModal: true, rol: 'Aprendiz' }) } }/>
+                                <div id="cardf3"onClick = {() => { this.setState({ openModal: true, rol: 'Aprendiz' }) } }>Aprendiz</div>
+                            </div> 
+                        </div>
+                        </div >
+                        <Modal show = { this.state.openModal } className = 'widthModal' >
+                            <Modal.Header >
+                                <Modal.Title >
+                                    <Title title = 'VALIDADOR DE INGRESO' />
+                                </Modal.Title> 
+                            </Modal.Header> 
+                            <Modal.Body > 
+                                {
+                                    this.state.rol === 'Visitante' ?
+                                    <Visitante /> :
+                                    this.state.rol === 'Funcionario' ?
+                                        <Funcionario /> :
+                                        <Aprendiz />
+                                }
+                            </Modal.Body> 
+                            <Modal.Footer >
+                                <ButtonIcon bgColor = '#e74c3c'
+                                title = 'Cerrar'
+                                onClick = {() => { this.setState({ openModal: false }) } } /> 
+                                { /* <ButtonIcon bgColor='#00A7AF' title='Registrarse' /> */ } 
+                            </Modal.Footer> 
+                        </Modal> 
+                    </div> 
                 </div>
             </div>
         )

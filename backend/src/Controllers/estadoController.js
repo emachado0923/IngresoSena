@@ -155,7 +155,7 @@ exports.estado_delete = async (req, res) => {
 
 // ------ Count registros ---------
 exports.countDocuments = (req, res) => {
-  Estado.count({}, function(err, result) {
+  Estado.estimatedDocumentCount({}, function(err, result) {
     if(err){
       console.log(err)
     } else {

@@ -11,6 +11,7 @@ import { ButtonIcon } from '../../../Components/common/Button';
 import './estilos.css';
 import NavTopInicio from '../../../Components/Navs/NavInicioSesion/NavTopInicio';
 import { Footer } from '../../../Components/Footer/Footer';
+import foto1 from '../.././../Assets/image/iconos/LogoSena.png';
 
 
 class Inicio extends Component {
@@ -25,13 +26,28 @@ class Inicio extends Component {
         return (
             <div className='containerGeneral'>
                 <NavTopInicio />
-                <div className='container'>
+                    <div class='fondo2'> 
+                    <div className='container'>
                     <Title title='SENA ME CUIDA' />
                     <SubTitle title='Para ingresar selecciona tu cargo en el Sena' />
-                    <div className='contCards'>
-                        <CardRol title='Soy Administrador' bgColor='#00A7AF' icon={faUserAlt} onClick={() =>  window.location.href="/Login"} />
-                        <CardRol title='Seguridad' bgColor='#707070' icon={faUserTie} onClick={() => window.location.href="/LoginSeguridad"} />
-                    </div>
+
+                    <div className='contCards2'>
+
+                     <div>
+                        <CardRol  bgColor='#78BECE' onClick={() =>  window.location.href="/Login"} />
+                         <img className='foto1' src={foto1} onClick={() =>  window.location.href="/Login"} />
+                         <div id="cardf"onClick={() =>  window.location.href="/Login"}>Administrador</div>
+                   </div>
+
+                    <div>
+                        <CardRol  bgColor='#707070'  onClick={() => window.location.href="/LoginSeguridad"} />
+                        <img className='foto1' src={foto1} onClick={() => window.location.href="/LoginSeguridad"} />
+                         <div id="cardf2"onClick={() => window.location.href="/LoginSeguridad"}>Seguridad</div>
+                   </div>
+                        
+                        
+                        
+                    </div> </div>
                     <Modal show={this.state.openModal} className='widthModal'>
                         <Modal.Header>
                             <Modal.Title>

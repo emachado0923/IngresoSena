@@ -3,6 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faPhoneAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import Logo from '../../Assets/image/logo/LogoSena.png';
+import icono1 from '../../Assets/image/iconos/twitter.png';
+import icono2 from '../../Assets/image/iconos/Facebook.png';
+import icono3 from '../../Assets/image/iconos/Instagram.png';
+import icono4 from '../../Assets/image/iconos/gps.png';
+import icono5 from '../../Assets/image/iconos/calendario.png';
+import icono6 from '../../Assets/image/iconos/telefono.png';
 import './estilos.css';
 
 const Footer = ({ }) => {
@@ -15,20 +21,20 @@ const Footer = ({ }) => {
                 <div className='redes'>
                     <ul>
                         <li>
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faFacebook} />
+                            <div className='icono1'>
+                                <img src={icono2} alt="" />
                             </div>
                             <a href="">Facebook</a>
                         </li>
                         <li>
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faInstagram} />
+                            <div className='icono1'>
+                                <img src={icono3} alt="" />
                             </div>
                             <a href="">Instagram</a>
                         </li>
                         <li>
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faTwitter} />
+                            <div className='icono1'>
+                                <img src={icono1} alt="" />
                             </div>
                             <a href="">Twitter</a>
                         </li>
@@ -37,22 +43,22 @@ const Footer = ({ }) => {
                 <div className='redes'>
                     <ul>
                         <li>
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                            <div className='icono1'>
+                                  <img src={icono4} alt="" />
                             </div>
-                            Dirección
+                            <h1>Dirección</h1>
                         </li>
                         <li>
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
+                            <div className='icono1'>
+                               <img src={icono5} alt="" />
                             </div>
-                            Horarios
+                            <h1>Horarios</h1>
                         </li>
                         <li>
-                            <div className='icon'>
-                                <FontAwesomeIcon icon={faPhoneAlt} />
+                            <div className='icono1'>
+                               <img src={icono6} alt="" />
                             </div>
-                            Teléfono
+                            <h1>Teléfono</h1>
                         </li>
                     </ul>
                 </div>

@@ -9,10 +9,10 @@
 /* Estilos de los botones */
 
 .button {
-    min-width: 5%;
+    min-width: 100px;
     max-height: 90%;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     background: #707070;
     color: #fff;
     padding: 8px;
@@ -23,6 +23,7 @@
 
 .button:hover {
     opacity: 0.8;
+    border: none;
 }
 
 .icono {
@@ -36,15 +37,16 @@
 .buttonA {
     min-width: 5%;
     max-width: 100%;
-    max-height: 90%;
+    max-height: 50%;
     border: none;
-    border-radius: 4px;
-    background: #707070;
+    border-radius: 100px;
+    background: #006164;
     color: #fff;
     padding: 8px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+ 
 }
 
 .buttonA a {
@@ -54,7 +56,8 @@
 }
 
 .buttonA:hover {
-    background: #000000c5;
+    background: #707070;
+    border: none;
 }
 
 .icono {
@@ -62,8 +65,26 @@
     font-size: 2.2em;
 }
 
+.MuiOutlinedInput-input{
+    border-radius: 10px !important;
+}
 
 /* Estilos Títulos */
+
+.titleIng {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+    margin-left: 220px;
+}
+
+.titleIng h2 {
+    color: #FF6D00;
+    border-bottom: 1px solid #FF6D00;
+   
+}
 
 .title {
     width: 100%;
@@ -76,6 +97,7 @@
 .title h2 {
     color: #FF6D00;
     border-bottom: 1px solid #FF6D00;
+   
 }
 
 
@@ -120,13 +142,14 @@
 
 .contInput label {
     font-weight: bold;
-    color: #707070;
+    color: black;
 }
 
 .contInput input {
     width: 100%;
-    border: 1px solid #707070;
-    border-radius: 10px;
+    border: none;
+    background:none !important;
+    border-bottom: 2px gray solid;
     padding: 4px;
 }
 
@@ -198,5 +221,8 @@
     }
     .contSelect {
         width: 100%;
+    }
+    .titleIng {
+        margin-left: 0px;
     }
 }

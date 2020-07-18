@@ -1,5 +1,6 @@
 const Funcionario = require('../Models/tbl_funcionario');
 const {emailSend} = require('./mailController');
+const { where } = require('../Models/tbl_funcionario');
 
 
 exports.funcionario_create = function (req, res) {
@@ -194,6 +195,17 @@ exports.countDocuments = (req, res) => {
   })
 }
 
-exports.ingresoMeses = (err, res) => {
-  
+exports.ingresoMeses = (req, res) => {
+  Funcionario.aggregate([
+    { "$group": {
+      "_id": { "$month": { "$toDate": "$createdAt" }},
+      "total": { "$sum":1 }
+    }}
+  ], function(err, result) {
+    if(err){
+      console.log(err);
+    } else {
+      res.send({result});
+    }
+  })
 }
