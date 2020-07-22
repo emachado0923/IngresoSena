@@ -103,7 +103,11 @@ class Line3 extends Component {
                             }]
                     }}
                     options={{
-                        maintainAspectRatio: true
+                        maintainAspectRatio: true,
+                        title:{
+                            display:true,
+                            text:"Estadisticas de registro de personas por Mes",
+                        }
                 }}>
 
                 </Line>

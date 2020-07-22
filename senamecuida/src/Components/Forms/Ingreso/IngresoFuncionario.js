@@ -61,12 +61,58 @@ const Funcionario = () => {
         )
 
         if (sintomas.length >= 3) {
-            Swal.fire({
-                icon: 'error',
-                title: '¡ACCESO DENEGADO!',
-                text: 'No puede pasar!',
-                timer: 10500
-            })
+            fetch('http://localhost:3008/api/funcionario/ingreso', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },  
+                body: JSON.stringify({documentoIdentidad})
+                })
+                .then(function (result) {
+                if(result['ok'] === true){    
+                    console.log(result);
+                    result.json()
+                    .then(async function(data) {
+                        await fetch('http://localhost:3008/api/noIngresoDia/create', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            
+                        },  
+                        body: JSON.stringify(data)
+                        }).then(function (result) {
+                            if(result['ok'] === false){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '¡ERROR!',
+                                    text: JSON.stringify('¡NO LO SE!'),
+                                    timer: 10500
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '¡ACCESO DENEGADO!',
+                                    text: 'No puede pasar!',
+                                    timer: 10500
+                                })
+                            }
+                        })
+                    })
+                }
+                else{
+                    result.text().then(function(data) { 
+                        Swal.fire({
+                        icon: 'error',
+                        title: '¡ERROR!',
+                        text: data,
+                        timer: 10500
+                    })
+                    })
+                    }
+                    
+                })
         } else {
             fetch('http://localhost:3008/api/funcionario/ingreso', {
                 method: 'POST',
@@ -81,7 +127,7 @@ const Funcionario = () => {
                     console.log(result);
                     result.json()
                     .then(async function(data) {
-                        await fetch('http://localhost:3008/api/estado/create', {
+                        await fetch('http://localhost:3008/api/estadoFuncionario/create', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',

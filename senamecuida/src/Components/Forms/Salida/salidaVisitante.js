@@ -31,7 +31,7 @@ const Visitante = () => {
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
 
     async function registro() {
-        await fetch('http://localhost:3008/api/estado/delete', {
+        await fetch('http://localhost:3008/api/estadoVisitante/delete', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CerrarSesion(e){
+function CerrarSesion(){
     localStorage.removeItem('token')
     window.location.reload()
 }

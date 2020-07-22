@@ -8,6 +8,9 @@ import TableAprendiz from '../../Components/Table/TableAprendiz/Table';
 import TableFuncionaro from '../../Components/Table/TableFuncionario/Table';
 import TableVisitante from '../../Components/Table/TableVisitante/Table';
 import { Card, CardInfo } from '../../Components/Cards/Cards';
+import CardInfoAprendiz from '../../Components/Cards/CardAprendiz/CardInfoAprendiz';
+import CardInfoVisitante from '../../Components/Cards/CardVisitante/CardInfoVisitante';
+import CardInfoFuncionario from '../../Components/Cards/CardFuncionario/CardInfoFuncionario';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Title } from '../../Components/common/Texts';
 
@@ -23,12 +26,7 @@ class Admin extends Component {
                 <Title title='VISITANTES REGISTRADOS' />
                 <div className='contAdmin'>
                     <div className='contCardsInfo'>
-                        <CardInfo
-                            bgColor='#16ade1'
-                            icon={faUserCircle}
-                            title='103'
-                            info='N° Visitantes registrados'
-                        />
+                        <CardInfoVisitante />
                     </div>
                     <div className='contEstadisticas'>
                         <TableVisitante />
@@ -38,12 +36,7 @@ class Admin extends Component {
                 <Title title='FUNCIONARIOS REGISTRADOS' />
                 <div className='contAdmin'>
                     <div className='contCardsInfo'>
-                        <CardInfo
-                            bgColor='#16ade1'
-                            icon={faUserCircle}
-                            title='103'
-                            info='N° Funcionarios registrados'
-                        />
+                        <CardInfoFuncionario />
                     </div>
                     <div className='contEstadisticas'>
                         <TableFuncionaro />
@@ -53,12 +46,7 @@ class Admin extends Component {
                 <Title title='APRENDICES REGISTRADOS' />
                 <div className='contAdmin'>
                     <div className='contCardsInfo'>
-                        <CardInfo
-                            bgColor='#16ade1'
-                            icon={faUserCircle}
-                            title='103'
-                            info='N° Aprendices registrados'
-                        />
+                        <CardInfoAprendiz />
                     </div>
                     <div className='contEstadisticas'>
                         <TableAprendiz />

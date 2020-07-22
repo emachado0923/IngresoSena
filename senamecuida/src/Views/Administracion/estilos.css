@@ -33,6 +33,14 @@
     align-items: center;
 }
 
+.contEstadisticass {
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+}
 
 /* Responsive */
 

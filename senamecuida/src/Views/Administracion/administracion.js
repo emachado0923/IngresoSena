@@ -6,9 +6,11 @@ import NavAdmin from '../../Components/Navs/NavAdmin';
 //import Table from '../../Components/Table/Table';
 import Pie from '../../Components/Graphics/Pie';
 import Line from '../../Components/Graphics/Line';
+import Doughnut from '../../Components/Graphics/Doughnut';
+import Doughnut1 from '../../Components/Graphics/Douhhnut1';
 import { Card, CardInfo } from '../../Components/Cards/Cards';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Title } from '../../Components/common/Texts';
+import { Title, TitleIng } from '../../Components/common/Texts';
 
 
 function Admin(){
@@ -20,17 +22,35 @@ function Admin(){
         return (
             <div className='containerAdmin' >
                 <NavAdmin></NavAdmin>
-                <Title title='ESTADISTICAS' />
-                <div className='contAdmin'>
-                    <div className='contEstadisticas'>
-                        <Line />
-                    </div>
-                </div>
+                <TitleIng titleing='ESTADISTICAS' />
                 <div className='contAdmin' >
                     <div className='contEstadisticas'>
                         <Pie />
                     </div>
+                    <div className='contEstadisticas'>
+                        <Doughnut1 />
+                    </div>
                 </div>
+                <div className='contAdmin' >
+                    <div className='contEstadisticas'>
+                        {/* <Pie /> */}
+                    </div>
+                    <div className='contEstadisticas'>
+                        <Doughnut />
+                    </div>
+                    <div className='contEstadisticas'>
+                        {/* <Doughnut1 /> */}
+                    </div>
+                </div>
+                <div className='contAdmin'>
+                    <div className='contEstadisticass'>
+                        <Line />
+                    </div>
+                </div>
+                <div className='contAdmin'>
+
+                </div>
+                
             </div>
         )
     }

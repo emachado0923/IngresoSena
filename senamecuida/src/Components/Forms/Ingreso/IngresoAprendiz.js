@@ -61,12 +61,58 @@ const Aprendiz = () => {
         )
 
         if (sintomas.length >= 3) {
-            Swal.fire({
-                icon: 'error',
-                title: '¡ACCESO DENEGADO!',
-                text: 'No puede pasar!',
-                timer: 10500
-            })
+            fetch('http://localhost:3008/api/aprendiz/ingreso', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },  
+                body: JSON.stringify({documentoIdentidad})
+                })
+                .then(function (result) {
+                if(result['ok'] === true){    
+                    console.log(result);
+                    result.json()
+                    .then(async function(data) {
+                        await fetch('http://localhost:3008/api/noIngresoDia/create', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            
+                        },  
+                        body: JSON.stringify(data)
+                        }).then(function (result) {
+                            if(result['ok'] === false){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '¡ERROR!',
+                                    text: JSON.stringify('¡NO LO SE!'),
+                                    timer: 10500
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '¡ACCESO DENEGADO!',
+                                    text: 'No puede pasar!',
+                                    timer: 10500
+                                })
+                            }
+                        })
+                    })
+                }
+                else{
+                    result.text().then(function(data) { 
+                        Swal.fire({
+                        icon: 'error',
+                        title: '¡ERROR!',
+                        text: data,
+                        timer: 10500
+                    })
+                    })
+                    }
+                    
+                })
         } else {
             fetch('http://localhost:3008/api/aprendiz/ingreso', {
                 method: 'POST',
@@ -81,7 +127,7 @@ const Aprendiz = () => {
                     console.log(result);
                     result.json()
                     .then(async function(data) {
-                        await fetch('http://localhost:3008/api/estado/create', {
+                        await fetch('http://localhost:3008/api/estadoAprendiz/create', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -153,7 +199,7 @@ const Aprendiz = () => {
             <div>
             <div className="card-body">
                 <Container>
-                    <h3>Presenta algunos de estos sintomas sintomas?</h3>
+                    <h3>¿Presenta algunos de estos sintomas sintomas?</h3>
                     <hr/>
                     <Form onSubmit={handleSubmit}>
                         <Row>
@@ -241,7 +287,7 @@ const Aprendiz = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <strong>Se encuentra en tratamiento por enfermedad actual?</strong>
+                                    <strong>Dolor articular - Sensacion de cansancio?</strong>
                                 </Form.Label>
                                 <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
                                             value={tratamiento} name={'tratamiento'} label={'Si'}/>
