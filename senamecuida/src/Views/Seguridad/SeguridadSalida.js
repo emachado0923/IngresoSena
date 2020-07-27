@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import './estilos.css';
 import NavSeguridad from '../../Components/Navs/NavSeguridad/NavSeguridad';
 
-import Table from '../../Components/Table/Table';
+// import Table from '../../Components/Table/Table';
 //import { Card, CardInfo } from '../../Components/Cards/Cards';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+// import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
 import { CardRol } from '../../Components/Cards/Cards';
-import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
-import { Title, TitleIng, SubTitle, Text } from '../../Components/common/Texts';
+import { Title, TitleIng, SubTitle } from '../../Components/common/Texts';
 import { ButtonIcon } from '../../Components/common/Button';
 
 import Visitante from '../../Components/Forms/Salida/salidaVisitante';

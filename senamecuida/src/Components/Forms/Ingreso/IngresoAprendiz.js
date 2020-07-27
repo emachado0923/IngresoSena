@@ -2,31 +2,18 @@ import React from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import {Form, Container, Row, Col, Alert, Button} from 'react-bootstrap'
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Select from '@material-ui/core/Select';
+// import FormControl from '@material-ui/core/FormControl';
+// import InputLabel from '@material-ui/core/InputLabel';
 
 
-import { Input } from '../../common/Inputs';
-import { ButtonIcon } from '../../../Components/common/Button';
+// import { Input } from '../../common/Inputs';
+// import { ButtonIcon } from '../../../Components/common/Button';
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }));
 
 const Aprendiz = () => {
-
-    const classes = useStyles();
-    const moment = require('moment-timezone');
 
     const [fiebre, setFiebre] = React.useState(false)
     const [dolorTragar, setDolorTragar] = React.useState(false)
@@ -61,7 +48,7 @@ const Aprendiz = () => {
         )
 
         if (sintomas.length >= 3) {
-            fetch('http://localhost:3008/api/aprendiz/ingreso', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/ingreso`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -74,7 +61,7 @@ const Aprendiz = () => {
                     console.log(result);
                     result.json()
                     .then(async function(data) {
-                        await fetch('http://localhost:3008/api/noIngresoDia/create', {
+                        await fetch(`${process.env.REACT_APP_API_URL}/api/noIngresoDia/create`, {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -114,7 +101,7 @@ const Aprendiz = () => {
                     
                 })
         } else {
-            fetch('http://localhost:3008/api/aprendiz/ingreso', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/ingreso`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -127,7 +114,7 @@ const Aprendiz = () => {
                     console.log(result);
                     result.json()
                     .then(async function(data) {
-                        await fetch('http://localhost:3008/api/estadoAprendiz/create', {
+                        await fetch(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/create`, {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -178,16 +165,13 @@ const Aprendiz = () => {
         }
     }
     
-    async function registro() {
-        
-        }
+
         
 
     return (
         <div className='containerForm'>
             <TextField
                 value={documentoIdentidad}
-                className="contInput"
                 onChange={handleDocumentoIdentidadChange}
                 required
                 name="documentoIdentidad"
@@ -195,11 +179,12 @@ const Aprendiz = () => {
                 type='number'
                 label='Documento de Identidad'
                 placeholder='Ingresa el documento de identidad'
+                variant='outlined'
             />
             <div>
             <div className="card-body">
                 <Container>
-                    <h3>¿Presenta algunos de estos sintomas sintomas?</h3>
+                    <h3>¿Presenta algunos de estos síntomas?</h3>
                     <hr/>
                     <Form onSubmit={handleSubmit}>
                         <Row>

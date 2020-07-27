@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 import './estilos.css';
@@ -8,9 +8,9 @@ import Pie from '../../Components/Graphics/Pie';
 import Line from '../../Components/Graphics/Line';
 import Doughnut from '../../Components/Graphics/Doughnut';
 import Doughnut1 from '../../Components/Graphics/Douhhnut1';
-import { Card, CardInfo } from '../../Components/Cards/Cards';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Title, TitleIng } from '../../Components/common/Texts';
+// import { Card, CardInfo } from '../../Components/Cards/Cards';
+// import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { /*Title,*/ TitleIng } from '../../Components/common/Texts';
 
 
 function Admin(){

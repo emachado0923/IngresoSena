@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
 const BootstrapInput = withStyles((theme) => ({
@@ -55,10 +53,7 @@ function CerrarSesion(){
 
 export default function CustomizedSelects() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  
   return (
     <div>
       <FormControl className={classes.margin}>
@@ -67,10 +62,7 @@ export default function CustomizedSelects() {
           id="demo-customized-select"
           input={<BootstrapInput />}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem onClick={() => CerrarSesion()}>Cerrar Sesion</MenuItem>
+          <MenuItem onClick={() => CerrarSesion()}>Cerrar Sesión</MenuItem>
         </Select>
       </FormControl>
     </div>

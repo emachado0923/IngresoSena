@@ -2,6 +2,7 @@
   "name": "senamecuida",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://senamecuida.sertec-csge.com.co/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
@@ -17,17 +18,22 @@
     "bootstrap": "^4.5.0",
     "bootstrap-sweetalert": "^1.0.1",
     "chart.js": "^2.9.3",
+    "dotenv": "^8.2.0",
     "jwt-decode": "^2.2.0",
     "moment-timezone": "^0.5.31",
     "mui-datatables": "^3.1.5",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-flexbox-grid": "^2.1.2",
+    "react-number-format": "^4.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "sweetalert2": "^9.15.2"
+    "react-text-mask": "^5.4.3",
+    "sweetalert2": "^9.15.2",
+    "validator": "^13.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

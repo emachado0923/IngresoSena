@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import { Col } from 'react-flexbox-grid';
-import {Typography} from '@material-ui/core'
 import { Line } from 'react-chartjs-2'
 import Card from '@material-ui/core/Card';
-import Axios from 'axios'
 
 class Line3 extends Component {
 
@@ -18,7 +16,7 @@ class Line3 extends Component {
     
 
     async componentDidMount(){
-        // await fetch('http://localhost:3008/api/funcionario/countMeses')
+        // await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/countMeses`)
         // .then(res => res.json())
         // .then( data => {
 
@@ -37,7 +35,7 @@ class Line3 extends Component {
 
         // })
 
-        await fetch('http://localhost:3008/api/funcionario/countMeses')
+        await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/countMeses`)
         .then(res => res.json())
         .then( data => {
 
@@ -53,7 +51,7 @@ class Line3 extends Component {
 
         })
 
-        await fetch('http://localhost:3008/api/visitante/countMeses')
+        await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/countMeses`)
         .then(res => res.json())
         .then( data => {
 
@@ -69,7 +67,7 @@ class Line3 extends Component {
 
         })
 
-        await fetch('http://localhost:3008/api/aprendiz/countMeses')
+        await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/countMeses`)
         .then(res => res.json())
         .then( data => {
 
@@ -106,7 +104,7 @@ class Line3 extends Component {
                         maintainAspectRatio: true,
                         title:{
                             display:true,
-                            text:"Estadisticas de registro de personas por Mes",
+                            text:"Estadísticas de registro de personas por Mes",
                         }
                 }}>
 

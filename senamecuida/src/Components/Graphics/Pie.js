@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col } from 'react-flexbox-grid';
-import {Typography} from '@material-ui/core'
 import { Pie} from 'react-chartjs-2'
 import Card from '@material-ui/core/Card';
 import Axios from 'axios'
@@ -12,14 +11,14 @@ class Chart extends Component {
     }       
     
     async componentDidMount(){
-        const resA = await Axios.get('http://localhost:3008/api/estadoAprendiz/countDocuments')
+        const resA = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/countDocuments`)
         localStorage.setItem('personasActivasA', resA.data.result)
 
         
-        const resB = await Axios.get('http://localhost:3008/api/estadoFuncionario/countDocuments')
+        const resB = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/countDocuments`)
         localStorage.setItem('personasActivasF', resB.data.result)
 
-        const resC = await Axios.get('http://localhost:3008/api/estadoVisitante/countDocuments')
+        const resC = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoVisitante/countDocuments`)
         localStorage.setItem('personasActivasV', resC.data.result)
 
         var funcc = localStorage.getItem('personasActivasA')
@@ -32,14 +31,14 @@ class Chart extends Component {
         var deAlta = (ssi+ssi1+ssi2);
         localStorage.setItem('deAlta', deAlta)
 
-        const res1 = await Axios.get('http://localhost:3008/api/funcionario/countDocuments')
+        const res1 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/countDocuments`)
         localStorage.setItem('funcionario', res1.data.result)
         
         
-        const res2 = await Axios.get('http://localhost:3008/api/visitante/countDocuments')
+        const res2 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/visitante/countDocuments`)
         localStorage.setItem('visitante', res2.data.result)
         
-        const res3 = await Axios.get('http://localhost:3008/api/aprendiz/countDocuments')
+        const res3 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/aprendiz/countDocuments`)
         localStorage.setItem('aprendiz', res3.data.result)
 
         
@@ -52,7 +51,7 @@ class Chart extends Component {
         var si2 = parseInt(aprn)
         var si3 = parseInt(act)
         var sumaR = (si+si1+si2)
-        var deBaja = ((si+si1+si2)-si3);
+        // var deBaja = ((si+si1+si2)-si3);
         var porcentajeA = ((si3*100)/sumaR)
         var restaR = (sumaR-si3)
         var porcentajeB = ((restaR*100)/sumaR)

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Button} from '@material-ui/core'
 import MUIDataTable from "mui-datatables";
 import Axios from 'axios'
 
@@ -17,7 +16,7 @@ class Table extends Component {
   }       
 
   async componentDidMount(){
-      const res = await Axios.get('http://localhost:3008/api/funcionario/list')
+      const res = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/list`)
       this.setState({products: res.data.data})
   }
 

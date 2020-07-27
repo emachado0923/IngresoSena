@@ -1,10 +1,10 @@
 require("../Configs/config");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const authJWT = require('../middlewares/PassportSeguridad')
+const authJWT = require('../Middlewares/PassportSeguridad')
 const passport = require("passport");
 passport.use(authJWT)
-const User = require("../models/tbl_seguridad");
+const User = require('../Models/tbl_seguridad');
 
 
 // //.......Describe the user registration.......[ ADMIN ]....................................
@@ -56,12 +56,14 @@ const User = require("../models/tbl_seguridad");
 const userLogin = async (userCreds, role, res) => {
   let { username, password } = userCreds;
 
+  if (!username || !password ){
+    return res.status(400).send("¡Por favor ingrese un usuario y una contraseña valida!");
+}
+
   //First check if the username is in the database
   const user = await User.findOne({ username });
   if (!user) {
-    return res.status(404).json({
-      message: `Usuario no encontrado, credenciales invalidas para iniciar sesión`
-    });
+    return res.status(400).send("¡Usuario no encontrado, credenciales invalidas para iniciar sesion!");
   }
   // We will check the role
   if (user.role != role) {

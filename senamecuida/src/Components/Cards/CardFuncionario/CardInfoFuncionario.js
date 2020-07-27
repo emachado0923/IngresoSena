@@ -12,7 +12,7 @@ class CardInfoFuncionario extends Component {
       }       
     
     async componentDidMount(){
-        const res = await Axios.get('http://localhost:3008/api/funcionario/countDocuments')
+        const res = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/countDocuments`)
         this.setState({documents:res.data.result})
         console.log(this.state.documents);
     }

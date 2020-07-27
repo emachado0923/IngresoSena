@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Title, SubTitle, Text } from '../../../Components/common/Texts';
+import { Title, SubTitle } from '../../../Components/common/Texts';
 import { CardRol } from '../../../Components/Cards/Cards';
-import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+// import { faUserAlt, faUserTie, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 
 import { Modal } from 'react-bootstrap';
 import Visitante from '../../../Components/Forms/Visitante';

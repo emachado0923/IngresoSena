@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col } from 'react-flexbox-grid';
-import {Typography} from '@material-ui/core'
 import { Doughnut } from 'react-chartjs-2'
 import Card from '@material-ui/core/Card';
 import Axios from 'axios'
@@ -13,14 +12,14 @@ class Chart extends Component {
     
     async componentDidMount(){
 
-        const res1 = await Axios.get('http://localhost:3008/api/funcionario/countDocuments')
+        const res1 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/countDocuments`)
         localStorage.setItem('funcionario', res1.data.result)
         
         
-        const res2 = await Axios.get('http://localhost:3008/api/visitante/countDocuments')
+        const res2 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/visitante/countDocuments`)
         localStorage.setItem('visitante', res2.data.result)
         
-        const res3 = await Axios.get('http://localhost:3008/api/aprendiz/countDocuments')
+        const res3 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/aprendiz/countDocuments`)
         localStorage.setItem('aprendiz', res3.data.result)
 
         

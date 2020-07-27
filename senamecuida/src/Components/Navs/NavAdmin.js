@@ -2,13 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faHome, faUsers, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'react-bootstrap';
-import { Search } from '../common/Inputs';
+// import { Search } from '../common/Inputs';
 import LogoSena from '../../Assets/image/logo/LogoSena.png';
 import './estilos.css';
 import { Link } from 'react-router-dom';
 import Select from '../Select/Select'
 
-const NavAdmin = ({ }) => {
+const NavAdmin = () => {
     return (
         <div className='containerNavAdmin'>
             <div className='adminTop'>
@@ -26,9 +26,6 @@ const NavAdmin = ({ }) => {
                     </Dropdown>
                 </div>
                 <div className='contRight'>
-                    <div className='search'>
-                        <Search placeholder='Burcar...'></Search>
-                    </div>
                     <div className='iconAdmin'>
                         <FontAwesomeIcon icon={faUserCircle} />
                         <Select />

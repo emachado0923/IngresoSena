@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { Input } from '../../../Components/common/Inputs';
 import { Button } from '../../../Components/common/Button';
-import Logo from '../../../Assets/image/iconos/logo_sena_negro.png'
+import Logo from '../../../Assets/image/logo/icono_naranja_nuevo.png'
 import './estilos.css'
 import Swal from 'sweetalert2';
 import swal from 'bootstrap-sweetalert';
@@ -19,7 +19,7 @@ function Login() {
         const handlePasswordChange = (event) => setPassword(event.target.value)
 
         async function login() {
-            await fetch('http://localhost:3008/api/seguridad/login-seguridad', {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/seguridad/login-seguridad`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

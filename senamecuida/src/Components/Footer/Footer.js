@@ -1,7 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt, faPhoneAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCalendarAlt, faPhoneAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+// import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import Logo from '../../Assets/image/logo/LogoSena.png';
 import icono1 from '../../Assets/image/iconos/twitter.png';
 import icono2 from '../../Assets/image/iconos/Facebook.png';
@@ -11,7 +11,7 @@ import icono5 from '../../Assets/image/iconos/calendario.png';
 import icono6 from '../../Assets/image/iconos/telefono.png';
 import './estilos.css';
 
-const Footer = ({ }) => {
+const Footer = () => {
     return (
         <div className='containerFooter'>
             <div className='logoFooter'>
@@ -24,19 +24,19 @@ const Footer = ({ }) => {
                             <div className='icono1'>
                                 <img src={icono2} alt="" />
                             </div>
-                            <a href="">Facebook</a>
+                            <a href="https://www.facebook.com/SENAAntioquia/">Facebook</a>
                         </li>
                         <li>
                             <div className='icono1'>
                                 <img src={icono3} alt="" />
                             </div>
-                            <a href="">Instagram</a>
+                            <a href="https://www.instagram.com/senacomunica/?hl=es-la">Instagram</a>
                         </li>
                         <li>
                             <div className='icono1'>
                                 <img src={icono1} alt="" />
                             </div>
-                            <a href="">Twitter</a>
+                            <a href="https://twitter.com/SENA_Antioquia">Twitter</a>
                         </li>
                     </ul>
                 </div>
@@ -46,19 +46,19 @@ const Footer = ({ }) => {
                             <div className='icono1'>
                                   <img src={icono4} alt="" />
                             </div>
-                            <h1>Dirección</h1>
+                            <h1>Dirección: Cl. 51 #56A-22, Medellín, Antioquia</h1>
                         </li>
                         <li>
                             <div className='icono1'>
                                <img src={icono5} alt="" />
                             </div>
-                            <h1>Horarios</h1>
+                            <h1>Horarios: lunes a viernes 8:00 a.m. a 5:30 p.m</h1>
                         </li>
                         <li>
                             <div className='icono1'>
                                <img src={icono6} alt="" />
                             </div>
-                            <h1>Teléfono</h1>
+                            <h1>Teléfono: 5110930</h1>
                         </li>
                     </ul>
                 </div>

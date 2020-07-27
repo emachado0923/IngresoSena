@@ -2,36 +2,23 @@ import React from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Select from '@material-ui/core/Select';
+// import FormControl from '@material-ui/core/FormControl';
+// import InputLabel from '@material-ui/core/InputLabel';
 
 
-import { Input } from '../../common/Inputs';
+// import { Input } from '../../common/Inputs';
 import { ButtonIcon } from '../../../Components/common/Button';
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }));
-
 const Aprendiz = () => {
-
-    const classes = useStyles();
 
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
 
     async function registro() {
-        await fetch('http://localhost:3008/api/estadoAprendiz/delete', {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/delete`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -43,7 +30,7 @@ const Aprendiz = () => {
         if(result['ok'] === true){            
             result.json()
             .then(async function(data) {
-                await fetch('http://localhost:3008/api/salidaDia/create', {
+                await fetch(`${process.env.REACT_APP_API_URL}/api/salidaDia/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -97,7 +84,6 @@ const Aprendiz = () => {
         <div className='containerForm'>
             <TextField
                 value={documentoIdentidad}
-                className="contInput"
                 onChange={handleDocumentoIdentidadChange}
                 required
                 name="documentoIdentidad"
@@ -105,6 +91,7 @@ const Aprendiz = () => {
                 type='number'
                 label='Documento de Identidad'
                 placeholder='Ingresa el documento de identidad'
+                variant='outlined'
             />
             <div style={{marginTop:25}}>
             <ButtonIcon 

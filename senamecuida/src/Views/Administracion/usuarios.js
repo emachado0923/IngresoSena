@@ -7,11 +7,11 @@ import NavAdmin from '../../Components/Navs/NavAdmin';
 import TableAprendiz from '../../Components/Table/TableAprendiz/Table';
 import TableFuncionaro from '../../Components/Table/TableFuncionario/Table';
 import TableVisitante from '../../Components/Table/TableVisitante/Table';
-import { Card, CardInfo } from '../../Components/Cards/Cards';
+// import { Card, CardInfo } from '../../Components/Cards/Cards';
 import CardInfoAprendiz from '../../Components/Cards/CardAprendiz/CardInfoAprendiz';
 import CardInfoVisitante from '../../Components/Cards/CardVisitante/CardInfoVisitante';
 import CardInfoFuncionario from '../../Components/Cards/CardFuncionario/CardInfoFuncionario';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+// import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Title } from '../../Components/common/Texts';
 
 

@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
 
-import { Input } from '../common/Inputs';
+// import { Input } from '../common/Inputs';
 import { ButtonIcon } from '../../Components/common/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,8 +33,7 @@ const Visitante = () => {
     const [telefono, setTelefono] = React.useState('')
     const [direccionResidencia, setDireccionResidencia] = React.useState('')
     const [eps, setEps] = React.useState('')
-    const [numeroFicha, setNumeroFicha] = React.useState('')
-    const [programaDeFormacion, setProgramaDeFormacion] = React.useState('')
+
 
     const handleNombreChange = (event) => setNombre(event.target.value)
     const handleEmailChange = (event) => setEmail(event.target.value)
@@ -43,59 +42,107 @@ const Visitante = () => {
     const handleTelefonoChange = (event) => setTelefono(event.target.value)
     const handleDireccionResidenciaChange = (event) => setDireccionResidencia(event.target.value)
     const handleEpsChange = (event) => setEps(event.target.value)
-    const handleNumeroFichaChange = (event) => setNumeroFicha(event.target.value)
-    const handleProgramaDeFormacionChange = (event) => setProgramaDeFormacion(event.target.value)
 
-    async function registro() {
-        await fetch('http://localhost:3008/api/visitante/create', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            
-        },  
-        body: JSON.stringify({nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps, numeroFicha, programaDeFormacion})
-        })
-        .then(function (result) {
-        if(result['ok'] === true){
-            result.text().then(function(data) {
-            
-            Swal.fire({
-                icon: 'success',
-                title: '¡BIEN!',
-                text: data,
-                timer: 1500
-            })
-            })
+    function prevent(){
+        document.querySelector("#numeroId").addEventListener("keypress", function (evt) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
             }
-            else{
-            result.text().then(function(data) { 
-                Swal.fire({
-                icon: 'error',
-                title: '¡ERROR!',
-                text: data,
-                timer: 5500
-            })
-            })
+        });
+        document.querySelector("#tel1").addEventListener("keypress", function (evt) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
             }
-            
-        })
-        .catch (function (error) {
-        console.log(error)
-            /*Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error,
-            timer: 1500
-        })*/
+        });
+        document.querySelector("#celular").addEventListener("keypress", function (evt) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
+        document.querySelector("#nombre").addEventListener("keypress", function (evt) {
+            if(!(evt.which >= 65 && evt.which <= 120) && (evt.which !== 32 && evt.which !== 0)) 
+            { 
+                evt.preventDefault(); 
+            }
         });
     }
+
+    async function registro() {
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var address = document.querySelector('#correo').value;
+            if (reg.test(address) == false) 
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar una direccion de correo electronico valida!",
+                    timer: 10500
+                })
+                return (false);
+            }else {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/create`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                
+            },  
+            body: JSON.stringify({nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps})
+            })
+            .then(function (result) {
+            if(result['ok'] === true){
+                result.text().then(function(data) {
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡BIEN!',
+                    text: data,
+                    timer: 1500
+                })
+                })
+                }
+                else if(result.status === 400){
+                result.text().then(function(data) { 
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡DEBES LLENAR TODOS LOS CAMPOS!',
+                        timer: 10500
+                    })
+                })
+                } else {
+                    result.text().then(function(data) { 
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Este dato ya se encuentra registrado en el aplicativo!',
+                            text: data,
+                            timer: 10500
+                        })
+                    })
+                }
+                
+            })
+            .catch (function (error) {
+            console.log(error)
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error,
+                timer: 1500
+            })
+            });
+        }
+    }
+
 
     return (
         <div className='containerForm'>
             <TextField
                 value={nombre}
                 onChange={handleNombreChange}
+                onKeyDown={prevent}
                 required
                 fullWidth
                 name="nombre"
@@ -105,6 +152,7 @@ const Visitante = () => {
                 placeholder='Ingresa tu nombre completo'
                 variant="outlined" 
             />
+            <div style={{width:'100%', marginTop:'1.5%'}}>
             <TextField
                 value={email}
                 onChange={handleEmailChange}
@@ -112,28 +160,17 @@ const Visitante = () => {
                 fullWidth
                 name="email"
                 id='correo'
-                type='text'
+                type='email'
                 label='Correo electrónico'
                 placeholder='Ingresa tu correo'
                 variant="outlined" 
             />
-            <FormControl variant="outlined" fullWidth className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">Tipo de documento</InputLabel>
-                <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                label="Age"
-                >
-                <MenuItem value="">
-                    <em>None</em>
-                </MenuItem>
-                <MenuItem value={'1'}>Cedula de Ciudadania</MenuItem>
-                <MenuItem value={'2'}>Tarjeta de identidad</MenuItem>
-                </Select>
-            </FormControl>       
+            </div>            
+            <div style={{width:'100%', marginTop:'1.5%'}}>
             <TextField
                 value={documentoIdentidad}
                 onChange={handleDocumentoIdentidadChange}
+                onKeyDown={prevent}
                 required
                 fullWidth
                 name="documentoIdentidad"
@@ -143,9 +180,12 @@ const Visitante = () => {
                 placeholder='Ingresa tu número de documento'
                 variant="outlined" 
             />
+            </div>
+            <div style={{width:'100%', marginTop:'1.5%'}}>
             <TextField
                 value={telefono}
                 onChange={handleTelefonoChange}
+                onKeyDown={prevent}
                 required
                 fullWidth
                 name="telefono"
@@ -155,9 +195,12 @@ const Visitante = () => {
                 placeholder='Ingresa tu número de teléfono'
                 variant="outlined" 
             />
+            </div>
+            <div style={{width:'100%', marginTop:'1.5%'}}>
             <TextField
                 value={celular}
                 onChange={handleCelularChange}
+                onKeyDown={prevent}
                 required
                 fullWidth
                 name="celular"
@@ -167,6 +210,8 @@ const Visitante = () => {
                 placeholder='Ingresa número de teléfono'
                 variant="outlined" 
             />
+            </div>
+            <div style={{width:'100%', marginTop:'1.5%'}}>    
             <TextField
                 value={direccionResidencia}
                 onChange={handleDireccionResidenciaChange}
@@ -179,18 +224,30 @@ const Visitante = () => {
                 placeholder='Ingresa tu dirección de residencia'
                 variant="outlined" 
             />
-            <TextField
+            </div>
+            <div style={{width:'100%', marginTop:'1.5%', marginLeft:'-2%'}}>
+            <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">EPS</InputLabel>
+                <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                label="EPS"
                 value={eps}
                 onChange={handleEpsChange}
-                required
-                fullWidth
-                name="eps"
-                id='eps'
-                label='EPS'
-                type='text'
-                placeholder='Ingresa tu EPS'
-                variant="outlined" 
-            />
+                >
+                <MenuItem value={'SURA'} onChange={handleEpsChange}>SURA</MenuItem>
+                <MenuItem value={'Coomeva'} onChange={handleEpsChange}>Coomeva</MenuItem>
+                <MenuItem value={'Salud Colmena'} onChange={handleEpsChange}>Salud Colmena</MenuItem>
+                <MenuItem value={'Salud total'} onChange={handleEpsChange}>Salud Total</MenuItem>
+                <MenuItem value={'Cafesalud'} onChange={handleEpsChange}>Cafesalud</MenuItem>
+                <MenuItem value={'Sanitas'} onChange={handleEpsChange}>Sanitas</MenuItem>
+                <MenuItem value={'Saludcoop'} onChange={handleEpsChange}>Saludcoop</MenuItem>
+                <MenuItem value={'Colseguros'} onChange={handleEpsChange}>Colseguros</MenuItem>
+                <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos colpatria</MenuItem>
+                <MenuItem value={'Cruz blanca'} onChange={handleEpsChange}>Cruz Blanca</MenuItem>
+                </Select>
+            </FormControl>
+            </div>
             <div style={{marginTop:25}}>
             <ButtonIcon 
                 bgColor='#00A7AF' 

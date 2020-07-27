@@ -56,7 +56,7 @@
 
 .contRight {
     width: 30%;
-    display: flex;
+    display: contents;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
