@@ -247,8 +247,8 @@ const Visitante = () => {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Error!.',
-                text: 'Debe seleccionar todos las opciones!.',
+                title: 'Error!',
+                text: 'Debe seleccionar todos las opciones!',
                 timer: 1500
             })
             return false
