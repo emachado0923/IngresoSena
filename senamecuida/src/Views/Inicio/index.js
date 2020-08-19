@@ -87,7 +87,6 @@ class Inicio extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={() => { this.setState({ openModal: false }) }} />
-                            {/* <ButtonIcon bgColor='#00A7AF' title='Registrarse' /> */}
                         </Modal.Footer>
                     </Modal>
 
