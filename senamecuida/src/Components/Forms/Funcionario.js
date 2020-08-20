@@ -2,20 +2,18 @@ import React from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Modal } from 'react-bootstrap';
-import { Title} from '../../Components/common/Texts';
+import {Modal} from 'react-bootstrap';
+import {Title} from '../../Components/common/Texts';
 import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 
 
-
-
 // import { Input } from '../common/Inputs';
-import { ButtonIcon } from '../../Components/common/Button';
+import {ButtonIcon} from '../../Components/common/Button';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -48,8 +46,7 @@ const Visitante = () => {
     const [contacto, setContacto] = React.useState(false)
     const [tratamiento, setTratamiento] = React.useState(false)
 
-    
-    
+
     const handleNombreChange = (event) => setNombre(event.target.value)
     const handleEmailChange = (event) => setEmail(event.target.value)
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
@@ -57,11 +54,11 @@ const Visitante = () => {
     const handleTelefonoChange = (event) => setTelefono(event.target.value)
     const handleDireccionResidenciaChange = (event) => setDireccionResidencia(event.target.value)
     const handleEpsChange = (event) => setEps(event.target.value)
-    
+
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
     const OpenModalSec = () => setModalSec(true);
-    
+
     function prevent() {
         document.querySelector("#numeroId").addEventListener("keypress", function (evt) {
             if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57) {
@@ -83,21 +80,21 @@ const Visitante = () => {
                 evt.preventDefault();
             }
         });
-        var NID=  document.querySelector('#numeroId');
-            NID.addEventListener('input',function(){
-            if (this.value.length > 10) 
-                this.value = this.value.slice(0,10); 
-            })
-        var NTEL=  document.querySelector('#tel1');
-            NTEL.addEventListener('input',function(){
-            if (this.value.length > 10) 
-                this.value = this.value.slice(0,10); 
-            })
-        var NTELF=  document.querySelector('#celular');
-            NTELF.addEventListener('input',function(){
-            if (this.value.length > 10) 
-                this.value = this.value.slice(0,10); 
-            })
+        var NID = document.querySelector('#numeroId');
+        NID.addEventListener('input', function () {
+            if (this.value.length > 10)
+                this.value = this.value.slice(0, 10);
+        })
+        var NTEL = document.querySelector('#tel1');
+        NTEL.addEventListener('input', function () {
+            if (this.value.length > 10)
+                this.value = this.value.slice(0, 10);
+        })
+        var NTELF = document.querySelector('#celular');
+        NTELF.addEventListener('input', function () {
+            if (this.value.length > 10)
+                this.value = this.value.slice(0, 10);
+        })
     }
 
     const handleSubmit = e => {
@@ -203,10 +200,10 @@ const Visitante = () => {
 
         if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
             if (sintomas.length >= 3) {
-                registroNE()
+                registroNE(valores)
             } else {
-                registroE()
-            } 
+                registroE(valores)
+            }
         } else {
             Swal.fire({
                 icon: 'error',
@@ -217,76 +214,86 @@ const Visitante = () => {
             return false
         }
     }
-    async function registroNE() {
+
+    async function registroNE(valores) {
+        let sintomas = valores
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         var address = document.querySelector('#correo').value;
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-            var address = document.querySelector('#correo').value;
-            var name = document.querySelector('#nombre').value;
-            var ID = document.querySelector('#numeroId').value;
-            var tel = document.querySelector('#tel1').value;
-            var cel = document.querySelector('#celular').value;
-            var direccion = document.querySelector('#direccion').value;
-            if (reg.test(address) == false) 
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar una direccion de correo electronico valida!",
-                    timer: 10500
-                })
-                return (false);
-            }else if(name.length<8)
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar tu nombre completo!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (ID.length<8){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar un numero de documento de identidad valido!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (tel.length<7){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar un numero de telefono valido!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (cel.length<7){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar otro numero de telefono valido!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (direccion.length<10){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar una dirección valida!",
-                    timer: 10500
-                })
-                return (false);
-            }
-            else{
-            await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/createNE`, {
+        var address = document.querySelector('#correo').value;
+        var name = document.querySelector('#nombre').value;
+        var ID = document.querySelector('#numeroId').value;
+        var tel = document.querySelector('#tel1').value;
+        var cel = document.querySelector('#celular').value;
+        var direccion = document.querySelector('#direccion').value;
+        if (reg.test(address) == false) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar una direccion de correo electronico valida!",
+                timer: 10500
+            })
+            return (false);
+        } else if (name.length < 8) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar tu nombre completo!",
+                timer: 10500
+            })
+            return (false);
+        } else if (ID.length < 8) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar un numero de documento de identidad valido!",
+                timer: 10500
+            })
+            return (false);
+        } else if (tel.length < 7) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar un numero de telefono valido!",
+                timer: 10500
+            })
+            return (false);
+        } else if (cel.length < 7) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar otro numero de telefono valido!",
+                timer: 10500
+            })
+            return (false);
+        } else if (direccion.length < 10) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar una dirección valida!",
+                timer: 10500
+            })
+            return (false);
+        } else {
+
+            // await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
+            await fetch(`http://localhost:3008/api/funcionario/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
 
                 },
-                body: JSON.stringify({ nombre, email, documentoIdentidad, celular, telefono, direccionResidencia, eps })
+                body: JSON.stringify({
+                    nombre,
+                    email,
+                    documentoIdentidad,
+                    celular,
+                    telefono,
+                    direccionResidencia,
+                    eps,
+                    sintomas
+                })
             })
                 .then(function (result) {
                     if (result['ok'] === true) {
@@ -298,8 +305,7 @@ const Visitante = () => {
                                 timer: 10500
                             })
                         })
-                    }
-                    else if (result.status === 400) {
+                    } else if (result.status === 400) {
                         result.text().then(function (data) {
                             Swal.fire({
                                 icon: 'error',
@@ -332,76 +338,84 @@ const Visitante = () => {
     }
 
 
-    async function registroE() {
+    async function registroE(valores) {
+        let sintomas = valores
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         var address = document.querySelector('#correo').value;
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-            var address = document.querySelector('#correo').value;
-            var name = document.querySelector('#nombre').value;
-            var ID = document.querySelector('#numeroId').value;
-            var tel = document.querySelector('#tel1').value;
-            var cel = document.querySelector('#celular').value;
-            var direccion = document.querySelector('#direccion').value;
-            if (reg.test(address) == false) 
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar una direccion de correo electronico valida!",
-                    timer: 10500
-                })
-                return (false);
-            }else if(name.length<8)
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar tu nombre completo!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (ID.length<8){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar un numero de documento de identidad valido!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (tel.length<7){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar un numero de telefono valido!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (cel.length<7){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar otro numero de telefono valido!",
-                    timer: 10500
-                })
-                return (false);
-            } else if (direccion.length<10){
-                Swal.fire({
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: "¡Debes ingresar una dirección valida!",
-                    timer: 10500
-                })
-                return (false);
-            }
-            else{
-            await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
+        var address = document.querySelector('#correo').value;
+        var name = document.querySelector('#nombre').value;
+        var ID = document.querySelector('#numeroId').value;
+        var tel = document.querySelector('#tel1').value;
+        var cel = document.querySelector('#celular').value;
+        var direccion = document.querySelector('#direccion').value;
+        if (reg.test(address) == false) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar una direccion de correo electronico valida!",
+                timer: 10500
+            })
+            return (false);
+        } else if (name.length < 8) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar tu nombre completo!",
+                timer: 10500
+            })
+            return (false);
+        } else if (ID.length < 8) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar un numero de documento de identidad valido!",
+                timer: 10500
+            })
+            return (false);
+        } else if (tel.length < 7) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar un numero de telefono valido!",
+                timer: 10500
+            })
+            return (false);
+        } else if (cel.length < 7) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar otro numero de telefono valido!",
+                timer: 10500
+            })
+            return (false);
+        } else if (direccion.length < 10) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: "¡Debes ingresar una dirección valida!",
+                timer: 10500
+            })
+            return (false);
+        } else {
+            //await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
+            await fetch(`http://localhost:3008/api/funcionario/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
 
                 },
-                body: JSON.stringify({ nombre, email, documentoIdentidad, celular, telefono, direccionResidencia, eps })
+                body: JSON.stringify({
+                    nombre,
+                    email,
+                    documentoIdentidad,
+                    celular,
+                    telefono,
+                    direccionResidencia,
+                    eps,
+                    sintomas
+                })
             })
                 .then(function (result) {
                     if (result['ok'] === true) {
@@ -414,8 +428,7 @@ const Visitante = () => {
                                 timer: 1500
                             })
                         })
-                    }
-                    else if (result.status === 400) {
+                    } else if (result.status === 400) {
                         result.text().then(function (data) {
                             Swal.fire({
                                 icon: 'error',
@@ -462,7 +475,7 @@ const Visitante = () => {
                 placeholder='Ingresa tu nombre completo'
                 variant="outlined"
             />
-            <div style={{ width: '100%', marginTop: '1.5%' }}>
+            <div style={{width: '100%', marginTop: '1.5%'}}>
                 <TextField
                     value={email}
                     onChange={handleEmailChange}
@@ -476,7 +489,7 @@ const Visitante = () => {
                     variant="outlined"
                 />
             </div>
-            <div style={{ width: '100%', marginTop: '1.5%' }}>
+            <div style={{width: '100%', marginTop: '1.5%'}}>
                 <TextField
                     value={documentoIdentidad}
                     onChange={handleDocumentoIdentidadChange}
@@ -491,7 +504,7 @@ const Visitante = () => {
                     variant="outlined"
                 />
             </div>
-            <div style={{ width: '100%', marginTop: '1.5%' }}>
+            <div style={{width: '100%', marginTop: '1.5%'}}>
                 <TextField
                     value={telefono}
                     onChange={handleTelefonoChange}
@@ -506,7 +519,7 @@ const Visitante = () => {
                     variant="outlined"
                 />
             </div>
-            <div style={{ width: '100%', marginTop: '1.5%' }}>
+            <div style={{width: '100%', marginTop: '1.5%'}}>
                 <TextField
                     value={celular}
                     onChange={handleCelularChange}
@@ -521,7 +534,7 @@ const Visitante = () => {
                     variant="outlined"
                 />
             </div>
-            <div style={{ width: '100%', marginTop: '1.5%' }}>
+            <div style={{width: '100%', marginTop: '1.5%'}}>
                 <TextField
                     value={direccionResidencia}
                     onChange={handleDireccionResidenciaChange}
@@ -535,7 +548,7 @@ const Visitante = () => {
                     variant="outlined"
                 />
             </div>
-            <div style={{ width: '100%', marginTop: '1.5%', marginLeft: '-2%' }}>
+            <div style={{width: '100%', marginTop: '1.5%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
                     <InputLabel id="demo-simple-select-outlined-label">EPS</InputLabel>
                     <Select
@@ -553,12 +566,13 @@ const Visitante = () => {
                         <MenuItem value={'Sanitas'} onChange={handleEpsChange}>Sanitas</MenuItem>
                         <MenuItem value={'Saludcoop'} onChange={handleEpsChange}>Saludcoop</MenuItem>
                         <MenuItem value={'Colseguros'} onChange={handleEpsChange}>Colseguros</MenuItem>
-                        <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos colpatria</MenuItem>
+                        <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos
+                            colpatria</MenuItem>
                         <MenuItem value={'Cruz blanca'} onChange={handleEpsChange}>Cruz Blanca</MenuItem>
                     </Select>
                 </FormControl>
             </div>
-            <div style={{ marginTop: 25 }}>
+            <div style={{marginTop: 25}}>
                 <ButtonIcon
                     bgColor='#00A7AF'
                     title='Siguiente'
@@ -568,125 +582,134 @@ const Visitante = () => {
             <Modal show={modalSec}>
                 <Modal.Header>
                     <Modal.Title>
-                        <Title title='FORMULARIO  DE  REGISTRO' />
+                        <Title title='FORMULARIO  DE  REGISTRO'/>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="card-body">
-                    <Container>
-                        <h3>Presenta algunos de estos síntomas?</h3>
-                        <hr/>
-                        <Form onSubmit={handleSubmit}>
-                            <Row>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Fiebre?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" id="fiebre" onChange={e => setFiebre(e.target.value = true)}
-                                                value={fiebre} name={'fiebre'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setFiebre(e.target.value = false)}
-                                                value={fiebre} name={'fiebre'} label={'No'}/>
-                                </Col>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Tos?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setTos(e.target.value = true)}
-                                                value={Tos} name={'Tos'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setTos(e.target.value = false)}
-                                                value={Tos} name={'Tos'} label={'No'}/>
-                                </Col>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Dolor al tragar?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setDolorTragar(e.target.value = true)}
-                                                value={dolorTragar} name={'dolorTragar'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setDolorTragar(e.target.value = false)}
-                                                value={dolorTragar} name={'dolorTragar'} label={'No'}/>
-                                </Col>
-                            </Row>
-
+                        <Container>
+                            <h3>Presenta algunos de estos síntomas?</h3>
                             <hr/>
+                            <Form onSubmit={handleSubmit}>
+                                <Row>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Fiebre?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" id="fiebre"
+                                                    onChange={e => setFiebre(e.target.value = true)}
+                                                    value={fiebre} name={'fiebre'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setFiebre(e.target.value = false)}
+                                                    value={fiebre} name={'fiebre'} label={'No'}/>
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Tos?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" onChange={e => setTos(e.target.value = true)}
+                                                    value={Tos} name={'Tos'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setTos(e.target.value = false)}
+                                                    value={Tos} name={'Tos'} label={'No'}/>
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Dolor al tragar?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" onChange={e => setDolorTragar(e.target.value = true)}
+                                                    value={dolorTragar} name={'dolorTragar'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setDolorTragar(e.target.value = false)}
+                                                    value={dolorTragar} name={'dolorTragar'} label={'No'}/>
+                                    </Col>
+                                </Row>
 
-                            <Row>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Malestar general?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setMalestarGeneral(e.target.value = true)}
-                                                value={malestargeneral} name={'malestargeneral'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setMalestarGeneral(e.target.value = false)}
-                                                value={malestargeneral} name={'malestargeneral'} label={'No'}/>
-                                </Col>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Dificultad para respirar?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio"
-                                                onChange={e => setDificultadRespirar(e.target.value = true)}
-                                                value={dificultadRespirar} name={'dificultadRespirar'} label={'Si'}/>
-                                    <Form.Check type="radio"
-                                                onChange={e => setDificultadRespirar(e.target.value = false)}
-                                                value={dificultadRespirar} name={'dificultadRespirar'} label={'No'}/>
+                                <hr/>
 
-                                </Col>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Gripa?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setGripa(e.target.value = true)}
-                                                value={gripa} name={'gripa'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setGripa(e.target.value = false)}
-                                                value={gripa} name={'gripa'} label={'No'}/>
-                                </Col>
-                            </Row>
-                            <hr/>
-                            <Row>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Diarrea?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setDiarrea(e.target.value = true)}
-                                                value={diarrea} name={'diarrea'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setDiarrea(e.target.value = false)}
-                                                value={diarrea} name={'diarrea'} label={'No'}/>
-                                </Col>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>A tenido contacto con casos sospechosos o confirmados?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setContacto(e.target.value = true)}
-                                                value={contacto} name={'contacto'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setContacto(e.target.value = false)}
-                                                value={contacto} name={'contacto'} label={'No'}/>
+                                <Row>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Malestar general?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio"
+                                                    onChange={e => setMalestarGeneral(e.target.value = true)}
+                                                    value={malestargeneral} name={'malestargeneral'} label={'Si'}/>
+                                        <Form.Check type="radio"
+                                                    onChange={e => setMalestarGeneral(e.target.value = false)}
+                                                    value={malestargeneral} name={'malestargeneral'} label={'No'}/>
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Dificultad para respirar?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio"
+                                                    onChange={e => setDificultadRespirar(e.target.value = true)}
+                                                    value={dificultadRespirar} name={'dificultadRespirar'}
+                                                    label={'Si'}/>
+                                        <Form.Check type="radio"
+                                                    onChange={e => setDificultadRespirar(e.target.value = false)}
+                                                    value={dificultadRespirar} name={'dificultadRespirar'}
+                                                    label={'No'}/>
 
-                                </Col>
-                                <Col>
-                                    <Form.Label>
-                                        <strong>Dolor articular - Sensacion de cansancio?</strong>
-                                    </Form.Label>
-                                    <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
-                                                value={tratamiento} name={'tratamiento'} label={'Si'}/>
-                                    <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = false)}
-                                                value={tratamiento} name={'tratamiento'} label={'No'}/>
-                                </Col>
-                            </Row>
-                            <hr/>
-                            <div style={{ marginTop: 25, marginLeft:"44%" }}>
-                                <ButtonIcon
-                                    bgColor='#00A7AF'
-                                    title='Siguiente'
-                                    onClick={() => OpenModalSec()}
-                                />
-                            </div>
-                        </Form>
-                    </Container>
-                </div> 
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Gripa?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" onChange={e => setGripa(e.target.value = true)}
+                                                    value={gripa} name={'gripa'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setGripa(e.target.value = false)}
+                                                    value={gripa} name={'gripa'} label={'No'}/>
+                                    </Col>
+                                </Row>
+                                <hr/>
+                                <Row>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Diarrea?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" onChange={e => setDiarrea(e.target.value = true)}
+                                                    value={diarrea} name={'diarrea'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setDiarrea(e.target.value = false)}
+                                                    value={diarrea} name={'diarrea'} label={'No'}/>
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>A tenido contacto con casos sospechosos o confirmados?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" onChange={e => setContacto(e.target.value = true)}
+                                                    value={contacto} name={'contacto'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setContacto(e.target.value = false)}
+                                                    value={contacto} name={'contacto'} label={'No'}/>
+
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>
+                                            <strong>Dolor articular - Sensacion de cansancio?</strong>
+                                        </Form.Label>
+                                        <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
+                                                    value={tratamiento} name={'tratamiento'} label={'Si'}/>
+                                        <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = false)}
+                                                    value={tratamiento} name={'tratamiento'} label={'No'}/>
+                                    </Col>
+                                </Row>
+                                <hr/>
+                                <div style={{marginTop: 25, marginLeft: "44%"}}>
+                                    <ButtonIcon
+                                        bgColor='#00A7AF'
+                                        title='Siguiente'
+                                        onClick={() => OpenModalSec()}
+                                    />
+                                </div>
+                            </Form>
+                        </Container>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <ButtonIcon bgColor='#00A7AF' title='Anterior'  onClick={() => { setModalSec(false) }} />
-                    <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={() => { setModalSec(false) }} />
+                    <ButtonIcon bgColor='#00A7AF' title='Anterior' onClick={() => {
+                        setModalSec(false)
+                    }}/>
+                    <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={() => {
+                        setModalSec(false)
+                    }}/>
                 </Modal.Footer>
             </Modal>
         </div>

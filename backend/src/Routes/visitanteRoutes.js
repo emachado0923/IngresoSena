@@ -24,7 +24,7 @@ router.route("/delete/:id").delete(visitante_controller.visitante_delete);
 // ------ Count registros ---------
 router.route('/countDocuments').get(visitante_controller.countDocuments)
 
-// ------ 
+// ------
 router.route('/countMeses').get(visitante_controller.ingresoMeses)
 
 
