@@ -10,6 +10,14 @@
 
 
 .contAdmin {
+    width: 100%;
+    padding: 1%;
+    display: flex;
+    align-self: flex-end;
+    margin: 16px 0;
+}
+
+.contAdmin1 {
     width: 84%;
     padding: 1%;
     display: flex;
@@ -17,10 +25,9 @@
     margin: 16px 0;
 }
 
-
 .contCardsInfo {
     width: 20%;
-    justify-content: space-evenly;
+    justify-content: center;
     display: flex;
     flex-direction: column;
 }
@@ -29,15 +36,15 @@
     width: 80%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
 .contEstadisticass {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     position: absolute;
 }

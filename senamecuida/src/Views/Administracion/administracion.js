@@ -22,7 +22,7 @@ function Admin(){
         return (
             <div className='containerAdmin' >
                 <NavAdmin></NavAdmin>
-                <TitleIng titleing='ESTADISTICAS' />
+                <TitleIng titleing='ESTADÍSTICAS' />
                 <div className='contAdmin' >
                     <div className='contEstadisticas'>
                         <Pie />

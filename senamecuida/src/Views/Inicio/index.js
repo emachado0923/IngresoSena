@@ -59,11 +59,7 @@ class Inicio extends Component {
                     <div className='contText'>
                         <Text
                             align='center'
-                            text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                                type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially 
-                                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently 
-                                with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                            text="Tenga en cuenta que sus datos serán tratados bajo la normativa de la ley de habeas data, al ingresar sus datos usted está autorizando de manera expresa e inequívoca para mantener y manejar la información suministrada, solo para aquellas finalidades para las que se encuentra facultado el aplicativo SENA ME CUIDA y respetando en todo caso, la normatividad vigente sobre protección de datos personales."
                         />
 
                         </div></div>

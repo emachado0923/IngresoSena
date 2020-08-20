@@ -121,27 +121,27 @@
 
 /* Responsive */
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 5200px) {
     .adminTop {
-        width: 100%;
+        width: 100% !important;
     }
     .txt h2 {
-        display: none;
+        display: none !important;
     }
     .txt .contIconNavTop {
-        display: block;
+        display: block !important;
     }
     .iconNavTop {
-        font-size: 16pt;
+        font-size: 16pt !important;
     }
     .txt a {
-        color: #000;
-        font-size: 16pt;
+        color: #000 !important;
+        font-size: 16pt !important;
     }
     .contRight {
-        width: 60%;
+        width: 60% !important;
     }
     .adminLateral {
-        display: none;
+        display: none !important;
     }
 }

@@ -14,6 +14,8 @@ router.route("/salida").post(visitante_controller.visitante_sal);
 
 router.route("/create").post(visitante_controller.visitante_create);
 
+router.route("/createNE").post(visitante_controller.visitante_createNE);
+
 router.route("/update/:id").put(visitante_controller.visitante_update);
 
 router.route("/delete/:id").delete(visitante_controller.visitante_delete);

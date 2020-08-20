@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
@@ -16,6 +16,31 @@ const Aprendiz = () => {
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
+
+    useEffect(() => {
+
+        const callSearchService = () => {
+        //   Api.search(value)
+        //     .then(
+        //       results => setResults(results),
+        //       error => console.log(error)
+        //     )
+            console.log(documentoIdentidad);
+        
+            if (documentoIdentidad!== '') {
+                registro()
+            }
+        }
+      
+        let consultarAPI = setTimeout(() => {
+          callSearchService();
+        }, 1000);
+        
+        // Se dispara cada vez que se re-renderiza el componente
+        return () => {
+          clearTimeout(consultarAPI);
+        }
+      }, [documentoIdentidad]);
 
     async function registro() {
         await fetch(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/delete`, {
@@ -46,6 +71,9 @@ const Aprendiz = () => {
                             text: JSON.stringify('¡ESTE USUARIO NO SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
                             timer: 10500
                         })
+                        setTimeout(() => {
+                            window.location.reload();    
+                        }, 3000);
                     } else {
                         Swal.fire({
                             icon: 'success',
@@ -53,6 +81,9 @@ const Aprendiz = () => {
                             text: JSON.stringify(`Hasta luego ${data.nombre}`),
                             timer: 10500
                         })
+                        setTimeout(() => {
+                            window.location.reload();    
+                        }, 3000);
                     }
                 })
             })
@@ -62,7 +93,7 @@ const Aprendiz = () => {
                 Swal.fire({
                 icon: 'error',
                 title: '¡ERROR!',
-                text: data,
+                text: JSON.stringify('¡ESTE USUARIO NO SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
                 timer: 10500
             })
             })
@@ -93,13 +124,13 @@ const Aprendiz = () => {
                 placeholder='Ingresa el documento de identidad'
                 variant='outlined'
             />
-            <div style={{marginTop:25}}>
+            {/* <div style={{marginTop:25}}>
             <ButtonIcon 
                 bgColor='#00A7AF' 
                 title='Validar'
                 onClick={() => registro()} 
             />
-            </div>
+            </div> */}
         </div>
     )
 }

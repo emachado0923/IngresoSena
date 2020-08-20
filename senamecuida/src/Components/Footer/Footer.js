@@ -46,7 +46,7 @@ const Footer = () => {
                             <div className='icono1'>
                                   <img src={icono4} alt="" />
                             </div>
-                            <h1>Dirección: Cl. 51 #56A-22, Medellín, Antioquia</h1>
+                            <h1>Dirección: Cl. 51 #57-70, Medellín, Antioquia</h1>
                         </li>
                         <li>
                             <div className='icono1'>
@@ -58,7 +58,7 @@ const Footer = () => {
                             <div className='icono1'>
                                <img src={icono6} alt="" />
                             </div>
-                            <h1>Teléfono: 5110930</h1>
+                            <h1>Teléfono: 576 00 00</h1>
                         </li>
                     </ul>
                 </div>

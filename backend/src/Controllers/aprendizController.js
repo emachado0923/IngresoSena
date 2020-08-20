@@ -1,5 +1,6 @@
 const Aprendiz = require('../Models/tbl_aprendiz');
 const {emailSend} = require('./mailController');
+const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 
 exports.aprendiz_create = function (req, res) {
@@ -36,6 +37,44 @@ aprendiz
         return res.status(409).send(err.keyValue);
         }
     })
+}
+
+
+exports.aprendiz_createNE = function (req, res) {
+  // ------------------ Validate Request ----------------- //
+  if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ){
+      return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
+  }
+
+
+// Create a public
+let aprendiz = new Aprendiz(
+  ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps} = req.body)
+);
+
+
+// ------------- save public in the database -----------
+aprendiz
+  .save()
+  .then(data => {
+      res.send("¡Su registro se ha guardado exitosamente!");
+  })
+  .then(dat => {
+    emailSend(req.body);
+    emailEnfermeroSendNE(req.body)
+  
+    Visitante.findOneAndUpdate({ email: req.body.email},(err, usuario) => {
+        if (err) return res.status(500).send({ message: 'err' })
+    })
+    return res.send("Ok")
+})
+  .catch(err => {
+    if (err.name === 'MongoError' && err.code === 11000 ) {
+      // Duplicate username
+      console.log(err);
+      return res.status(409).send(err.keyValue);
+      }
+  })
 }
 
 // ------------- retrieve and return all public ------------------
@@ -151,6 +190,7 @@ exports.aprendiz_delete = (req, res) => {
 // --------- find a funcionario by documento Identidad -------------
 exports.aprendiz_ing = async (req, res) => {
   const {documentoIdentidad} = req.body;
+  console.log(documentoIdentidad);
   await Aprendiz.findOne({documentoIdentidad}).select({_id:0,horaEntrada:0, createdAt:0, updatedAt:0, ficha:0, programaDeFormacion:0})
     .then(data => {
       if (!data) {

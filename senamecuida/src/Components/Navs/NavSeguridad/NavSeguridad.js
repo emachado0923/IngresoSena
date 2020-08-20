@@ -19,8 +19,8 @@ const NavAdmin = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item><Link to='/Seguridad'>Inicio</Link></Dropdown.Item>
-                            <Dropdown.Item><Link to='/SeguridadSalida'>Usuarios</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/Seguridad'>Verificar Ingreso</Link></Dropdown.Item>
+                            <Dropdown.Item><Link to='/SeguridadSalida'>Verificar Salida</Link></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>

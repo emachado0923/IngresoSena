@@ -1,5 +1,6 @@
 const Funcionario = require('../Models/tbl_funcionario');
 const {emailSend} = require('./mailController');
+const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.funcionario_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
@@ -36,6 +37,44 @@ funcionario
         }
     })
 }
+
+exports.funcionario_createNE = function (req, res) {
+  // ------------------ Validate Request ----------------- //
+  if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ){
+      return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
+  }
+
+
+// Create a public
+let funcionario = new Funcionario(
+  ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps} = req.body)
+);
+
+console.log(funcionario);
+// ------------- save public in the database -----------
+funcionario
+  .save()
+  .then(data => {
+      res.send("¡Su registro se ha guardado exitosamente!");
+  })
+  .then(dat => {
+    emailSend(req.body);
+    emailEnfermeroSendNE(req.body)
+  
+    Visitante.findOneAndUpdate({ email: req.body.email},(err, usuario) => {
+        if (err) return res.status(500).send({ message: 'err' })
+    })
+    return res.send("Ok")
+})
+  .catch(err => {
+    if (err.name === 'MongoError' && err.code === 11000 ) {
+      // Duplicate username
+      console.log(err);
+      return res.status(409).send(err.keyValue);
+      }
+  })
+}
+
 
 // ------------- retrieve and return all public ------------------
 exports.all_funcionarios = (req, res) => {

@@ -8,9 +8,13 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import { Modal } from 'react-bootstrap';
-import { Title } from '../../Components/common/Texts';
+import { Title} from '../../Components/common/Texts';
+import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 
-//import { Input, Select } from '../common/Inputs';
+
+
+
+// import { Input } from '../common/Inputs';
 import { ButtonIcon } from '../../Components/common/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Funcionario = () => {
+const Visitante = () => {
 
     const classes = useStyles();
 
@@ -34,7 +38,18 @@ const Funcionario = () => {
     const [telefono, setTelefono] = React.useState('')
     const [direccionResidencia, setDireccionResidencia] = React.useState('')
     const [eps, setEps] = React.useState('')
+    const [fiebre, setFiebre] = React.useState(false)
+    const [dolorTragar, setDolorTragar] = React.useState(false)
+    const [Tos, setTos] = React.useState(false)
+    const [dificultadRespirar, setDificultadRespirar] = React.useState(false)
+    const [malestargeneral, setMalestarGeneral] = React.useState(false)
+    const [gripa, setGripa] = React.useState(false)
+    const [diarrea, setDiarrea] = React.useState(false)
+    const [contacto, setContacto] = React.useState(false)
+    const [tratamiento, setTratamiento] = React.useState(false)
 
+    
+    
     const handleNombreChange = (event) => setNombre(event.target.value)
     const handleEmailChange = (event) => setEmail(event.target.value)
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
@@ -42,11 +57,11 @@ const Funcionario = () => {
     const handleTelefonoChange = (event) => setTelefono(event.target.value)
     const handleDireccionResidenciaChange = (event) => setDireccionResidencia(event.target.value)
     const handleEpsChange = (event) => setEps(event.target.value)
-
+    
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
     const OpenModalSec = () => setModalSec(true);
-
+    
     function prevent() {
         document.querySelector("#numeroId").addEventListener("keypress", function (evt) {
             if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57) {
@@ -64,24 +79,321 @@ const Funcionario = () => {
             }
         });
         document.querySelector("#nombre").addEventListener("keypress", function (evt) {
-            if (!(evt.which >= 65 && evt.which <= 120) && (evt.which !== 32 && evt.which !== 0)) {
+            if (!(evt.which >= 65 && evt.which <= 122) && (evt.which !== 32 && evt.which !== 0) && !(evt.which === 241)) {
                 evt.preventDefault();
             }
         });
+        var NID=  document.querySelector('#numeroId');
+            NID.addEventListener('input',function(){
+            if (this.value.length > 10) 
+                this.value = this.value.slice(0,10); 
+            })
+        var NTEL=  document.querySelector('#tel1');
+            NTEL.addEventListener('input',function(){
+            if (this.value.length > 10) 
+                this.value = this.value.slice(0,10); 
+            })
+        var NTELF=  document.querySelector('#celular');
+            NTELF.addEventListener('input',function(){
+            if (this.value.length > 10) 
+                this.value = this.value.slice(0,10); 
+            })
     }
 
-    async function registro() {
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        var address = document.querySelector('#correo').value;
-        if (reg.test(address) == false) {
+    const handleSubmit = e => {
+        e.preventDefault()
+        let valores = [
+            fiebre,
+            dolorTragar,
+            Tos,
+            dificultadRespirar,
+            malestargeneral,
+            gripa,
+            diarrea,
+            contacto,
+            tratamiento,
+        ]
+
+        const sintomas = valores.reduce(
+            (out, bool, index) => bool ? out.concat(index) : out,
+            []
+        )
+
+        let Fiebre = document.getElementsByName('fiebre')
+        let S_Fiebre = false
+        for (let i = 0; i < Fiebre.length; i++) {
+            if (Fiebre[i].checked) {
+                S_Fiebre = true
+                break;
+            }
+        }
+
+        let Dolor = document.getElementsByName('dolorTragar')
+        let S_Dolor = false
+        for (let i = 0; i < Dolor.length; i++) {
+            if (Dolor[i].checked) {
+                S_Dolor = true
+                break;
+            }
+        }
+
+        let TOS = document.getElementsByName('Tos')
+        let S_TOS = false
+        for (let i = 0; i < TOS.length; i++) {
+            if (TOS[i].checked) {
+                S_TOS = true
+                break;
+            }
+        }
+
+        let Difcultad = document.getElementsByName('dificultadRespirar')
+        let S_Difcultad = false
+        for (let i = 0; i < Difcultad.length; i++) {
+            if (TOS[i].checked) {
+                S_Difcultad = true
+                break;
+            }
+        }
+
+        let Malestar = document.getElementsByName('malestargeneral')
+        let S_Malestar = false
+        for (let i = 0; i < Malestar.length; i++) {
+            if (Malestar[i].checked) {
+                S_Malestar = true
+                break;
+            }
+        }
+
+        let Gripa = document.getElementsByName('gripa')
+        let S_Gripa = false
+        for (let i = 0; i < Gripa.length; i++) {
+            if (Gripa[i].checked) {
+                S_Gripa = true
+                break;
+            }
+        }
+
+        let Diarrea = document.getElementsByName('diarrea')
+        let S_Diarrea = false
+        for (let i = 0; i < Diarrea.length; i++) {
+            if (Diarrea[i].checked) {
+                S_Diarrea = true
+                break;
+            }
+        }
+
+        let Contacto = document.getElementsByName('contacto')
+        let S_Contacto = false
+        for (let i = 0; i < Contacto.length; i++) {
+            if (Contacto[i].checked) {
+                S_Contacto = true
+                break;
+            }
+        }
+
+        let Tratamiento = document.getElementsByName('tratamiento')
+        let S_Tratamiento = false
+        for (let i = 0; i < Tratamiento.length; i++) {
+            if (Tratamiento[i].checked) {
+                S_Tratamiento = true
+                break;
+            }
+        }
+
+
+        if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
+            if (sintomas.length >= 3) {
+                registroNE()
+            } else {
+                registroE()
+            } 
+        } else {
             Swal.fire({
                 icon: 'error',
-                title: '¡Error!',
-                text: "¡Debes ingresar una direccion de correo electronico valida!",
+                title: 'Vacio',
+                text: '¡Debe seleccionar todos los síntomas!',
                 timer: 10500
             })
-            return (false);
-        } else {
+            return false
+        }
+    }
+    async function registroNE() {
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var address = document.querySelector('#correo').value;
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var address = document.querySelector('#correo').value;
+            var name = document.querySelector('#nombre').value;
+            var ID = document.querySelector('#numeroId').value;
+            var tel = document.querySelector('#tel1').value;
+            var cel = document.querySelector('#celular').value;
+            var direccion = document.querySelector('#direccion').value;
+            if (reg.test(address) == false) 
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar una direccion de correo electronico valida!",
+                    timer: 10500
+                })
+                return (false);
+            }else if(name.length<8)
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar tu nombre completo!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (ID.length<8){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar un numero de documento de identidad valido!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (tel.length<7){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar un numero de telefono valido!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (cel.length<7){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar otro numero de telefono valido!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (direccion.length<10){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar una dirección valida!",
+                    timer: 10500
+                })
+                return (false);
+            }
+            else{
+            await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/createNE`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+
+                },
+                body: JSON.stringify({ nombre, email, documentoIdentidad, celular, telefono, direccionResidencia, eps })
+            })
+                .then(function (result) {
+                    if (result['ok'] === true) {
+                        result.text().then(function (data) {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '¡ALERTA!',
+                                text: "¡SE HAS REGISTRADO CON EXITO, PERO NO PUEDE ENTRAR AL CENTRO POR SUS SINTOMAS!",
+                                timer: 10500
+                            })
+                        })
+                    }
+                    else if (result.status === 400) {
+                        result.text().then(function (data) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡DEBES LLENAR TODOS LOS CAMPOS!',
+                                timer: 10500
+                            })
+                        })
+                    } else {
+                        result.text().then(function (data) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡Este dato ya se encuentra registrado en el aplicativo!',
+                                text: data,
+                                timer: 10500
+                            })
+                        })
+                    }
+
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error,
+                        timer: 1500
+                    })
+                });
+        }
+    }
+
+
+    async function registroE() {
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var address = document.querySelector('#correo').value;
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var address = document.querySelector('#correo').value;
+            var name = document.querySelector('#nombre').value;
+            var ID = document.querySelector('#numeroId').value;
+            var tel = document.querySelector('#tel1').value;
+            var cel = document.querySelector('#celular').value;
+            var direccion = document.querySelector('#direccion').value;
+            if (reg.test(address) == false) 
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar una direccion de correo electronico valida!",
+                    timer: 10500
+                })
+                return (false);
+            }else if(name.length<8)
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar tu nombre completo!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (ID.length<8){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar un numero de documento de identidad valido!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (tel.length<7){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar un numero de telefono valido!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (cel.length<7){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar otro numero de telefono valido!",
+                    timer: 10500
+                })
+                return (false);
+            } else if (direccion.length<10){
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "¡Debes ingresar una dirección valida!",
+                    timer: 10500
+                })
+                return (false);
+            }
+            else{
             await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
                 method: 'POST',
                 headers: {
@@ -125,12 +437,12 @@ const Funcionario = () => {
                 })
                 .catch(function (error) {
                     console.log(error)
-                    /*Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: error,
-                    timer: 1500
-                })*/
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error,
+                        timer: 1500
+                    })
                 });
         }
     }
@@ -260,16 +572,126 @@ const Funcionario = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h2>Hola nuevo modal</h2>
+                    <div className="card-body">
+                    <Container>
+                        <h3>Presenta algunos de estos síntomas?</h3>
+                        <hr/>
+                        <Form onSubmit={handleSubmit}>
+                            <Row>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Fiebre?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" id="fiebre" onChange={e => setFiebre(e.target.value = true)}
+                                                value={fiebre} name={'fiebre'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setFiebre(e.target.value = false)}
+                                                value={fiebre} name={'fiebre'} label={'No'}/>
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Tos?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setTos(e.target.value = true)}
+                                                value={Tos} name={'Tos'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setTos(e.target.value = false)}
+                                                value={Tos} name={'Tos'} label={'No'}/>
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Dolor al tragar?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setDolorTragar(e.target.value = true)}
+                                                value={dolorTragar} name={'dolorTragar'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setDolorTragar(e.target.value = false)}
+                                                value={dolorTragar} name={'dolorTragar'} label={'No'}/>
+                                </Col>
+                            </Row>
+
+                            <hr/>
+
+                            <Row>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Malestar general?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setMalestarGeneral(e.target.value = true)}
+                                                value={malestargeneral} name={'malestargeneral'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setMalestarGeneral(e.target.value = false)}
+                                                value={malestargeneral} name={'malestargeneral'} label={'No'}/>
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Dificultad para respirar?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio"
+                                                onChange={e => setDificultadRespirar(e.target.value = true)}
+                                                value={dificultadRespirar} name={'dificultadRespirar'} label={'Si'}/>
+                                    <Form.Check type="radio"
+                                                onChange={e => setDificultadRespirar(e.target.value = false)}
+                                                value={dificultadRespirar} name={'dificultadRespirar'} label={'No'}/>
+
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Gripa?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setGripa(e.target.value = true)}
+                                                value={gripa} name={'gripa'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setGripa(e.target.value = false)}
+                                                value={gripa} name={'gripa'} label={'No'}/>
+                                </Col>
+                            </Row>
+                            <hr/>
+                            <Row>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Diarrea?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setDiarrea(e.target.value = true)}
+                                                value={diarrea} name={'diarrea'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setDiarrea(e.target.value = false)}
+                                                value={diarrea} name={'diarrea'} label={'No'}/>
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>A tenido contacto con casos sospechosos o confirmados?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setContacto(e.target.value = true)}
+                                                value={contacto} name={'contacto'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setContacto(e.target.value = false)}
+                                                value={contacto} name={'contacto'} label={'No'}/>
+
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        <strong>Dolor articular - Sensacion de cansancio?</strong>
+                                    </Form.Label>
+                                    <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
+                                                value={tratamiento} name={'tratamiento'} label={'Si'}/>
+                                    <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = false)}
+                                                value={tratamiento} name={'tratamiento'} label={'No'}/>
+                                </Col>
+                            </Row>
+                            <hr/>
+                            <div style={{ marginTop: 25, marginLeft:"44%" }}>
+                                <ButtonIcon
+                                    bgColor='#00A7AF'
+                                    title='Siguiente'
+                                    onClick={() => OpenModalSec()}
+                                />
+                            </div>
+                        </Form>
+                    </Container>
+                </div> 
                 </Modal.Body>
                 <Modal.Footer>
-                    <ButtonIcon bgColor='#00A7AF' title='Anterior' onClick={() => { setModalSec(false) }} />
-                    <ButtonIcon bgColor='#2ecc71' title='Registrarse' onClick={() => registro()} />
+                    <ButtonIcon bgColor='#00A7AF' title='Anterior'  onClick={() => { setModalSec(false) }} />
                     <ButtonIcon bgColor='#e74c3c' title='Cerrar' onClick={() => { setModalSec(false) }} />
                 </Modal.Footer>
             </Modal>
         </div>
+
     )
 }
 
-export default Funcionario;
+export default Visitante;

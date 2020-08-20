@@ -24,30 +24,30 @@ class Admin extends Component {
 
                 <div style={{padding:'1%'}}></div>
                 <Title title='VISITANTES REGISTRADOS' />
-                <div className='contAdmin'>
                     <div className='contCardsInfo'>
                         <CardInfoVisitante />
                     </div>
+                <div className='contAdmin1'>
                     <div className='contEstadisticas'>
                         <TableVisitante />
                     </div>
                 </div>
                 <div style={{padding:'3%'}}></div>
                 <Title title='FUNCIONARIOS REGISTRADOS' />
-                <div className='contAdmin'>
                     <div className='contCardsInfo'>
                         <CardInfoFuncionario />
                     </div>
+                <div className='contAdmin1'>
                     <div className='contEstadisticas'>
                         <TableFuncionaro />
                     </div>
                 </div>
                 <div style={{padding:'2%'}}></div>
                 <Title title='APRENDICES REGISTRADOS' />
-                <div className='contAdmin'>
                     <div className='contCardsInfo'>
                         <CardInfoAprendiz />
                     </div>
+                <div className='contAdmin1'>
                     <div className='contEstadisticas'>
                         <TableAprendiz />
                     </div>

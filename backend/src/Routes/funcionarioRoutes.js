@@ -14,6 +14,8 @@ router.route("/salida").post(funcionario_controller.funcionario_sal);
 
 router.route("/create").post(funcionario_controller.funcionario_create);
 
+router.route("/createNE").post(funcionario_controller.funcionario_createNE);
+
 router.route("/update/:id").put(funcionario_controller.funcionario_update);
 
 router.route("/delete/:id").delete(funcionario_controller.funcionario_delete);
