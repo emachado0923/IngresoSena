@@ -3,10 +3,11 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const visitante_controller = require('../Controllers/visitanteController');
+const { checkRole } = require("../utils/Auth");
 
-router.route("/list").get(visitante_controller.all_visitantes);
+router.route("/list").get(checkRole, visitante_controller.all_visitantes);
 
-router.route("/details/:id").get(visitante_controller.visitante_details);
+router.route("/details/:id").get(checkRole, visitante_controller.visitante_details);
 
 router.route("/ingreso").post(visitante_controller.visitante_ing);
 
@@ -16,9 +17,9 @@ router.route("/create").post(visitante_controller.visitante_create);
 
 router.route("/createNE").post(visitante_controller.visitante_createNE);
 
-router.route("/update/:id").put(visitante_controller.visitante_update);
+router.route("/update/:id").put(checkRole, visitante_controller.visitante_update);
 
-router.route("/delete/:id").delete(visitante_controller.visitante_delete);
+router.route("/delete/:id").delete(checkRole, visitante_controller.visitante_delete);
 
 
 // ------ Count registros ---------

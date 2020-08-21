@@ -10,6 +10,7 @@ import Seguridad from '../src/Views/Seguridad/Seguridad';
 import SeguridadSalida from '../src/Views/Seguridad/SeguridadSalida';
 import Login from '../src/Views/Administracion/Auth/Login'
 import LoginSeguridad from './Views/Seguridad/Auth/LoginSeguridad'
+import ReporteSalud from './Views/ReporteSalud/reporteSalud'
 
 import { BrowserRouter, Route,Switch, Redirect } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={Inicio} />
+        <Route exact path='/reporteSalud' component={ReporteSalud} />
         <MyRoute exact path='/Admin' component={Admin} />
         <MyRoute exact path='/Usuarios' component={Usuarios} />
         <MyRoute2 exact path='/Seguridad' component={Seguridad} />

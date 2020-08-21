@@ -5,7 +5,7 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.visitante_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso) {
         return res.status(400).send("¡Porfavor rellene todos los campos solicitados!");
     }
 
@@ -36,6 +36,8 @@ exports.visitante_create = function (req, res) {
                 telefono: body.telefono,
                 direccionResidencia: body.direccionResidencia,
                 eps: body.eps,
+                torre: body.torre,
+                piso: body.piso,
                 sintomas
 
             }
@@ -69,7 +71,7 @@ exports.visitante_create = function (req, res) {
 
 exports.visitante_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso) {
         return res.status(400).send("¡Porfavor rellene todos los campos solicitados!");
     }
 
@@ -100,6 +102,8 @@ exports.visitante_createNE = function (req, res) {
                 telefono: body.telefono,
                 direccionResidencia: body.direccionResidencia,
                 eps: body.eps,
+                torre: body.torre,
+                piso: body.piso,
                 sintomas
 
             }

@@ -16,7 +16,11 @@ class Table extends Component {
   }       
 
   async componentDidMount(){
-      const res = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/list`)
+    const res = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/list`, {
+        headers: {
+          'token': `${localStorage.getItem('tokenT')}`
+        }
+      })
       this.setState({products: res.data.data})
   }
 

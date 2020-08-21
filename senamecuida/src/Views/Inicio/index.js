@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Title, SubTitle, Text } from '../../Components/common/Texts';
 import { CardRol } from '../../Components/Cards/Cards';
+import { ButtonIconA } from '../../Components/common/Button';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import { Modal } from 'react-bootstrap';
 import Visitante from '../../Components/Forms/Visitante';
@@ -44,7 +47,10 @@ class Inicio extends Component {
                         <CardRol  bgColor='#707070'  onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }} />
                         <img className='foto1' src={foto1} onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}  />
 
-                         <div id="cardf2"onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>funcionario</div>
+                         <div id="cardf2" onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>funcionario</div><br/>
+                         <Link to='/reporteSalud'>
+                            <ButtonIconA title='REPORTE DE SALUD' icon={faUserCircle} />
+                        </Link>
                    </div>
 
                    <div>

@@ -45,6 +45,8 @@ const Visitante = () => {
     const [diarrea, setDiarrea] = React.useState(false)
     const [contacto, setContacto] = React.useState(false)
     const [tratamiento, setTratamiento] = React.useState(false)
+    const [torre, setTorre] = React.useState("")
+    const [piso, setPiso] = React.useState("")
 
 
     const handleNombreChange = (event) => setNombre(event.target.value)
@@ -54,6 +56,8 @@ const Visitante = () => {
     const handleTelefonoChange = (event) => setTelefono(event.target.value)
     const handleDireccionResidenciaChange = (event) => setDireccionResidencia(event.target.value)
     const handleEpsChange = (event) => setEps(event.target.value)
+    const handleTorreChange = (event) => setTorre(event.target.value)
+    const handlePisoChange = (event) => setPiso(event.target.value)
 
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
@@ -292,6 +296,8 @@ const Visitante = () => {
                     telefono,
                     direccionResidencia,
                     eps,
+                    torre,
+                    piso,
                     sintomas
                 })
             })
@@ -414,6 +420,8 @@ const Visitante = () => {
                     telefono,
                     direccionResidencia,
                     eps,
+                    torre,
+                    piso,
                     sintomas
                 })
             })
@@ -548,7 +556,7 @@ const Visitante = () => {
                     variant="outlined"
                 />
             </div>
-            <div style={{width: '100%', marginTop: '1.5%', marginLeft: '-2%'}}>
+            <div style={{width: '100%', marginTop: '1%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
                     <InputLabel id="demo-simple-select-outlined-label">EPS</InputLabel>
                     <Select
@@ -569,6 +577,44 @@ const Visitante = () => {
                         <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos
                             colpatria</MenuItem>
                         <MenuItem value={'Cruz blanca'} onChange={handleEpsChange}>Cruz Blanca</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{width: '100%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">TORRE</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="EPS"
+                        value={torre}
+                        onChange={handleTorreChange}
+                    >
+                        <MenuItem value={'Torre Sur'} onChange={handleTorreChange}>Torre Sur</MenuItem>
+                        <MenuItem value={'Torre Norte'} onChange={handleTorreChange}>Torre Norte</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{width: '100%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">Numero de Piso</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="EPS"
+                        value={piso}
+                        onChange={handlePisoChange}
+                    >
+                        <MenuItem value={'1'} onChange={handlePisoChange}>1</MenuItem>
+                        <MenuItem value={'2'} onChange={handlePisoChange}>2</MenuItem>
+                        <MenuItem value={'3'} onChange={handlePisoChange}>3</MenuItem>
+                        <MenuItem value={'4'} onChange={handlePisoChange}>4</MenuItem>
+                        <MenuItem value={'5'} onChange={handlePisoChange}>5</MenuItem>
+                        <MenuItem value={'6'} onChange={handlePisoChange}>6</MenuItem>
+                        <MenuItem value={'7'} onChange={handlePisoChange}>7</MenuItem>
+                        <MenuItem value={'8'} onChange={handlePisoChange}>8</MenuItem>
+                        <MenuItem value={'9'} onChange={handlePisoChange}>9</MenuItem>
+                        <MenuItem value={'10'} onChange={handlePisoChange}>10</MenuItem>
                     </Select>
                 </FormControl>
             </div>

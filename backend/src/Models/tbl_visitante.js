@@ -42,6 +42,16 @@ const publicoSchema = new Schema(
             required: true,
             max: 30
         },
+        torre: {
+            type: String,
+            required: true,
+            max: 30
+        },
+        piso: {
+            type: String,
+            required: true,
+            max: 30
+        },
         sintomas: {
 
             fiebre: {

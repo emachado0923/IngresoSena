@@ -31,6 +31,8 @@ function Login() {
             if(result['ok'] === true){
                 result.text().then(function(data) {
                 localStorage.setItem('token', data)
+                const tok = JSON.parse(data)
+                localStorage.setItem('tokenT', tok.token)
                 swal({
                     title: "Success!",
                     text: "Redirecting in 2 seconds.",

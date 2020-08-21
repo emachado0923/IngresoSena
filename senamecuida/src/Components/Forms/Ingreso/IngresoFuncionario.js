@@ -3,6 +3,7 @@ import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
 import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+import Axios from 'axios'
 // import MenuItem from '@material-ui/core/MenuItem';
 // import Select from '@material-ui/core/Select';
 // import FormControl from '@material-ui/core/FormControl';
@@ -18,6 +19,7 @@ const Aprendiz = () => {
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
     const [temperatura, setTemperatura] = React.useState('')
     const [cTemperatura, setCTemperatura] = React.useState(true)
+    const [cDocumento, setCDocumento] = React.useState(false)
     const [dataState, setDataState] = React.useState({})
 
     function prevent() {
@@ -54,7 +56,7 @@ const Aprendiz = () => {
             console.log(documentoIdentidad);
         
             if (documentoIdentidad!== '') {
-                registro()
+                humbral()
             }
         }
       
@@ -96,6 +98,71 @@ const Aprendiz = () => {
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
     const handleTemperaturaChange = (event) => setTemperatura(event.target.value)
+
+    async function humbral(){
+        const resA = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/countDocuments`)
+        localStorage.setItem('personasActivasA', resA.data.result)
+
+        const resB = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/countDocuments`)
+        localStorage.setItem('personasActivasF', resB.data.result)
+
+        const resC = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoVisitante/countDocuments`)
+        localStorage.setItem('personasActivasV', resC.data.result)
+
+        var funcc = localStorage.getItem('personasActivasA')
+        var viss = localStorage.getItem('personasActivasF')
+        var aprnn = localStorage.getItem('personasActivasV')
+        var ssi = parseInt(funcc)
+        var ssi1 = parseInt(viss)
+        var ssi2 = parseInt(aprnn)
+
+        var deAlta = (ssi+ssi1+ssi2);
+        localStorage.setItem('deAlta', deAlta)
+
+        const res1 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/countDocuments`)
+        localStorage.setItem('funcionario', res1.data.result)
+        
+        
+        const res2 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/visitante/countDocuments`)
+        localStorage.setItem('visitante', res2.data.result)
+        
+        const res3 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/aprendiz/countDocuments`)
+        localStorage.setItem('aprendiz', res3.data.result)
+
+        
+        var act = localStorage.getItem('deAlta')
+        var func = localStorage.getItem('funcionario')
+        var vis = localStorage.getItem('visitante')
+        var aprn = localStorage.getItem('aprendiz')
+        var si = parseInt(func)
+        var si1 = parseInt(vis)
+        var si2 = parseInt(aprn)
+        var si3 = parseInt(act)
+        var sumaR = (si+si1+si2)
+        // var deBaja = ((si+si1+si2)-si3);
+        var porcentajeA = ((si3*100)/sumaR)
+        var restaR = (sumaR-si3)
+        var porcentajeB = ((restaR*100)/sumaR)
+        localStorage.setItem('prcAlta', Math.round(porcentajeA))
+        localStorage.setItem('prcBaja', Math.round(porcentajeB))
+        localStorage.setItem('TotalR', sumaR) 
+
+        if(localStorage.getItem('prcAlta') <=35){
+            registro()
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: '¡ALERTA!',
+                text: "¡NO SE PUEDE INGRESAR MAS PERSONAS, SE HA SUPERADO EL HUMBRAL!",
+                timer: 10500
+                })
+                setCDocumento(true)
+                setTimeout(() => {
+                    window.location.reload();    
+                }, 3000);
+
+        }
+    }
 
     async function registro(){
         await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/ingreso`, {
@@ -264,6 +331,7 @@ const Aprendiz = () => {
                 label='Documento de Identidad'
                 placeholder='Ingresa el documento de identidad'
                 variant='outlined'
+                disabled={cDocumento}
             />
             <TextField
                 value={temperatura}

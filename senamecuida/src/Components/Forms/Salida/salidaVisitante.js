@@ -35,7 +35,7 @@ const Visitante = () => {
       
         let consultarAPI = setTimeout(() => {
           callSearchService();
-        }, 3000);
+        }, 1000);
         
         // Se dispara cada vez que se re-renderiza el componente
         return () => {

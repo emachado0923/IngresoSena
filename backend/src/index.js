@@ -6,7 +6,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan')
+var cors = require('cors')
 
+mongoose.set('useCreateIndex',true);
 // Database Connection
 mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
     .then(() => {
@@ -30,6 +32,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+app.use(cors())
 
 
 //Routes
@@ -46,6 +49,8 @@ app.use("/api/estadoFuncionario", require('./Routes/estadoFuncionarioRoutes'))
 app.use("/api/estadoVisitante", require('./Routes/estadoVisitanteRoutes'))
 app.use("/api/noIngresoDia", require('./Routes/noIngresoDiaRoutes'))
 app.use("/api/saludEstado", require('./Routes/EstadoSaludRoutes'))
+app.use("/api/reporteSaludDia", require('./Routes/reporteSaludDiaRoutes'))
+app.use("/api/reporteSalud", require('./Routes/reporteSaludRoutes'))
 
 
 // Run the server

@@ -4,7 +4,7 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.funcionario_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -36,6 +36,8 @@ exports.funcionario_create = function (req, res) {
                 telefono: body.telefono,
                 direccionResidencia: body.direccionResidencia,
                 eps: body.eps,
+                torre: body.torre,
+                piso: body.piso,
                 sintomas
 
             }
@@ -69,7 +71,7 @@ exports.funcionario_create = function (req, res) {
 }
 exports.funcionario_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -101,6 +103,8 @@ exports.funcionario_createNE = function (req, res) {
                 telefono: body.telefono,
                 direccionResidencia: body.direccionResidencia,
                 eps: body.eps,
+                torre: body.torre,
+                piso: body.piso,
                 sintomas
 
             }
@@ -252,7 +256,7 @@ exports.funcionario_ing = async (req, res) => {
                 return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
             }
             // res.send(`Bienvenido ${data.nombre} con EPS ${data.eps}`);
-            res.send(data)
+            res.send(data)      
         })
         .catch(err => {
             return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
