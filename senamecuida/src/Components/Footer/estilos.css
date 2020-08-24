@@ -13,26 +13,23 @@ a:hover {
 
 .containerFooter {
     width: 100%;
-    position: relative;
-    bottom: 0;
     background: #707070;
     display: flex;
     justify-content: space-around;
     padding: 8px;
-    margin-top: 24px;
 }
 
 .logoFooter {
     border-right: 2px #fff solid;
     display: flex;
     align-items: center;
-    
 }
 
 .logoFooter img {
     width: 80%;
 }
-.icono1{
+
+.icono1 {
     width: 50px;
     height: 50px;
     margin: 0px 4px;
@@ -40,8 +37,9 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
-.icono1 img{
-   width: 100%;
+
+.icono1 img {
+    width: 100%;
 }
 
 .listIcons {
@@ -58,9 +56,7 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0;
     margin: 0px 20px;
-
 }
 
 .redes ul li {
@@ -70,23 +66,18 @@ a:hover {
     list-style: none;
     font-size: 16pt;
     margin: 8px 0;
-
 }
-.redes  a{
+
+.redes a {
     margin-top: 10px;
-
 }
-.redes  h1{
+
+.redes h1 {
     margin-top: 15px;
     color: #fff;
     list-style: none;
     font-size: 16pt;
-    
-
 }
-
-
-
 
 .copy {
     width: 30%;
@@ -109,6 +100,14 @@ a:hover {
     .listIcons {
         width: 100%;
         border: none;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .redes ul {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
     }
     .copy {
         width: 100%;
