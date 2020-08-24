@@ -307,7 +307,7 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            await fetch(`http://localhost:3008/api/aprendiz/createNE`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -448,7 +448,7 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            await fetch(`http://localhost:3008/api/aprendiz/create`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

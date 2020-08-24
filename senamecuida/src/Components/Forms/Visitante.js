@@ -280,7 +280,7 @@ const Visitante = () => {
         } else {
 
             //await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/create`, {
-            await fetch(`http://localhost:3008/api/visitante/createNE`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -404,7 +404,7 @@ const Visitante = () => {
             return (false);
         } else {
             //await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/create`, {
-            await fetch(`http://localhost:3008/api/visitante/create`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MUIDataTable from "mui-datatables";
 import Axios from 'axios'
 
-const columns = ["nombre", "email", "documentoIdentidad", "telefono", "direccionResidencia", "eps"];
+const columns = ["nombre", "email", "documentoIdentidad", "telefono", "direccionResidencia", "eps", "torre", "piso"];
 
 
   const options = {
