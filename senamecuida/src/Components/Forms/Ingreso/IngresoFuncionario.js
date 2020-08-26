@@ -14,7 +14,7 @@ import Axios from 'axios'
 import { ButtonIcon } from '../../../Components/common/Button';
 
 
-const Aprendiz = () => {
+const Funcionario = () => {
         
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
     const [temperatura, setTemperatura] = React.useState('')
@@ -80,8 +80,22 @@ const Aprendiz = () => {
         //     )
             console.log(documentoIdentidad);
         
-            if (temperatura.length===2) {
-                registroConTemperatura()
+            if(temperatura < 38) {
+                if (temperatura.length===2) {
+                    registroConTemperatura()
+                }
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡ALERTA!',
+                    text: "¡NO SE PUEDE INGRESAR POR SU TEMPERATURA!",
+                    timer: 10500
+                })
+                setCDocumento(true)
+                setCTemperatura(true)
+                setTimeout(() => {
+                    window.location.reload();    
+                }, 4000);
             }
         }
       
@@ -175,18 +189,68 @@ const Aprendiz = () => {
         })
         .then(function (result) {
             if (result['ok'] === true) {
-                result.text().then(function(data) { 
-                    Swal.fire({
-                    icon: 'success',
-                    title: '¡USUARIO ENCONTRADO!',
-                    text: "AHORA DIGITA LA TEMPERATURA",
-                    timer: 10500
-                    })
-                    setDataState(data);
+                fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/ing`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({documentoIdentidad})
                 })
-                setCTemperatura(false)
+                .then(function (result) {
+                    if (result['ok'] === true) {
+                        result.text().then(function(data) { 
+                            let iSintomas = JSON.parse(data);
+                            let iSintomasV = Object.values(iSintomas.sintomas)
+                            console.log(iSintomasV);
+                            let contT =0;
+                            let contF =0;
+                            for (let i = 0; i < iSintomasV.length; i++) {
+                                const element = iSintomasV[i];
+                                if(element === true){
+                                    contT++;
+                                } else {
+                                    contF++;
+                                }
+                            }
+                            if(contT >= 3 ){
+                                console.log('PAILA');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '¡NO PUEDES ENTRAR!',
+                                    text: "REGISTRASTE MAS DE 3 SINTOMAS EN EL REPORTE DE SALUD",
+                                    timer: 10500
+                                })
+                                setCTemperatura(true)
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 5000);
+                            } else {
+                                console.log("BIEN PAI");
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: '¡USUARIO ENCONTRADO!',
+                                    text: "AHORA DIGITA LA TEMPERATURA",
+                                    timer: 10500
+                                })
+                                setDataState(data);
+                            }
+                        })
+                        setCTemperatura(false)
+                    } else {
+                        result.text().then(function(data) { 
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡ERROR!',
+                                text: '¡NO HA LLENADO EL CUESTIONARIO DE LOS SINTOMAS!',
+                                timer: 10500
+                            })
+                    })
+                    }
+                })
+                
             } else {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     Swal.fire({
                         icon: 'error',
                         title: '¡ERROR!',
@@ -474,4 +538,4 @@ const Aprendiz = () => {
     )
 }
 
-export default Aprendiz;
+export default Funcionario;

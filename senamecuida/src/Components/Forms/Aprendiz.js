@@ -336,6 +336,9 @@ const Visitante = () => {
                                 text: "¡SE HAS REGISTRADO CON EXITO, PERO NO PUEDE ENTRAR AL CENTRO POR SUS SINTOMAS!",
                                 timer: 10500
                             })
+                            setTimeout(() => {
+                                window.location.reload();    
+                            }, 5000);
                         })
                     } else if (result.status === 400) {
                         result.text().then(function (data) {
@@ -471,13 +474,15 @@ const Visitante = () => {
                 .then(function (result) {
                     if (result['ok'] === true) {
                         result.text().then(function (data) {
-
                             Swal.fire({
                                 icon: 'success',
                                 title: '¡BIEN!',
                                 text: data,
                                 timer: 1500
                             })
+                            setTimeout(() => {
+                                window.location.reload();    
+                            }, 5000);
                         })
                     } else if (result.status === 400) {
                         result.text().then(function (data) {

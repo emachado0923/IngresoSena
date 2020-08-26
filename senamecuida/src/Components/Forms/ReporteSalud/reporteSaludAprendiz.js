@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
+import moment from 'moment'
 import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 // import MenuItem from '@material-ui/core/MenuItem';
 // import Select from '@material-ui/core/Select';
@@ -13,10 +14,9 @@ import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 import { ButtonIcon } from '../../../Components/common/Button';
 
 const Aprendiz = () => {
-
     const [fiebre, setFiebre] = React.useState(false)
     const [dolorTragar, setDolorTragar] = React.useState(false)
-    const [Tos, setTos] = React.useState(false)
+    const [tos, setTos] = React.useState(false)
     const [dificultadRespirar, setDificultadRespirar] = React.useState(false)
     const [malestargeneral, setMalestarGeneral] = React.useState(false)
     const [gripa, setGripa] = React.useState(false)
@@ -26,8 +26,25 @@ const Aprendiz = () => {
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
     const [cTemperatura, setCTemperatura] = React.useState(true)
     const [dataState, setDataState] = React.useState({})
+    const [boton, setBoton] = React.useState(true)
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
+
+    const [modalSec, setModalSec] = React.useState(false);
+    const OpenModalSec = () => setModalSec(true);
+
+    function prevent() {
+        document.querySelector("#documentoIdentidad").addEventListener("keypress", function (evt) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+            }
+        });
+        var NID = document.querySelector('#documentoIdentidad');
+        NID.addEventListener('input', function () {
+            if (this.value.length > 10)
+                this.value = this.value.slice(0, 10);
+        })
+    }
 
     useEffect(() => {
 
@@ -57,11 +74,10 @@ const Aprendiz = () => {
 
       const handleSubmit = e => {
         e.preventDefault();
-
         let valores = [
             fiebre,
             dolorTragar,
-            Tos,
+            tos,
             dificultadRespirar,
             malestargeneral,
             gripa,
@@ -93,7 +109,7 @@ const Aprendiz = () => {
             }
         }
 
-        let TOS = document.getElementsByName('Tos')
+        let TOS = document.getElementsByName('tos')
         let S_TOS = false
         for (let i = 0; i < TOS.length; i++) {
             if (TOS[i].checked) {
@@ -156,29 +172,13 @@ const Aprendiz = () => {
             }
         }
         
-        let valoresObj = {
-            fiebre,
-            dolorTragar,
-            Tos,
-            dificultadRespirar,
-            malestargeneral,
-            gripa,
-            diarrea,
-            contacto,
-            tratamiento,
-        }
-
-        registroConSintomas(valoresObj)
-        
         if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
             if (sintomas.length >= 3) {
-
-
+                registroConSintomasNE(valores)
+                
             } else {
-
-
-
-            } 
+                registroConSintomas(valores);
+            }
         } else {
             Swal.fire({
                 icon: 'error',
@@ -186,7 +186,7 @@ const Aprendiz = () => {
                 text: '¡Debe seleccionar todos los síntomas!',
                 timer: 10500
             })
-            return false
+            return false;
         }
     }
 
@@ -204,12 +204,12 @@ const Aprendiz = () => {
                 result.text().then(function(data) { 
                     Swal.fire({
                     icon: 'success',
-                    title: '¡USUARIO ENCONTRADO!',
-                    text: "AHORA LLENA LOS CAMPOS",
+                    title: '¡APRENDIZ ENCONTRADO!',
+                    text: "AHORA LLENA EL CUESTIONARIO",
                     timer: 10500
                     })
                     setDataState(data);
-                    // const nuevo = data.map(item)
+                    setBoton(false)
                 })
             } else {
                 result.text().then(function(data) { 
@@ -219,6 +219,7 @@ const Aprendiz = () => {
                         text: data,
                         timer: 10500
                     })
+                    setBoton(true)
                 })
             }
             })
@@ -227,20 +228,12 @@ const Aprendiz = () => {
 
 
     async function registroConSintomas(valores){
-
-
-
-        console.log(valores);
-        const data = JSON.parse(dataState);     
-        console.log(data);
-
-
+        let sintomass = valores
+        const data = JSON.parse(dataState);
         const newData={
             ...data,
-            sintomas: valores
+            sintomas: sintomass
         }
-
-        console.log(newData);
 
         await fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/create`, {
             method: 'POST',
@@ -248,37 +241,97 @@ const Aprendiz = () => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newData)
+            body: JSON.stringify({newData})
         })
         .then(function (result) {
             if (result['ok'] === true) {
                 result.text().then(function(data) { 
+                    var data1 = JSON.parse(data)
+                    console.log(data1.data);
                     Swal.fire({
                     icon: 'success',
-                    title: '¡GRACIAS POR ACTUALIZAR SUS SINTOMAS!',
+                    title: `¡GRACIAS POR ACTUALIZAR SUS SINTOMAS! ${data1.data.nombre}`,
+                    text: `FECHA: ${moment().format('L')}, ${moment().format('LT')}`,
                     timer: 10500
                     })
+                    setTimeout(() => {
+                        window.location.reload();    
+                    }, 10000);
                 })
             } else {
                 result.text().then(function(data) { 
                     Swal.fire({
                         icon: 'error',
                         title: '¡ERROR!',
-                        text: data,
+                        text: '¡Ya has llenado el questionario por el dia de hoy!',
                         timer: 10500
                     })
                 })
             }
             })
+            .catch(function (error) {
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error,
+                    timer: 1500
+                })
+            });
+    }
 
-        // let sintomas = valores
 
-        // let data = JSON.parse(dataState);
-        // const sint = JSON.parse(sintomas);
+    async function registroConSintomasNE(valores){
+        let sintomass = valores
+        const data = JSON.parse(dataState);
+        const newData={
+            ...data,
+            sintomas: sintomass
+        }
 
-        // data = {...data, ...sint};
-
-        // console.log(data);
+        await fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/createNE`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({newData})
+        })
+        .then(function (result) {
+            if (result['ok'] === true) {
+                result.text().then(function(data) { 
+                    var data1 = JSON.parse(data)
+                    console.log(data1.data);
+                    Swal.fire({
+                    icon: 'success',
+                    title: `¡GRACIAS POR ACTUALIZAR SUS SINTOMAS! ${data1.data.nombre}`,
+                    text: `FECHA: ${moment().format('L')}, ${moment().format('LT')}`,
+                    timer: 10500
+                    })
+                    setTimeout(() => {
+                        window.location.reload();    
+                    }, 10000);
+                })
+            } else {
+                result.text().then(function(data) { 
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡ERROR!',
+                        text: '¡Ya has llenado el questionario por el dia de hoy!',
+                        timer: 10500
+                    })
+                })
+            }
+            })
+            .catch(function (error) {
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error,
+                    timer: 1500
+                })
+            });
     }
     
 
@@ -287,6 +340,7 @@ const Aprendiz = () => {
             <TextField
                 value={documentoIdentidad}
                 onChange={handleDocumentoIdentidadChange}
+                onKeyDown={prevent}
                 required
                 name="documentoIdentidad"
                 id='documentoIdentidad'
@@ -316,9 +370,9 @@ const Aprendiz = () => {
                                         <strong>Tos?</strong>
                                     </Form.Label>
                                     <Form.Check type="radio" onChange={e => setTos(e.target.value = true)}
-                                                value={Tos} name={'Tos'} label={'Si'}/>
+                                                value={tos} name={'tos'} label={'Si'}/>
                                     <Form.Check type="radio" onChange={e => setTos(e.target.value = false)}
-                                                value={Tos} name={'Tos'} label={'No'}/>
+                                                value={tos} name={'tos'} label={'No'}/>
                                 </Col>
                                 <Col>
                                     <Form.Label>
@@ -397,17 +451,25 @@ const Aprendiz = () => {
                                 </Col>
                             </Row>
                             <hr/>
-                            <Row>
-                                <Col md={{span: 10, offset: 1}}>
+                                <div style={{marginTop: 25, marginLeft: "43%"}}>
+                                    {/* <ButtonIcon
+                                        bgColor='#00A7AF'
+                                        title='Siguiente'
+                                        onClick={() => OpenModalSec()}
+                                        disabled={true}
+                                    /> */}
                                     <Button
-                                        variant="outline-secondary"
-                                        size="lg" block
+                                        style={{
+                                            backgroundColor:"#00A7AF",
+                                            borderColor:"#00A7AF"
+                                        }}
                                         type="submit"
-                                        >
-                                        Registrar
+                                        disabled={boton}
+                                        onClick={() => OpenModalSec()}
+                                    >
+                                        REGISTRAR
                                     </Button>
-                                </Col>
-                            </Row>
+                                </div>
                         </Form>
                     </Container>
                 </div>

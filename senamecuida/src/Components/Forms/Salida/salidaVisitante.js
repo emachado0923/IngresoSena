@@ -18,6 +18,19 @@ const Visitante = () => {
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
 
+    function prevent() {
+        document.querySelector("#documentoIdentidad").addEventListener("keypress", function (evt) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+            }
+        });
+        var NID=  document.querySelector('#documentoIdentidad');
+            NID.addEventListener('input',function(){
+            if (this.value.length > 10) 
+                this.value = this.value.slice(0,10); 
+            })
+    }
+
     useEffect(() => {
 
         const callSearchService = () => {
@@ -118,6 +131,7 @@ const Visitante = () => {
             <TextField
                 value={documentoIdentidad}
                 onChange={handleDocumentoIdentidadChange}
+                onKeyDown={prevent}
                 required
                 name="documentoIdentidad"
                 id='documentoIdentidad'

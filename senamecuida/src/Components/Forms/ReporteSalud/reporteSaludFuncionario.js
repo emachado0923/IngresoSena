@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
+import moment from 'moment'
 import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 // import MenuItem from '@material-ui/core/MenuItem';
 // import Select from '@material-ui/core/Select';
@@ -13,10 +14,9 @@ import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 import { ButtonIcon } from '../../../Components/common/Button';
 
 const Funcionario = () => {
-
     const [fiebre, setFiebre] = React.useState(false)
     const [dolorTragar, setDolorTragar] = React.useState(false)
-    const [Tos, setTos] = React.useState(false)
+    const [tos, setTos] = React.useState(false)
     const [dificultadRespirar, setDificultadRespirar] = React.useState(false)
     const [malestargeneral, setMalestarGeneral] = React.useState(false)
     const [gripa, setGripa] = React.useState(false)
@@ -24,8 +24,27 @@ const Funcionario = () => {
     const [contacto, setContacto] = React.useState(false)
     const [tratamiento, setTratamiento] = React.useState(false)
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
+    const [cTemperatura, setCTemperatura] = React.useState(true)
+    const [dataState, setDataState] = React.useState({})
+    const [boton, setBoton] = React.useState(true)
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
+
+    const [modalSec, setModalSec] = React.useState(false);
+    const OpenModalSec = () => setModalSec(true);
+
+    function prevent() {
+        document.querySelector("#documentoIdentidad").addEventListener("keypress", function (evt) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+            }
+        });
+        var NID = document.querySelector('#documentoIdentidad');
+        NID.addEventListener('input', function () {
+            if (this.value.length > 10)
+                this.value = this.value.slice(0, 10);
+        })
+    }
 
     useEffect(() => {
 
@@ -53,308 +72,275 @@ const Funcionario = () => {
       }, [documentoIdentidad]);
 
 
-        const handleSubmit = e => {
-            e.preventDefault()
-            let valores = [
-                fiebre,
-                dolorTragar,
-                Tos,
-                dificultadRespirar,
-                malestargeneral,
-                gripa,
-                diarrea,
-                contacto,
-                tratamiento,
-            ]
+      const handleSubmit = e => {
+        e.preventDefault();
+        let valores = [
+            fiebre,
+            dolorTragar,
+            tos,
+            dificultadRespirar,
+            malestargeneral,
+            gripa,
+            diarrea,
+            contacto,
+            tratamiento,
+        ]
 
-            const sintomas = valores.reduce(
-                (out, bool, index) => bool ? out.concat(index) : out,
-                []
-            )
+        const sintomas = valores.reduce(
+            (out, bool, index) => bool ? out.concat(index) : out,
+            []
+        )
 
-            let Fiebre = document.getElementsByName('fiebre')
-            let S_Fiebre = false
-            for (let i = 0; i < Fiebre.length; i++) {
-                if (Fiebre[i].checked) {
-                    S_Fiebre = true
-                    break;
-                }
+        let Fiebre = document.getElementsByName('fiebre')
+        let S_Fiebre = false
+        for (let i = 0; i < Fiebre.length; i++) {
+            if (Fiebre[i].checked) {
+                S_Fiebre = true
+                break;
             }
+        }
 
-            let Dolor = document.getElementsByName('dolorTragar')
-            let S_Dolor = false
-            for (let i = 0; i < Dolor.length; i++) {
-                if (Dolor[i].checked) {
-                    S_Dolor = true
-                    break;
-                }
+        let Dolor = document.getElementsByName('dolorTragar')
+        let S_Dolor = false
+        for (let i = 0; i < Dolor.length; i++) {
+            if (Dolor[i].checked) {
+                S_Dolor = true
+                break;
             }
+        }
 
-            let TOS = document.getElementsByName('Tos')
-            let S_TOS = false
-            for (let i = 0; i < TOS.length; i++) {
-                if (TOS[i].checked) {
-                    S_TOS = true
-                    break;
-                }
+        let TOS = document.getElementsByName('tos')
+        let S_TOS = false
+        for (let i = 0; i < TOS.length; i++) {
+            if (TOS[i].checked) {
+                S_TOS = true
+                break;
             }
+        }
 
-            let Difcultad = document.getElementsByName('dificultadRespirar')
-            let S_Difcultad = false
-            for (let i = 0; i < Difcultad.length; i++) {
-                if (TOS[i].checked) {
-                    S_Difcultad = true
-                    break;
-                }
+        let Difcultad = document.getElementsByName('dificultadRespirar')
+        let S_Difcultad = false
+        for (let i = 0; i < Difcultad.length; i++) {
+            if (TOS[i].checked) {
+                S_Difcultad = true
+                break;
             }
+        }
 
-            let Malestar = document.getElementsByName('malestargeneral')
-            let S_Malestar = false
-            for (let i = 0; i < Malestar.length; i++) {
-                if (Malestar[i].checked) {
-                    S_Malestar = true
-                    break;
-                }
+        let Malestar = document.getElementsByName('malestargeneral')
+        let S_Malestar = false
+        for (let i = 0; i < Malestar.length; i++) {
+            if (Malestar[i].checked) {
+                S_Malestar = true
+                break;
             }
+        }
 
-            let Gripa = document.getElementsByName('gripa')
-            let S_Gripa = false
-            for (let i = 0; i < Gripa.length; i++) {
-                if (Gripa[i].checked) {
-                    S_Gripa = true
-                    break;
-                }
+        let Gripa = document.getElementsByName('gripa')
+        let S_Gripa = false
+        for (let i = 0; i < Gripa.length; i++) {
+            if (Gripa[i].checked) {
+                S_Gripa = true
+                break;
             }
+        }
 
-            let Diarrea = document.getElementsByName('diarrea')
-            let S_Diarrea = false
-            for (let i = 0; i < Diarrea.length; i++) {
-                if (Diarrea[i].checked) {
-                    S_Diarrea = true
-                    break;
-                }
+        let Diarrea = document.getElementsByName('diarrea')
+        let S_Diarrea = false
+        for (let i = 0; i < Diarrea.length; i++) {
+            if (Diarrea[i].checked) {
+                S_Diarrea = true
+                break;
             }
+        }
 
-            let Contacto = document.getElementsByName('contacto')
-            let S_Contacto = false
-            for (let i = 0; i < Contacto.length; i++) {
-                if (Contacto[i].checked) {
-                    S_Contacto = true
-                    break;
-                }
+        let Contacto = document.getElementsByName('contacto')
+        let S_Contacto = false
+        for (let i = 0; i < Contacto.length; i++) {
+            if (Contacto[i].checked) {
+                S_Contacto = true
+                break;
             }
+        }
 
-            let Tratamiento = document.getElementsByName('tratamiento')
-            let S_Tratamiento = false
-            for (let i = 0; i < Tratamiento.length; i++) {
-                if (Tratamiento[i].checked) {
-                    S_Tratamiento = true
-                    break;
-                }
+        let Tratamiento = document.getElementsByName('tratamiento')
+        let S_Tratamiento = false
+        for (let i = 0; i < Tratamiento.length; i++) {
+            if (Tratamiento[i].checked) {
+                S_Tratamiento = true
+                break;
             }
-
-
-            if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
-                if (sintomas.length >= 3) {
-                    fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/ingreso`, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({documentoIdentidad})
-                    })
-                        .then(function (result) {
-                            if (result['ok'] === true) {
-                                console.log(result);
-                                result.json()
-                                    .then(async function (data) {
-                                        await fetch(`${process.env.REACT_APP_API_URL}/api/noIngresoDia/create`, {
-                                            method: 'POST',
-                                            headers: {
-                                                'Accept': 'application/json',
-                                                'Content-Type': 'application/json',
-
-                                            },
-                                            body: JSON.stringify(data)
-                                        }).then(function (result) {
-                                            if (result['ok'] === false) {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: '¡ERROR!',
-                                                    text: JSON.stringify('¡NO LO SE!'),
-                                                    timer: 10500
-                                                })
-                                            } else {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: '¡ACCESO DENEGADO!',
-                                                    text: 'No puede pasar!',
-                                                    timer: 10500
-                                                })
-                                            }
-                                        })
-                                    })
-                            } else {
-                                result.text().then(function (data) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: '¡ERROR!',
-                                        text: data,
-                                        timer: 10500
-                                    })
-                                })
-                            }
-
-                        })
-                } else {
-                    fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/ingreso`, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({documentoIdentidad})
-                    })
-                        .then(function (result) {
-                            if (result['ok'] === true) {
-                                console.log(result);
-                                result.json()
-                                    .then(async function (data) {
-                                        await fetch(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/create`, {
-                                            method: 'POST',
-                                            headers: {
-                                                'Accept': 'application/json',
-                                                'Content-Type': 'application/json',
-
-                                            },
-                                            body: JSON.stringify(data)
-                                        }).then(function (result) {
-                                            if (result['ok'] === false) {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: '¡ERROR!',
-                                                    text: JSON.stringify('¡ESTE USUARIO YA SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
-                                                    timer: 10500
-                                                })
-                                            } else {
-                                                Swal.fire({
-                                                    icon: 'success',
-                                                    title: '¡BIEN, ACCESO APROBADO!',
-                                                    text: JSON.stringify(`Bienvenido ${data.nombre} con EPS ${data.eps}`),
-                                                    timer: 10500
-                                                })
-                                            }
-                                        })
-                                    })
-                            } else {
-                                result.text().then(function (data) {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: '¡ERROR!',
-                                        text: data,
-                                        timer: 10500
-                                    })
-                                })
-                            }
-
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                            /*Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: error,
-                            timer: 1500
-                        })*/
-                        });
-                }
+        }
+        
+        if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
+            if (sintomas.length >= 3) {
+                registroConSintomasNE(valores)
+                
             } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Vacio',
-                    text: '¡Debe seleccionar todos los síntomas!',
-                    timer: 1500
-                })
-                return false
+                registroConSintomas(valores);
             }
-        }
-
-
-    async function registro() {
-        await fetch(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/delete`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },  
-        body: JSON.stringify({documentoIdentidad})
-        })
-        .then(function (result) {
-        if(result['ok'] === true){            
-            result.json()
-            .then(async function(data) {
-                await fetch(`${process.env.REACT_APP_API_URL}/api/salidaDia/create`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },  
-                body: JSON.stringify(data)
-                })
-                .then(function (result) {
-                    if(result['ok'] === false){
-                        Swal.fire({
-                            icon: 'error',
-                            title: '¡ERROR!',
-                            text: JSON.stringify('¡ESTE USUARIO NO SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
-                            timer: 10500
-                        })
-                        setTimeout(() => {
-                            window.location.reload();    
-                        }, 3000);
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: '¡BIEN!',
-                            text: JSON.stringify(`Hasta luego ${data.nombre}`),
-                            timer: 10500
-                        })
-                        setTimeout(() => {
-                            window.location.reload();    
-                        }, 3000);
-                    }
-                })
-            })
-        }
-        else{
-            result.text().then(function(data) { 
-                Swal.fire({
+        } else {
+            Swal.fire({
                 icon: 'error',
-                title: '¡ERROR!',
-                text: JSON.stringify('¡ESTE USUARIO NO SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
+                title: 'Vacio',
+                text: '¡Debe seleccionar todos los síntomas!',
                 timer: 10500
             })
-            })
-            }
-            
-        })
-        .catch (function (error) {
-        console.log(error)
-            /*Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error,
-            timer: 1500
-        })*/
-        });
+            return false;
+        }
     }
+
+    async function registro(){
+        await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/ingreso`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({documentoIdentidad})
+        })
+        .then(function (result) {
+            if (result['ok'] === true) {
+                result.text().then(function(data) { 
+                    Swal.fire({
+                    icon: 'success',
+                    title: '¡FUNCIONARIO ENCONTRADO!',
+                    text: "AHORA LLENA EL CUESTIONARIO",
+                    timer: 10500
+                    })
+                    setDataState(data);
+                    setBoton(false)
+                })
+            } else {
+                result.text().then(function(data) { 
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡ERROR!',
+                        text: data,
+                        timer: 10500
+                    })
+                    setBoton(true)
+                })
+            }
+            })
+        }
+
+
+
+    async function registroConSintomas(valores){
+        let sintomass = valores
+        const data = JSON.parse(dataState);
+        const newData={
+            ...data,
+            sintomas: sintomass
+        }
+
+        await fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/create`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({newData})
+        })
+        .then(function (result) {
+            if (result['ok'] === true) {
+                result.text().then(function(data) { 
+                    var data1 = JSON.parse(data)
+                    console.log(data1.data);
+                    Swal.fire({
+                    icon: 'success',
+                    title: `¡GRACIAS POR ACTUALIZAR SUS SINTOMAS! ${data1.data.nombre}`,
+                    text: `FECHA: ${moment().format('L')}, ${moment().format('LT')}`,
+                    timer: 10500
+                    })
+                    setTimeout(() => {
+                        window.location.reload();    
+                    }, 10000);
+                })
+            } else {
+                result.text().then(function(data) { 
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡ERROR!',
+                        text: '¡Ya has llenado el questionario por el dia de hoy!',
+                        timer: 10500
+                    })
+                })
+            }
+            })
+            .catch(function (error) {
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error,
+                    timer: 1500
+                })
+            });
+    }
+
+
+    async function registroConSintomasNE(valores){
+        let sintomass = valores
+        const data = JSON.parse(dataState);
+        const newData={
+            ...data,
+            sintomas: sintomass
+        }
+
+        await fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/createNE`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({newData})
+        })
+        .then(function (result) {
+            if (result['ok'] === true) {
+                result.text().then(function(data) { 
+                    var data1 = JSON.parse(data)
+                    console.log(data1.data);
+                    Swal.fire({
+                    icon: 'success',
+                    title: `¡GRACIAS POR ACTUALIZAR SUS SINTOMAS! ${data1.data.nombre}`,
+                    text: `FECHA: ${moment().format('L')}, ${moment().format('LT')}`,
+                    timer: 10500
+                    })
+                    setTimeout(() => {
+                        window.location.reload();    
+                    }, 10000);
+                })
+            } else {
+                result.text().then(function(data) { 
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡ERROR!',
+                        text: '¡Ya has llenado el questionario por el dia de hoy!',
+                        timer: 10500
+                    })
+                })
+            }
+            })
+            .catch(function (error) {
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error,
+                    timer: 1500
+                })
+            });
+    }
+    
 
     return (
         <div className='containerForm'>
             <TextField
                 value={documentoIdentidad}
                 onChange={handleDocumentoIdentidadChange}
+                onKeyDown={prevent}
                 required
                 name="documentoIdentidad"
                 id='documentoIdentidad'
@@ -384,9 +370,9 @@ const Funcionario = () => {
                                         <strong>Tos?</strong>
                                     </Form.Label>
                                     <Form.Check type="radio" onChange={e => setTos(e.target.value = true)}
-                                                value={Tos} name={'Tos'} label={'Si'}/>
+                                                value={tos} name={'tos'} label={'Si'}/>
                                     <Form.Check type="radio" onChange={e => setTos(e.target.value = false)}
-                                                value={Tos} name={'Tos'} label={'No'}/>
+                                                value={tos} name={'tos'} label={'No'}/>
                                 </Col>
                                 <Col>
                                     <Form.Label>
@@ -465,16 +451,25 @@ const Funcionario = () => {
                                 </Col>
                             </Row>
                             <hr/>
-                            <Row>
-                                <Col md={{span: 10, offset: 1}}>
+                                <div style={{marginTop: 25, marginLeft: "43%"}}>
+                                    {/* <ButtonIcon
+                                        bgColor='#00A7AF'
+                                        title='Siguiente'
+                                        onClick={() => OpenModalSec()}
+                                        disabled={true}
+                                    /> */}
                                     <Button
-                                        variant="outline-secondary"
-                                        size="lg" block
-                                        type="submit">
-                                        Registrar
+                                        style={{
+                                            backgroundColor:"#00A7AF",
+                                            borderColor:"#00A7AF"
+                                        }}
+                                        type="submit"
+                                        disabled={boton}
+                                        onClick={() => OpenModalSec()}
+                                    >
+                                        REGISTRAR
                                     </Button>
-                                </Col>
-                            </Row>
+                                </div>
                         </Form>
                     </Container>
                 </div>

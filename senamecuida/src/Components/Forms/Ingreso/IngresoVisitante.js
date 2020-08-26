@@ -14,7 +14,7 @@ import Axios from 'axios'
 import { ButtonIcon } from '../../../Components/common/Button';
 
 
-const Aprendiz = () => {
+const Visitante = () => {
         
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
     const [temperatura, setTemperatura] = React.useState('')
@@ -79,6 +79,7 @@ const Aprendiz = () => {
         //       error => console.log(error)
         //     )
             console.log(documentoIdentidad);
+        
             if(temperatura < 38) {
                 if (temperatura.length===2) {
                     registroConTemperatura()
@@ -96,7 +97,6 @@ const Aprendiz = () => {
                     window.location.reload();    
                 }, 4000);
             }
-            
         }
       
         let consultarAPI = setTimeout(() => {
@@ -169,11 +169,12 @@ const Aprendiz = () => {
                 title: '¡ALERTA!',
                 text: "¡NO SE PUEDE INGRESAR MAS PERSONAS, SE HA SUPERADO EL HUMBRAL!",
                 timer: 10500
-            })
-            setCDocumento(true)
-            setTimeout(() => {
-                window.location.reload();    
-            }, 3000);
+                })
+                setCDocumento(true)
+                setTimeout(() => {
+                    window.location.reload();    
+                }, 3000);
+
         }
     }
 
@@ -189,17 +190,45 @@ const Aprendiz = () => {
         .then(function (result) {
             if (result['ok'] === true) {
                 result.text().then(function(data) { 
-                    Swal.fire({
-                    icon: 'success',
-                    title: '¡USUARIO ENCONTRADO!',
-                    text: "AHORA DIGITA LA TEMPERATURA",
-                    timer: 10500
-                    })
-                    setDataState(data);
+                    let iSintomas = JSON.parse(data);
+                    let iSintomasV = Object.values(iSintomas.sintomas)
+                    console.log(iSintomasV);
+                    let contT =0;
+                    let contF =0;
+                    for (let i = 0; i < iSintomasV.length; i++) {
+                        const element = iSintomasV[i];
+                        if(element === true){
+                            contT++;
+                        } else {
+                            contF++;
+                        }
+                    }
+                    if(contT >= 3 ){
+                        console.log('PAILA');
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡NO PUEDES ENTRAR!',
+                            text: "REGISTRASTE MAS DE 3 SINTOMAS EN EL REPORTE DE SALUD",
+                            timer: 10500
+                        })
+                        setCTemperatura(true)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 5000);
+                    } else {
+                        console.log("BIEN PAI");
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡USUARIO ENCONTRADO!',
+                            text: "AHORA DIGITA LA TEMPERATURA",
+                            timer: 10500
+                        })
+                        setDataState(data);
+                    }
                 })
-                setCTemperatura(false)
+                setCTemperatura(false) 
             } else {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     Swal.fire({
                         icon: 'error',
                         title: '¡ERROR!',
@@ -487,4 +516,4 @@ const Aprendiz = () => {
     )
 }
 
-export default Aprendiz;
+export default Visitante;
