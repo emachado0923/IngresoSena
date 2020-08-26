@@ -199,43 +199,45 @@ const Funcionario = () => {
                 })
                 .then(function (result) {
                     if (result['ok'] === true) {
-                        result.text().then(function(data) { 
-                            let iSintomas = JSON.parse(data);
-                            let iSintomasV = Object.values(iSintomas.sintomas)
-                            console.log(iSintomasV);
-                            let contT =0;
-                            let contF =0;
-                            for (let i = 0; i < iSintomasV.length; i++) {
-                                const element = iSintomasV[i];
-                                if(element === true){
-                                    contT++;
-                                } else {
-                                    contF++;
-                                }
-                            }
-                            if(contT >= 3 ){
-                                console.log('PAILA');
+                        result.text().then(function(data) {
+                            setDataState(data);
+                        })
+                        .then(
+                        fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({documentoIdentidad})
+                        })
+                        .then(function (result) {
+                            if (result['ok'] === true) {
                                 Swal.fire({
                                     icon: 'error',
-                                    title: '¡NO PUEDES ENTRAR!',
-                                    text: "REGISTRASTE MAS DE 3 SINTOMAS EN EL REPORTE DE SALUD",
+                                    title: '¡INGRESASTE MAS DE 3 SINTOMAS EN EL REPORTE DE SALUD!',
+                                    text: "Debes ponerte en contacto con el medico SENA",
                                     timer: 10500
                                 })
+                                setCDocumento(true)
                                 setCTemperatura(true)
                                 setTimeout(() => {
-                                    window.location.reload()
-                                }, 5000);
+                                    window.location.reload();    
+                                }, 3000);
                             } else {
-                                console.log("BIEN PAI");
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: '¡USUARIO ENCONTRADO!',
-                                    text: "AHORA DIGITA LA TEMPERATURA",
-                                    timer: 10500
+                                result.text().then(function(data) {
+                                    console.log(data); 
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: '¡USUARIO ENCONTRADO!',
+                                        text: "AHORA DIGITA LA TEMPERATURA",
+                                        timer: 10500
+                                    })
+                                    
                                 })
-                                setDataState(data);
                             }
                         })
+                        )
                         setCTemperatura(false)
                     } else {
                         result.text().then(function(data) { 
@@ -248,7 +250,6 @@ const Funcionario = () => {
                     })
                     }
                 })
-                
             } else {
                 result.text().then(function(data) {
                     Swal.fire({
@@ -260,73 +261,8 @@ const Funcionario = () => {
                 })
             }
         })
-
-
-        
-        
-        // // } else {
-        // //     await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/ingreso`, {
-        // //         method: 'POST',
-        // //         headers: {
-        // //             'Accept': 'application/json',
-        // //             'Content-Type': 'application/json',
-        // //         },
-        // //         body: JSON.stringify({documentoIdentidad})
-        // //     }).then(function (result) {
-        // //         if (result['ok'] === true) {
-        // //             console.log(result);
-        // //             result.json()
-        // //                 .then(async function (data) {
-        // //                     await fetch(`${process.env.REACT_APP_API_URL}/api/noIngresoDia/create`, {
-        // //                         method: 'POST',
-        // //                         headers: {
-        // //                             'Accept': 'application/json',
-        // //                             'Content-Type': 'application/json',
-
-        // //                         },
-        // //                         body: JSON.stringify(data)
-        // //                     }).then(function (result) {
-        // //                         if (result['ok'] === false) {
-        // //                             Swal.fire({
-        // //                                 icon: 'error',
-        // //                                 title: '¡ERROR!',
-        // //                                 text: JSON.stringify('¡NO LO SE!'),
-        // //                                 timer: 10500
-        // //                             })
-        // //                         } else {
-        // //                             Swal.fire({
-        // //                                 icon: 'error',
-        // //                                 title: '¡ACCESO DENEGADO!',
-        // //                                 text: 'No puede pasar!',
-        // //                                 timer: 10500
-        // //                             })
-        // //                         }
-        // //                     })
-        // //                 })
-            
-        // //             } else {
-        // //                 result.text().then(function (data) {
-        // //                     Swal.fire({
-        // //                         icon: 'error',
-        // //                         title: '¡ERROR!',
-        // //                         text: data,
-        // //                         timer: 10500
-        // //                     })
-        // //                 })
-        // //             }
-
-        // //         })
-        // //         .catch(function (error) {
-        // //             console.log(error)
-        // //             /*Swal.fire({
-        // //             icon: 'error',
-        // //             title: 'Oops...',
-        // //             text: error,
-        // //             timer: 1500
-        // //         })*/
-        // //         });
-        // }
     }
+
 
 
     async function registroConTemperatura(){

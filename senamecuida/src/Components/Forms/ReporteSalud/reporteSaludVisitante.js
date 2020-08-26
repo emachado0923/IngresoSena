@@ -13,7 +13,7 @@ import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 // import { Input } from '../../common/Inputs';
 import { ButtonIcon } from '../../../Components/common/Button';
 
-const Aprendiz = () => {
+const Visitante = () => {
     const [fiebre, setFiebre] = React.useState(false)
     const [dolorTragar, setDolorTragar] = React.useState(false)
     const [tos, setTos] = React.useState(false)
@@ -191,7 +191,7 @@ const Aprendiz = () => {
     }
 
     async function registro(){
-        await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/ingreso`, {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/ingreso`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -509,4 +509,4 @@ const Aprendiz = () => {
     )
 }
 
-export default Aprendiz;
+export default Visitante;

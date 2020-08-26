@@ -6,6 +6,7 @@ import { Modal } from 'react-bootstrap';
 // import Visitante from '../../Components/Forms/ReporteSalud/';
 import Aprendiz from '../../Components/Forms/ReporteSalud/reporteSaludAprendiz';
 import Funcionario from '../../Components/Forms/ReporteSalud/reporteSaludFuncionario';
+import Visitante from '../../Components/Forms/ReporteSalud/reporteSaludVisitante';
 import { ButtonIcon } from '../../Components/common/Button';
 import './estilos.css';
 import NavTopLanding from '../../Components/Navs/navTopLanding';
@@ -32,7 +33,13 @@ class Inicio extends Component {
                     <Title title='SENA ME CUIDA' />
                     <SubTitle title='Para reportarte selecciona tu cargo en el Sena' />
 
-                    <div className='contCards'>   
+                    <div className='contCards'> 
+                        <div>
+                            <CardRol  bgColor='#78BECE'   onClick={() => { this.setState({ openModal: true, rol: 'Visitante' }) }} />
+                            <img className='foto1' src={foto1} onClick={() => { this.setState({ openModal: true, rol: 'Visitante' }) }}/>
+
+                            <div id="cardf" onClick={() => { this.setState({ openModal: true, rol: 'Visitante' }) }}>Visitante</div>
+                    </div>  
                        <div>
                         <CardRol  bgColor='#707070'  onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }} />
                         <img className='foto1' src={foto1} onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}  />
@@ -67,6 +74,8 @@ class Inicio extends Component {
                         </Modal.Header>
                         <Modal.Body>
                             {
+                                    this.state.rol === 'Visitante' ?
+                                    <Visitante /> :
                                     this.state.rol === 'Funcionario' ?
                                         <Funcionario /> :
                                         <Aprendiz />

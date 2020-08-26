@@ -202,15 +202,39 @@ const Funcionario = () => {
         .then(function (result) {
             if (result['ok'] === true) {
                 result.text().then(function(data) { 
-                    Swal.fire({
-                    icon: 'success',
-                    title: '¡FUNCIONARIO ENCONTRADO!',
-                    text: "AHORA LLENA EL CUESTIONARIO",
-                    timer: 10500
-                    })
                     setDataState(data);
-                    setBoton(false)
                 })
+                .then(
+                fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({documentoIdentidad})
+                })
+                .then(function (result) {
+                    if (result['ok'] === true) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡BLOQUEADO!',
+                            text: '¡Debes contactar al medico SENA por el ultimo reporte que dice que tienes mas de 3 sintomas!',
+                            timer: 10500
+                        })
+                        setBoton(true)
+                    } else {
+                        result.text().then(function(data) { 
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡APRENDIZ ENCONTRADO!',
+                                text: "AHORA LLENA EL CUESTIONARIO",
+                                timer: 10500
+                            })
+                            setBoton(false)
+                        })
+                    }
+                    })
+                )
             } else {
                 result.text().then(function(data) { 
                     Swal.fire({
