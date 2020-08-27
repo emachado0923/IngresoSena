@@ -466,7 +466,7 @@ const Visitante = () => {
                                 </Col>
                                 <Col>
                                     <Form.Label>
-                                        <strong>Dolor articular - Sensacion de cansancio?</strong>
+                                        <strong>Dolor de cabeza?</strong>
                                     </Form.Label>
                                     <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
                                                 value={tratamiento} name={'tratamiento'} label={'Si'}/>

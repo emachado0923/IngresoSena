@@ -456,7 +456,7 @@ const Aprendiz = () => {
                                 </Col>
                                 <Col>
                                     <Form.Label>
-                                        <strong>A tenido contacto con casos sospechosos o confirmados?</strong>
+                                        <strong>Ha tenido contacto con casos sospechosos o confirmados?</strong>
                                     </Form.Label>
                                     <Form.Check type="radio" onChange={e => setContacto(e.target.value = true)}
                                                 value={contacto} name={'contacto'} label={'Si'}/>
@@ -466,7 +466,7 @@ const Aprendiz = () => {
                                 </Col>
                                 <Col>
                                     <Form.Label>
-                                        <strong>Dolor articular - Sensacion de cansancio?</strong>
+                                        <strong>Dolor de Cabeza?</strong>
                                     </Form.Label>
                                     <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
                                                 value={tratamiento} name={'tratamiento'} label={'Si'}/>

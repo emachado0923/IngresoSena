@@ -582,12 +582,15 @@ const Visitante = () => {
                         <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos
                             colpatria</MenuItem>
                         <MenuItem value={'Cruz blanca'} onChange={handleEpsChange}>Cruz Blanca</MenuItem>
+                        <MenuItem value={'Sisben'} onChange={handleEpsChange}>Sisben</MenuItem>
+                        <MenuItem value={'Sanidad Militar'} onChange={handleEpsChange}>Sanidad Militar</MenuItem>
+                        <MenuItem value={'Red Vital'} onChange={handleEpsChange}>Red Vital</MenuItem>
                     </Select>
                 </FormControl>
             </div>
             <div style={{width: '100%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">TORRE</InputLabel>
+                    <InputLabel id="demo-simple-select-outlined-label">COMPLEJO</InputLabel>
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -597,6 +600,7 @@ const Visitante = () => {
                     >
                         <MenuItem value={'Torre Sur'} onChange={handleTorreChange}>Torre Sur</MenuItem>
                         <MenuItem value={'Torre Norte'} onChange={handleTorreChange}>Torre Norte</MenuItem>
+                        <MenuItem value={'Buenos Aires'} onChange={handleTorreChange}>Buenos Aires</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -620,6 +624,7 @@ const Visitante = () => {
                         <MenuItem value={'8'} onChange={handlePisoChange}>8</MenuItem>
                         <MenuItem value={'9'} onChange={handlePisoChange}>9</MenuItem>
                         <MenuItem value={'10'} onChange={handlePisoChange}>10</MenuItem>
+                        <MenuItem value={'Sótano'} onChange={handlePisoChange}>Sótano</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -724,7 +729,7 @@ const Visitante = () => {
                                     </Col>
                                     <Col>
                                         <Form.Label>
-                                            <strong>A tenido contacto con casos sospechosos o confirmados?</strong>
+                                            <strong>Ha tenido contacto con casos sospechosos o confirmados?</strong>
                                         </Form.Label>
                                         <Form.Check type="radio" onChange={e => setContacto(e.target.value = true)}
                                                     value={contacto} name={'contacto'} label={'Si'}/>
@@ -734,7 +739,7 @@ const Visitante = () => {
                                     </Col>
                                     <Col>
                                         <Form.Label>
-                                            <strong>Dolor articular - Sensacion de cansancio?</strong>
+                                            <strong>Dolor de cabeza?</strong>
                                         </Form.Label>
                                         <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
                                                     value={tratamiento} name={'tratamiento'} label={'Si'}/>

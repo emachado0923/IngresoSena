@@ -46,6 +46,7 @@ const Visitante = () => {
     const [contacto, setContacto] = React.useState(false)
     const [tratamiento, setTratamiento] = React.useState(false)
     const [ficha, setFicha] = React.useState('')
+    const [complejo, setComplejo] = React.useState('')
     const [programaDeFormacion, setProgramaDeFormacion] = React.useState('')
 
 
@@ -58,6 +59,7 @@ const Visitante = () => {
     const handleEpsChange = (event) => setEps(event.target.value)
     const handleFichaChange = (event) => setFicha(event.target.value)
     const handleProgramaDeFormacionChange = (event) => setProgramaDeFormacion(event.target.value)
+    const handleComplejoChange = (event) => setComplejo(event.target.value)
 
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
@@ -322,6 +324,7 @@ const Visitante = () => {
                     telefono,
                     direccionResidencia,
                     eps,
+                    complejo,
                     ficha,
                     programaDeFormacion,
                     sintomas
@@ -468,6 +471,7 @@ const Visitante = () => {
                     eps,
                     ficha,
                     programaDeFormacion,
+                    complejo,
                     sintomas
                 })
             })
@@ -654,6 +658,25 @@ const Visitante = () => {
                         <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos
                             colpatria</MenuItem>
                         <MenuItem value={'Cruz blanca'} onChange={handleEpsChange}>Cruz Blanca</MenuItem>
+                        <MenuItem value={'Sisben'} onChange={handleEpsChange}>Sisben</MenuItem>
+                        <MenuItem value={'Sanidad Militar'} onChange={handleEpsChange}>Sanidad Militar</MenuItem>
+                        <MenuItem value={'Red Vital'} onChange={handleEpsChange}>Red Vital</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{width: '100%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">COMPLEJO</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="COMPLEJO"
+                        value={complejo}
+                        onChange={handleComplejoChange}
+                    >
+                        <MenuItem value={'Torre Sur'} onChange={handleComplejoChange}>Torre Sur</MenuItem>
+                        <MenuItem value={'Torre Norte'} onChange={handleComplejoChange}>Torre Norte</MenuItem>
+                        <MenuItem value={'Buenos Aires'} onChange={handleComplejoChange}>Buenos Aires</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -758,7 +781,7 @@ const Visitante = () => {
                                     </Col>
                                     <Col>
                                         <Form.Label>
-                                            <strong>A tenido contacto con casos sospechosos o confirmados?</strong>
+                                            <strong>Ha tenido contacto con casos sospechosos o confirmados?</strong>
                                         </Form.Label>
                                         <Form.Check type="radio" onChange={e => setContacto(e.target.value = true)}
                                                     value={contacto} name={'contacto'} label={'Si'}/>
@@ -768,7 +791,7 @@ const Visitante = () => {
                                     </Col>
                                     <Col>
                                         <Form.Label>
-                                            <strong>Dolor articular - Sensacion de cansancio?</strong>
+                                            <strong>Dolor de cabeza?</strong>
                                         </Form.Label>
                                         <Form.Check type="radio" onChange={e => setTratamiento(e.target.value = true)}
                                                     value={tratamiento} name={'tratamiento'} label={'Si'}/>
