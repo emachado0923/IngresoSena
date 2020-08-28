@@ -328,8 +328,8 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            //await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
-            await fetch(`http://localhost:3008/api/aprendiz/createNE`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
+            //await fetch(`http://localhost:3008/api/aprendiz/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

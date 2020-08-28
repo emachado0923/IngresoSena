@@ -8,7 +8,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan')
 var cors = require('cors')
 
-mongoose.set('useCreateIndex',true);
+
+mongoose.set('useCreateIndex', true);
+
 // Database Connection
 mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
     .then(() => {
@@ -25,6 +27,7 @@ app.use('/static', express.static(__dirname + '/reportes'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'))
+app.set('trust proxy', true);
 
 // Cors
 app.use(function (req, res, next) {
