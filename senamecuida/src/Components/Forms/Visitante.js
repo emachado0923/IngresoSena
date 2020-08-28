@@ -47,6 +47,8 @@ const Visitante = () => {
     const [tratamiento, setTratamiento] = React.useState(false)
     const [torre, setTorre] = React.useState("")
     const [piso, setPiso] = React.useState("")
+    const [sexo, setSexo] = React.useState("")
+    const [transporte, setTransporte] = React.useState("")
 
     const handleNombreChange = (event) => setNombre(event.target.value)
     const handleEmailChange = (event) => setEmail(event.target.value)
@@ -57,6 +59,8 @@ const Visitante = () => {
     const handleEpsChange = (event) => setEps(event.target.value)
     const handleTorreChange = (event) => setTorre(event.target.value)
     const handlePisoChange = (event) => setPiso(event.target.value)
+    const handleSexoChange = (event) => setSexo(event.target.value)
+    const handleTransporteChange = (event) => setTransporte(event.target.value)
 
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
@@ -289,6 +293,7 @@ const Visitante = () => {
                 },
                 body: JSON.stringify({
                     nombre,
+                    sexo,
                     email,
                     documentoIdentidad,
                     celular,
@@ -297,6 +302,7 @@ const Visitante = () => {
                     eps,
                     torre,
                     piso,
+                    transporte,
                     sintomas
                 })
             })
@@ -416,6 +422,7 @@ const Visitante = () => {
                 },
                 body: JSON.stringify({
                     nombre,
+                    sexo,
                     email,
                     documentoIdentidad,
                     celular,
@@ -424,6 +431,7 @@ const Visitante = () => {
                     eps,
                     torre,
                     piso,
+                    transporte,
                     sintomas
                 })
             }).then(function (result) {
@@ -473,6 +481,7 @@ const Visitante = () => {
 
     return (
         <div className='containerForm'>
+
             <TextField
                 value={nombre}
                 onChange={handleNombreChange}
@@ -486,7 +495,23 @@ const Visitante = () => {
                 placeholder='Ingresa tu nombre completo'
                 variant="outlined"
             />
-            <div style={{width: '100%', marginTop: '1.5%'}}>
+            <div style={{width: '100%', marginTop: '1%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">SEXO</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="SEXO"
+                        value={sexo}
+                        onChange={handleSexoChange}
+                    >
+                        <MenuItem value={'Masculino'} onChange={handleSexoChange}>Masculino</MenuItem>
+                        <MenuItem value={'Femenino'} onChange={handleSexoChange}>Femenino</MenuItem>
+                        <MenuItem value={'Prefiero no decir'} onChange={handleSexoChange}>Prefiero no decir</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{width: '100%', marginTop: '1%'}}>
                 <TextField
                     value={email}
                     onChange={handleEmailChange}
@@ -588,7 +613,7 @@ const Visitante = () => {
             </div>
             <div style={{width: '100%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">COMPLEJO</InputLabel>
+                    <InputLabel id="demo-simple-select-outlined-label">TORRE</InputLabel>
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -598,7 +623,6 @@ const Visitante = () => {
                     >
                         <MenuItem value={'Torre Sur'} onChange={handleTorreChange}>Torre Sur</MenuItem>
                         <MenuItem value={'Torre Norte'} onChange={handleTorreChange}>Torre Norte</MenuItem>
-                        <MenuItem value={'Buenos Aires'} onChange={handleTorreChange}>Buenos Aires</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -608,7 +632,7 @@ const Visitante = () => {
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
-                        label="EPS"
+                        label="N° Piso"
                         value={piso}
                         onChange={handlePisoChange}
                     >
@@ -623,6 +647,23 @@ const Visitante = () => {
                         <MenuItem value={'9'} onChange={handlePisoChange}>9</MenuItem>
                         <MenuItem value={'10'} onChange={handlePisoChange}>10</MenuItem>
                         <MenuItem value={'Sótano'} onChange={handlePisoChange}>Sótano</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{width: '100%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">Medio de Transporte</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="Medio Transporte"
+                        value={transporte}
+                        onChange={handleTransporteChange}
+                    >
+                        <MenuItem value={'Caminando'} onChange={handleTransporteChange}>Caminando</MenuItem>
+                        <MenuItem value={'Bicicleta'} onChange={handleTransporteChange}>Bicicleta</MenuItem>
+                        <MenuItem value={'Carro particular'} onChange={handleTransporteChange}>Carro particular</MenuItem>
+                        <MenuItem value={'Transporte Público'} onChange={handleTransporteChange}>Transporte Público</MenuItem>
                     </Select>
                 </FormControl>
             </div>

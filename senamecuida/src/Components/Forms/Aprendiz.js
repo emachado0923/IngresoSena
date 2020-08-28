@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import {Modal} from 'react-bootstrap';
 import {Title} from '../../Components/common/Texts';
 import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 // import { Input } from '../common/Inputs';
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Visitante = () => {
 
+    const recaptchaRef = React.createRef();
     const classes = useStyles();
 
     const [nombre, setNombre] = React.useState('')
@@ -48,7 +50,8 @@ const Visitante = () => {
     const [ficha, setFicha] = React.useState('')
     const [complejo, setComplejo] = React.useState('')
     const [programaDeFormacion, setProgramaDeFormacion] = React.useState('')
-
+    const [sexo, setSexo] = React.useState("")
+    const [transporte, setTransporte] = React.useState("")
 
     const handleNombreChange = (event) => setNombre(event.target.value)
     const handleEmailChange = (event) => setEmail(event.target.value)
@@ -60,6 +63,8 @@ const Visitante = () => {
     const handleFichaChange = (event) => setFicha(event.target.value)
     const handleProgramaDeFormacionChange = (event) => setProgramaDeFormacion(event.target.value)
     const handleComplejoChange = (event) => setComplejo(event.target.value)
+    const handleSexoChange = (event) => setSexo(event.target.value)
+    const handleTransporteChange = (event) => setTransporte(event.target.value)
 
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
@@ -318,15 +323,14 @@ const Visitante = () => {
                 },
                 body: JSON.stringify({
                     nombre,
+                    sexo,
                     email,
                     documentoIdentidad,
                     celular,
                     telefono,
                     direccionResidencia,
                     eps,
-                    complejo,
-                    ficha,
-                    programaDeFormacion,
+                    transporte,
                     sintomas
                 })
             })
@@ -463,15 +467,14 @@ const Visitante = () => {
                 },
                 body: JSON.stringify({
                     nombre,
+                    sexo,
                     email,
                     documentoIdentidad,
                     celular,
                     telefono,
                     direccionResidencia,
                     eps,
-                    ficha,
-                    programaDeFormacion,
-                    complejo,
+                    transporte,
                     sintomas
                 })
             })
@@ -535,7 +538,23 @@ const Visitante = () => {
                 placeholder='Ingresa tu nombre completo'
                 variant="outlined"
             />
-            <div style={{width: '100%', marginTop: '1.5%'}}>
+            <div style={{width: '100%', marginTop: '1%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">SEXO</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="SEXO"
+                        value={sexo}
+                        onChange={handleSexoChange}
+                    >
+                        <MenuItem value={'Masculino'} onChange={handleSexoChange}>Masculino</MenuItem>
+                        <MenuItem value={'Femenino'} onChange={handleSexoChange}>Femenino</MenuItem>
+                        <MenuItem value={'Prefiero no decir'} onChange={handleSexoChange}>Prefiero no decir</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{width: '100%', marginTop: '1%'}}>
                 <TextField
                     value={email}
                     onChange={handleEmailChange}
@@ -666,17 +685,18 @@ const Visitante = () => {
             </div>
             <div style={{width: '100%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">COMPLEJO</InputLabel>
+                    <InputLabel id="demo-simple-select-outlined-label">Medio de Transporte</InputLabel>
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
-                        label="COMPLEJO"
-                        value={complejo}
-                        onChange={handleComplejoChange}
+                        label="Medio Transporte"
+                        value={transporte}
+                        onChange={handleTransporteChange}
                     >
-                        <MenuItem value={'Torre Sur'} onChange={handleComplejoChange}>Torre Sur</MenuItem>
-                        <MenuItem value={'Torre Norte'} onChange={handleComplejoChange}>Torre Norte</MenuItem>
-                        <MenuItem value={'Buenos Aires'} onChange={handleComplejoChange}>Buenos Aires</MenuItem>
+                        <MenuItem value={'Caminando'} onChange={handleTransporteChange}>Caminando</MenuItem>
+                        <MenuItem value={'Bicicleta'} onChange={handleTransporteChange}>Bicicleta</MenuItem>
+                        <MenuItem value={'Carro particular'} onChange={handleTransporteChange}>Carro particular</MenuItem>
+                        <MenuItem value={'Transporte Público'} onChange={handleTransporteChange}>Transporte Público</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -800,6 +820,11 @@ const Visitante = () => {
                                     </Col>
                                 </Row>
                                 <hr/>
+                                <ReCAPTCHA
+                                    ref={recaptchaRef}
+                                    size="visible"
+                                    sitekey="6LfilsQZAAAAAKRJeT5JuKGaxcKIaQr4ZYh2n4hT"
+                                />
                                 <div style={{marginTop: 25, marginLeft: "44%"}}>
                                     <ButtonIcon
                                         bgColor='#00A7AF'

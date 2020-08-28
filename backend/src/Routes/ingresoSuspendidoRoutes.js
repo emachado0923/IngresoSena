@@ -3,7 +3,7 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const ingresoSuspendido_controller = require('../Controllers/ingresoSuspendidoController');
-const { userAuth, checkRole } = require("../utils/Auth");
+const { userAuth, checkRole } = require('../Utils/Auth');
 
 
 router.route("/list").get(checkRole, ingresoSuspendido_controller.all_ingresoSuspendido);
