@@ -120,7 +120,10 @@ const Visitante = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
+        //trae el valor que genera el recaptcha
+        const seleccionado = recaptchaRef.current.getValue()
         let valores = [
+
             fiebre,
             dolorTragar,
             Tos,
@@ -219,21 +222,32 @@ const Visitante = () => {
         }
 
 
-        if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
-            if (sintomas.length >= 3) {
-                registroNE(valores)
+        if (seleccionado) {
+            if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
+                if (sintomas.length >= 3) {
+                    registroNE(valores)
+                } else {
+                    registroE(valores)
+                }
             } else {
-                registroE(valores)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Vacio',
+                    text: '¡Debe seleccionar todos los síntomas!',
+                    timer: 10500
+                })
+                return false
             }
+
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Vacio',
-                text: '¡Debe seleccionar todos los síntomas!',
+                title: '¡Error!',
+                text: "¡Por favor verifique que no es un bot!",
                 timer: 10500
             })
-            return false
         }
+
     }
 
     async function registroNE(valores) {
@@ -314,7 +328,8 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
+            //await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
+            await fetch(`http://localhost:3008/api/aprendiz/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -344,7 +359,7 @@ const Visitante = () => {
                                 timer: 10500
                             })
                             setTimeout(() => {
-                                window.location.reload();    
+                                window.location.reload();
                             }, 5000);
                         })
                     } else if (result.status === 400) {
@@ -458,7 +473,8 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/create`, {
+            //await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/create`, {
+            await fetch(`http://localhost:3008/api/aprendiz/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -474,6 +490,8 @@ const Visitante = () => {
                     telefono,
                     direccionResidencia,
                     eps,
+                    ficha,
+                    programaDeFormacion,
                     transporte,
                     sintomas
                 })
@@ -488,7 +506,7 @@ const Visitante = () => {
                                 timer: 1500
                             })
                             setTimeout(() => {
-                                window.location.reload();    
+                                window.location.reload();
                             }, 5000);
                         })
                     } else if (result.status === 400) {
@@ -695,8 +713,10 @@ const Visitante = () => {
                     >
                         <MenuItem value={'Caminando'} onChange={handleTransporteChange}>Caminando</MenuItem>
                         <MenuItem value={'Bicicleta'} onChange={handleTransporteChange}>Bicicleta</MenuItem>
-                        <MenuItem value={'Carro particular'} onChange={handleTransporteChange}>Carro particular</MenuItem>
-                        <MenuItem value={'Transporte Público'} onChange={handleTransporteChange}>Transporte Público</MenuItem>
+                        <MenuItem value={'Carro particular'} onChange={handleTransporteChange}>Carro
+                            particular</MenuItem>
+                        <MenuItem value={'Transporte Público'} onChange={handleTransporteChange}>Transporte
+                            Público</MenuItem>
                     </Select>
                 </FormControl>
             </div>
