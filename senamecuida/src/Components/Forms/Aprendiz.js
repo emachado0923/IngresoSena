@@ -52,6 +52,7 @@ const Visitante = () => {
     const [programaDeFormacion, setProgramaDeFormacion] = React.useState('')
     const [sexo, setSexo] = React.useState("")
     const [transporte, setTransporte] = React.useState("")
+    const [jornada, setJornada] = React.useState("")
 
     const handleNombreChange = (event) => setNombre(event.target.value)
     const handleEmailChange = (event) => setEmail(event.target.value)
@@ -65,6 +66,7 @@ const Visitante = () => {
     const handleComplejoChange = (event) => setComplejo(event.target.value)
     const handleSexoChange = (event) => setSexo(event.target.value)
     const handleTransporteChange = (event) => setTransporte(event.target.value)
+    const handleJornadaChange = (event) => setJornada(event.target.value)
 
     //Segundo modal
     const [modalSec, setModalSec] = React.useState(false);
@@ -328,8 +330,7 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            //await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
-            await fetch(`http://localhost:3008/api/aprendiz/createNE`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -346,6 +347,7 @@ const Visitante = () => {
                     direccionResidencia,
                     eps,
                     transporte,
+                    jornada,
                     sintomas
                 })
             })
@@ -473,8 +475,7 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            //await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/create`, {
-            await fetch(`http://localhost:3008/api/aprendiz/create`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/aprendiz/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -493,6 +494,7 @@ const Visitante = () => {
                     ficha,
                     programaDeFormacion,
                     transporte,
+                    jornada,
                     sintomas
                 })
             })
@@ -558,7 +560,7 @@ const Visitante = () => {
             />
             <div style={{width: '100%', marginTop: '1%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">SEXO</InputLabel>
+                    <InputLabel id="demo-simple-select-outlined-label">Genero</InputLabel>
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -720,6 +722,22 @@ const Visitante = () => {
                     </Select>
                 </FormControl>
             </div>
+            <div style={{width: '100%', marginLeft: '-2%'}}>
+                <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label">Jornada</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        label="Jornada"
+                        value={jornada}
+                        onChange={handleJornadaChange}
+                    >
+                        <MenuItem value={'Mañana'} onChange={handleJornadaChange}>Mañana</MenuItem>
+                        <MenuItem value={'Tarde'} onChange={handleJornadaChange}>Tarde</MenuItem>
+                        <MenuItem value={'Noche'} onChange={handleJornadaChange}>Noche</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
             <div style={{marginTop: 25}}>
                 <ButtonIcon
                     bgColor='#00A7AF'
@@ -843,7 +861,7 @@ const Visitante = () => {
                                 <ReCAPTCHA
                                     ref={recaptchaRef}
                                     size="visible"
-                                    sitekey="6LfilsQZAAAAAKRJeT5JuKGaxcKIaQr4ZYh2n4hT"
+                                    sitekey="6LdFtcQZAAAAAFKB5F7eSkAemqmgX-awTdZsBMzK"
                                 />
                                 <div style={{marginTop: 25, marginLeft: "44%"}}>
                                     <ButtonIcon

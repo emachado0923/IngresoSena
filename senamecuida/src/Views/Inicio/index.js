@@ -47,7 +47,7 @@ class Inicio extends Component {
                         <CardRol  bgColor='#707070'  onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }} />
                         <img className='foto1' src={foto1} onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}  />
 
-                         <div id="cardf2" onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>funcionario</div><br/>
+                         <div id="cardf2" onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>Funcionario</div><br/>
                          <Link to='/reporteSalud'>
                             <ButtonIconA title='REPORTE DE SALUD' icon={faUserCircle} />
                         </Link>

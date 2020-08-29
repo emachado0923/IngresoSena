@@ -297,8 +297,8 @@ const Visitante = () => {
             return (false);
         } else {
 
-            // await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
-            await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/createNE`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
+            // await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -427,8 +427,8 @@ const Visitante = () => {
             })
             return (false);
         } else {
-            //await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
             await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
+            // await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/create`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -513,7 +513,7 @@ const Visitante = () => {
             />
             <div style={{width: '100%', marginTop: '1%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">SEXO</InputLabel>
+                    <InputLabel id="demo-simple-select-outlined-label">Genero</InputLabel>
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -527,7 +527,7 @@ const Visitante = () => {
                     </Select>
                 </FormControl>
             </div>
-            <div style={{width: '100%', marginTop: '1%', marginLeft: '-2%'}}>
+            <div style={{width: '100%', marginLeft: '-2%'}}>
                 <FormControl variant="outlined" fullWidth className={classes.formControl}>
                     <InputLabel id="demo-simple-select-outlined-label">Tipo de cargo</InputLabel>
                     <Select
@@ -545,7 +545,7 @@ const Visitante = () => {
                     </Select>
                 </FormControl>
             </div>
-            <div style={{width: '100%', marginTop: '1.5%'}}>
+            <div style={{width: '100%', marginTop: '1%'}}>
                 <TextField
                     value={email}
                     onChange={handleEmailChange}
@@ -826,7 +826,7 @@ const Visitante = () => {
                                 <ReCAPTCHA
                                     ref={recaptchaRef}
                                     size="visible"
-                                    sitekey="6LfilsQZAAAAAKRJeT5JuKGaxcKIaQr4ZYh2n4hT"
+                                    sitekey="6LdFtcQZAAAAAFKB5F7eSkAemqmgX-awTdZsBMzK"
                                 />
                                 <div style={{marginTop: 25, marginLeft: "44%"}}>
                                     <ButtonIcon

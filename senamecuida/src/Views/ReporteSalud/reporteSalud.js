@@ -30,7 +30,7 @@ class Inicio extends Component {
                 <NavTopLanding />
                 <div className='fondo'>               
                  <div className='container'>
-                    <Title title='SENA ME CUIDA' />
+                    <Title title='REPORTE DE SALUD' />
                     <SubTitle title='Para reportarte selecciona tu cargo en el Sena' />
 
                     <div className='contCards'> 
@@ -44,7 +44,7 @@ class Inicio extends Component {
                         <CardRol  bgColor='#707070'  onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }} />
                         <img className='foto1' src={foto1} onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}  />
 
-                         <div id="cardf2"onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>funcionario</div>
+                         <div id="cardf2"onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>Funcionario</div>
                    </div>
 
                    <div>
