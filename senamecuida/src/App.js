@@ -11,6 +11,7 @@ import SeguridadSalida from '../src/Views/Seguridad/SeguridadSalida';
 import Login from '../src/Views/Administracion/Auth/Login'
 import LoginSeguridad from './Views/Seguridad/Auth/LoginSeguridad'
 import ReporteSalud from './Views/ReporteSalud/reporteSalud'
+import Sst from './Views/Sst/Sst'
 
 import { BrowserRouter, Route,Switch, Redirect } from 'react-router-dom';
 
@@ -44,6 +45,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Inicio} />
         <Route exact path='/reporteSalud' component={ReporteSalud} />
+        <Route exact path='/SST' component={Sst} />
         <MyRoute exact path='/Admin' component={Admin} />
         <MyRoute exact path='/Usuarios' component={Usuarios} />
         <MyRoute2 exact path='/Seguridad' component={Seguridad} />
