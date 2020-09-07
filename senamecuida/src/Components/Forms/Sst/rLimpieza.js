@@ -227,7 +227,7 @@ const RLimpieza = () => {
                         value={PEncargada}
                         onChange={handlePEncargadaChange}
                     >
-                        <MenuItem value={'Noris Apellido'} onChange={handlePEncargadaChange}>Noris Apellido</MenuItem>
+                        <MenuItem value={'Noris Angela Martinez Ciro'} onChange={handlePEncargadaChange}>Noris Angela Martinez Ciro</MenuItem>
                     </Select>
                 </FormControl>
             </div>

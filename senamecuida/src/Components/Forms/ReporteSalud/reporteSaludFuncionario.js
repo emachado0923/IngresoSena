@@ -63,7 +63,7 @@ const Funcionario = () => {
       
         let consultarAPI = setTimeout(() => {
           callSearchService();
-        }, 1000);
+        }, 2500);
         
         // Se dispara cada vez que se re-renderiza el componente
         return () => {
@@ -226,7 +226,7 @@ const Funcionario = () => {
                         result.text().then(function(data) { 
                             Swal.fire({
                                 icon: 'success',
-                                title: '¡APRENDIZ ENCONTRADO!',
+                                title: '¡FUNCIONARIO ENCONTRADO!',
                                 text: "AHORA LLENA EL CUESTIONARIO",
                                 timer: 10500
                             })
@@ -239,7 +239,7 @@ const Funcionario = () => {
                 result.text().then(function(data) { 
                     Swal.fire({
                         icon: 'error',
-                        title: '¡ERROR!',
+                        title: '¡ERROR3!',
                         text: data,
                         timer: 10500
                     })

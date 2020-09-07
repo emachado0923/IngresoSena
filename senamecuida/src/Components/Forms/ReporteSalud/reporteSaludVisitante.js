@@ -63,7 +63,7 @@ const Visitante = () => {
       
         let consultarAPI = setTimeout(() => {
           callSearchService();
-        }, 1000);
+        }, 2500);
         
         // Se dispara cada vez que se re-renderiza el componente
         return () => {
@@ -226,7 +226,7 @@ const Visitante = () => {
                         result.text().then(function(data) { 
                             Swal.fire({
                                 icon: 'success',
-                                title: '¡APRENDIZ ENCONTRADO!',
+                                title: '¡VISITANTE ENCONTRADO!',
                                 text: "AHORA LLENA EL CUESTIONARIO",
                                 timer: 10500
                             })

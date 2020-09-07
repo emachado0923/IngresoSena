@@ -52,7 +52,7 @@ class Inicio extends Component {
                     <div className='contText'>
                         <Text
                             align='center'
-                            text="Tenga en cuenta que sus datos serán tratados bajo la normativa de la ley de habeas data, al ingresar sus datos usted está autorizando de manera expresa e inequívoca para mantener y manejar la información suministrada, solo para aquellas finalidades para las que se encuentra facultado el aplicativo SENA ME CUIDA y respetando en todo caso, la normatividad vigente sobre protección de datos personales."
+                            text=""
                         />
 
                         </div></div>

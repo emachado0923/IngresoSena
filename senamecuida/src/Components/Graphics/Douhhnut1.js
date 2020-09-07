@@ -39,15 +39,18 @@ class Chart extends Component {
         localStorage.setItem('poringA', Math.round(porcentajeA)) 
         localStorage.setItem('poringV', Math.round(porcentajeV)) 
         localStorage.setItem('poringF', Math.round(porcentajeF)) 
+        localStorage.setItem('funAct', si) 
+        localStorage.setItem('AprendAct', si2) 
+        localStorage.setItem('visitAct', si1) 
     }
 
     
 
-    arrayMeses=['Porcentaje funcionarios de Alta', 'Porcentaje visitantes de Alta', 'Porcentaje aprendices de Alta']
+    arrayMeses=[`Numero funcionarios de Alta: ${localStorage.getItem('funAct')}`, `Numero aprendices de Alta: ${localStorage.getItem('AprendAct')}`, `Numero visitantes de Alta: ${localStorage.getItem('visitAct')}`]
     arrayDatosxMes=[
-        localStorage.getItem('poringF'),
-        localStorage.getItem('poringV'),
-        localStorage.getItem('poringA'),
+        localStorage.getItem('funAct'),
+        localStorage.getItem('AprendAct'), 
+        localStorage.getItem('visitAct') 
 
     ]
 
@@ -83,7 +86,7 @@ class Chart extends Component {
                                 maintainAspectRatio: true,
                                 title:{
                                     display:true,
-                                    text:"Porcentaje Personas de ALTA",
+                                    text:"Numero Personas de ALTA",
                                 }
                             }}>
                         </Doughnut>

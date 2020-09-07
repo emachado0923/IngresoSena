@@ -258,6 +258,9 @@ const Funcionario = () => {
                         text: data,
                         timer: 10500
                     })
+                    setTimeout(() => {
+                        window.location.reload();    
+                    }, 5000);
                 })
             }
         })
@@ -284,8 +287,8 @@ const Funcionario = () => {
         }).then(function (result) {
             if(result['ok'] === false){
                 Swal.fire({
-                    icon: 'error',
-                    title: '¡ERROR!',
+                    icon: 'warning',
+                    title: '¡ALERTA!',
                     text: JSON.stringify('¡ESTE USUARIO YA SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
                     timer: 10500
                 })

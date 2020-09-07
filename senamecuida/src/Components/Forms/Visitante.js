@@ -261,7 +261,7 @@ const Visitante = () => {
                 timer: 10500
             })
             return (false);
-        } else if (ID.length < 8) {
+        } else if (ID.length < 7) {
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -391,7 +391,7 @@ const Visitante = () => {
                 timer: 10500
             })
             return (false);
-        } else if (ID.length < 8) {
+        } else if (ID.length < 7) {
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -620,6 +620,7 @@ const Visitante = () => {
                         <MenuItem value={'Sisben'} onChange={handleEpsChange}>Sisben</MenuItem>
                         <MenuItem value={'Sanidad Militar'} onChange={handleEpsChange}>Sanidad Militar</MenuItem>
                         <MenuItem value={'Red Vital'} onChange={handleEpsChange}>Red Vital</MenuItem>
+                        <MenuItem value={'Nueva EPS'} onChange={handleEpsChange}>Nueva EPS</MenuItem>
                     </Select>
                 </FormControl>
             </div>

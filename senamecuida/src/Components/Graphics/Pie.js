@@ -56,16 +56,17 @@ class Chart extends Component {
         var restaR = (sumaR-si3)
         var porcentajeB = ((restaR*100)/sumaR)
         localStorage.setItem('prcAlta', Math.round(porcentajeA))
+        localStorage.setItem('numBaja', Math.round(sumaR))
         localStorage.setItem('prcBaja', Math.round(porcentajeB))
         localStorage.setItem('TotalR', sumaR) 
     }
 
     
 
-    arrayMeses=['Porcentaje personas DE ALTA', 'Porcentaje personas DE BAJA']
+    arrayMeses=[`Numero personas DE ALTA: ${localStorage.getItem('deAlta')}`, `Numero personas DE BAJA: ${localStorage.getItem('numBaja')}`]
     arrayDatosxMes=[
-        localStorage.getItem('prcAlta'),
-        localStorage.getItem('prcBaja')
+        localStorage.getItem('deAlta'),
+        localStorage.getItem('numBaja')
     ]
 
     constructor(props) {
@@ -100,7 +101,7 @@ class Chart extends Component {
                                 maintainAspectRatio: true,
                                 title:{
                                     display:true,
-                                    text:"Porcentaje de Personas de ALTA y de BAJA",
+                                    text:"Numero de Personas de ALTA y de BAJA",
                                 }
                             }}>
                         </Pie>

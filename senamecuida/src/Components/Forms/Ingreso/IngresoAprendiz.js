@@ -91,6 +91,7 @@ const Aprendiz = () => {
                     text: "¡NO SE PUEDE INGRESAR POR SU TEMPERATURA!",
                     timer: 10500
                 })
+                // registroNoIngreso()
                 setCDocumento(true)
                 setCTemperatura(true)
                 setTimeout(() => {
@@ -258,6 +259,9 @@ const Aprendiz = () => {
                         text: data,
                         timer: 10500
                     })
+                    setTimeout(() => {
+                        window.location.reload();    
+                    }, 5000);
                 })
             }
         })
@@ -284,8 +288,8 @@ const Aprendiz = () => {
         }).then(function (result) {
             if(result['ok'] === false){
                 Swal.fire({
-                    icon: 'error',
-                    title: '¡ERROR!',
+                    icon: 'warning',
+                    title: '¡ALERTA!',
                     text: JSON.stringify('¡ESTE USUARIO YA SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
                     timer: 10500
                 })
@@ -316,7 +320,49 @@ const Aprendiz = () => {
         });
     }
     
-    
+    // async function registroNoIngreso(){
+    //     await fetch(`${process.env.REACT_APP_API_URL}/api/noIngresoDia/create`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+
+    //         },
+    //         body: JSON.stringify(data)
+    //     }).then(function (result) {
+    //         if(result['ok'] === false){
+    //             Swal.fire({
+    //                 icon: 'error',
+    //                 title: '¡ERROR!',
+    //                 text: JSON.stringify('¡ESTE USUARIO YA SE ENCUENTRA DE ALTA EN EL APLICATIVO!'),
+    //                 timer: 10500
+    //             })
+    //             setTimeout(() => {
+    //                 window.location.reload();    
+    //             }, 3000);
+                
+    //         } else {
+    //             Swal.fire({
+    //                 icon: 'success',
+    //                 title: '¡BIEN!',
+    //                 text: JSON.stringify(`Bienvenido ${data.nombre} con EPS ${data.eps}`),
+    //                 timer: 10500
+    //             })
+    //             setTimeout(() => {
+    //                 window.location.reload();    
+    //             }, 3000);
+    //         }
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error)
+    //         Swal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: error,
+    //         timer: 1500
+    //     })
+    //     });
+    // }
 
     return (
         <div className='containerForm'>
