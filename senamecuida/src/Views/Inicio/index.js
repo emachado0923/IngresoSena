@@ -67,7 +67,9 @@ class Inicio extends Component {
                             align='center'
                             text="Tenga en cuenta que sus datos serán tratados bajo la normativa de la ley de habeas data, al ingresar sus datos usted está autorizando de manera expresa e inequívoca para mantener y manejar la información suministrada, solo para aquellas finalidades para las que se encuentra facultado el aplicativo SENA ME CUIDA y respetando en todo caso, la normatividad vigente sobre protección de datos personales."
                         />
-
+                        <Link  to='/soporte'>
+                            <a style={{color:'#707070', display:'table', marginLeft:'auto', marginRight:'auto'}}><img src={require('../../Assets/image/iconos/soporte.png')} style={{width:'35px', margin:'10px'}} />SOPORTE TECNICO</a>
+                        </Link><br/>
                         </div></div>
                     <Modal show={this.state.openModal} className='widthModal'>
 

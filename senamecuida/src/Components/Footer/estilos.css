@@ -87,6 +87,13 @@ a:hover {
     color: #fff;
 }
 
+.copy2 {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
 
 /* Responsive */
 
