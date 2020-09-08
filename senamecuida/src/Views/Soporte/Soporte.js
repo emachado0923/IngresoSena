@@ -154,7 +154,7 @@ function Inicio() {
                     <Title title='SOPORTE TECNICO' />
                     <SubTitle title='Para reportar tu incidante debes llenar el siguiente formulario' />
 
-                    <div className='contCards'> 
+                    <div className='contInputs'> 
                         <div style={{width: '50%', marginTop: '1.5%'}}>
                             <TextField
                                 value={nombre}

@@ -23,7 +23,7 @@
 
 .contCards {
     width: 80%;
-    display: flex;
+    display: contents;
     flex-flow: row wrap;
     justify-content: space-evenly;
 }

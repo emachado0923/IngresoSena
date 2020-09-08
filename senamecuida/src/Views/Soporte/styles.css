@@ -21,7 +21,7 @@
     align-items: center;
 }
 
-.contCards {
+.contInputs {
     width: 80%;
     display: contents;
     flex-flow: row wrap;
