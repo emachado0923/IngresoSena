@@ -261,7 +261,7 @@ const Visitante = () => {
                 timer: 10500
             })
             return (false);
-        } else if (ID.length < 7) {
+        } else if (ID.length < 5) {
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -295,8 +295,8 @@ const Visitante = () => {
             return (false);
         } else {
 
-            await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/create`, {
-            // await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/createNE`, {
+            // await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/create`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/visitante/createNE`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -391,7 +391,7 @@ const Visitante = () => {
                 timer: 10500
             })
             return (false);
-        } else if (ID.length < 7) {
+        } else if (ID.length < 5) {
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -805,7 +805,7 @@ const Visitante = () => {
                                 <ReCAPTCHA
                                     ref={recaptchaRef}
                                     size="visible"
-                                    sitekey="6LdFtcQZAAAAAFKB5F7eSkAemqmgX-awTdZsBMzK"
+                                    sitekey="6LfilsQZAAAAAKRJeT5JuKGaxcKIaQr4ZYh2n4hT"
                                 />
                                 <div style={{marginTop: 25, marginLeft: "44%"}}>
                                     <ButtonIcon

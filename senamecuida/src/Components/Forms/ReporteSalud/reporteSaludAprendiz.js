@@ -203,6 +203,7 @@ const Aprendiz = () => {
             if (result['ok'] === true) {
                 result.text().then(function(data) { 
                     setDataState(data);
+                    console.log(data);
                 })
                 .then(
                 fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
@@ -259,6 +260,7 @@ const Aprendiz = () => {
             sintomas: sintomass
         }
 
+        console.log(newData);
         await fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/create`, {
             method: 'POST',
             headers: {
@@ -270,6 +272,7 @@ const Aprendiz = () => {
         .then(function (result) {
             if (result['ok'] === true) {
                 result.text().then(function(data) { 
+                    console.log(data);
                     var data1 = JSON.parse(data)
                     console.log(data1.data);
                     Swal.fire({

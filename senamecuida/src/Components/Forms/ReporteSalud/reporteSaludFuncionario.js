@@ -203,6 +203,7 @@ const Funcionario = () => {
             if (result['ok'] === true) {
                 result.text().then(function(data) { 
                     setDataState(data);
+                    console.log(data);
                 })
                 .then(
                 fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {

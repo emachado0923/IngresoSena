@@ -190,6 +190,10 @@ const Aprendiz = () => {
         })
         .then(function (result) {
             if (result['ok'] === true) {
+                result.text().then(function(data) {
+                    console.log(data);
+                    setDataState(data);
+                })
                 fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/ing`, {
                     method: 'POST',
                     headers: {
@@ -200,10 +204,6 @@ const Aprendiz = () => {
                 })
                 .then(function (result) {
                     if (result['ok'] === true) {
-                        result.text().then(function(data) {
-                            setDataState(data);
-                        })
-                        .then(
                         fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
                             method: 'POST',
                             headers: {
@@ -227,7 +227,7 @@ const Aprendiz = () => {
                                 }, 3000);
                             } else {
                                 result.text().then(function(data) {
-                                    console.log(data); 
+                                    // console.log(data); 
                                     Swal.fire({
                                         icon: 'success',
                                         title: '¡USUARIO ENCONTRADO!',
@@ -238,7 +238,6 @@ const Aprendiz = () => {
                                 })
                             }
                         })
-                        )
                         setCTemperatura(false)
                     } else {
                         result.text().then(function(data) { 

@@ -8,6 +8,8 @@ import Pie from '../../Components/Graphics/Pie';
 import Line from '../../Components/Graphics/Line';
 import Doughnut from '../../Components/Graphics/Doughnut';
 import Doughnut1 from '../../Components/Graphics/Douhhnut1';
+import Doughnut2 from '../../Components/Graphics/Doughnut2';
+import Doughnut3 from '../../Components/Graphics/Doughnut3';
 // import { Card, CardInfo } from '../../Components/Cards/Cards';
 // import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { /*Title,*/ TitleIng } from '../../Components/common/Texts';
@@ -28,18 +30,26 @@ function Admin(){
                         <Pie />
                     </div>
                     <div className='contEstadisticas'>
-                        <Doughnut1 />
+                        <Doughnut2 />
                     </div>
                 </div>
                 <div className='contAdmin' >
                     <div className='contEstadisticas'>
-                        {/* <Pie /> */}
+                        <Doughnut1 />
+                    </div>
+                    <div className='contEstadisticas'>
+                        <Doughnut3 />
+                    </div>
+                </div>
+                <div className='contAdmin' >
+                    <div className='contEstadisticas'>
+                        {/* <Doughnut1 /> */}
                     </div>
                     <div className='contEstadisticas'>
                         <Doughnut />
                     </div>
                     <div className='contEstadisticas'>
-                        {/* <Doughnut1 /> */}
+                        {/* <Doughnut /> */}
                     </div>
                 </div>
                 <div className='contAdmin'>

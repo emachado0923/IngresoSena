@@ -12,35 +12,36 @@ class Chart extends Component {
     
     async componentDidMount(){
 
-        const res1 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/countDocuments`)
-        localStorage.setItem('funcionario', res1.data.result)
+        // ------- GENERO MASCULINO ---------
+        const resM1 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/countInstructor`)
+        localStorage.setItem('estadoIfuncionario', resM1.data.result)
         
         
-        const res2 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/visitante/countDocuments`)
-        localStorage.setItem('visitante', res2.data.result)
+        const resM2 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/countAdministrativo`)
+        localStorage.setItem('estadoAfuncionario', resM2.data.result)
         
-        const res3 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/aprendiz/countDocuments`)
-        localStorage.setItem('aprendiz', res3.data.result)
+        const resM3 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/countPersonalApoyo`)
+        localStorage.setItem('estadoPAfuncionario', resM3.data.result)
 
-        
-        var func = localStorage.getItem('funcionario')
-        var vis = localStorage.getItem('visitante')
-        var aprn = localStorage.getItem('aprendiz')
-        var si = parseInt(func)
-        var si1 = parseInt(vis)
-        var si2 = parseInt(aprn)
-        var deBaja = ((si+si1+si2));
-        localStorage.setItem('deBaja', deBaja) 
+        // var funcI = localStorage.getItem('estadoIfuncionario')
+        // var funcA = localStorage.getItem('estadoAfuncionario')
+        // var funcPA = localStorage.getItem('estadoPAfuncionario')
+        // var si = parseInt(funcM)
+        // var si1 = parseInt(visM)
+        // var si2 = parseInt(aprnM)
+        // var totalM = (si+si1+si2)
+        // localStorage.setItem('totalM', totalM)
+
+
     }
 
     
 
-    arrayMeses=[`Funcionarios: ${localStorage.getItem('funcionario')}`, `Visitantes: ${localStorage.getItem('visitante')}`, `Aprendices: ${localStorage.getItem('aprendiz')}`]
+    arrayMeses=[`Numero personal administrativo de Alta: ${localStorage.getItem('estadoAfuncionario')}`, `Numero instructores de Alta: ${localStorage.getItem('estadoIfuncionario')}`, `Numero personal de apoyo de Alta: ${localStorage.getItem('estadoPAfuncionario')}`]
     arrayDatosxMes=[
-        localStorage.getItem('funcionario'),
-        localStorage.getItem('visitante'),
-        localStorage.getItem('aprendiz'),
-
+        localStorage.getItem('estadoAfuncionario'),
+        localStorage.getItem('estadoIfuncionario'),
+        localStorage.getItem('estadoPAfuncionario')
     ]
 
     constructor(props) {
@@ -57,8 +58,8 @@ class Chart extends Component {
                         'rgba(204,209,209)',
                         'rgba(52,73,94)',
                         'rgba(249,231,159)',
-                        ]                        
-                    }],
+                        ]
+                    }]
             }
         }
     }
@@ -70,13 +71,12 @@ class Chart extends Component {
                     <div className="site-card-border-less-wrapper" >
                         <Card style={{ width: '94%', marginLeft:70, marginTop:20 }}>
                         <Doughnut 
-
                             data={this.state.chartData}
                             options={{
                                 maintainAspectRatio: true,
                                 title:{
                                     display:true,
-                                    text:"Numero de personas Registradas",
+                                    text:"Tipo de funcionarios de ALTA",
                                 }
                             }}>
                         </Doughnut>

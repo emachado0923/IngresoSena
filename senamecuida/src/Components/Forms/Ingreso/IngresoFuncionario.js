@@ -189,6 +189,10 @@ const Funcionario = () => {
         })
         .then(function (result) {
             if (result['ok'] === true) {
+                result.text().then(function(data) {
+                    console.log(data);
+                    setDataState(data);
+                })
                 fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/ing`, {
                     method: 'POST',
                     headers: {
@@ -199,10 +203,6 @@ const Funcionario = () => {
                 })
                 .then(function (result) {
                     if (result['ok'] === true) {
-                        result.text().then(function(data) {
-                            setDataState(data);
-                        })
-                        .then(
                         fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
                             method: 'POST',
                             headers: {
@@ -226,7 +226,7 @@ const Funcionario = () => {
                                 }, 3000);
                             } else {
                                 result.text().then(function(data) {
-                                    console.log(data); 
+                                    // console.log(data); 
                                     Swal.fire({
                                         icon: 'success',
                                         title: '¡USUARIO ENCONTRADO!',
@@ -237,7 +237,6 @@ const Funcionario = () => {
                                 })
                             }
                         })
-                        )
                         setCTemperatura(false)
                     } else {
                         result.text().then(function(data) { 
@@ -267,7 +266,6 @@ const Funcionario = () => {
     }
 
 
-
     async function registroConTemperatura(){
         
 
@@ -275,6 +273,8 @@ const Funcionario = () => {
         const temp ={"temperatura":temperatura};
 
         data = {...data, ...temp};
+
+        console.log(data);
 
         await fetch(`${process.env.REACT_APP_API_URL}/api/estadoFuncionario/create`, {
             method: 'POST',

@@ -93,10 +93,10 @@ class Line3 extends Component {
                         labels:this.state.arrayMeses,
                         datasets:[
                             {
-                                label:'Ingresos por Mes',
+                                label:'Registros por Mes',
                                 data:result,
                                 backgroundColor: [
-                                'rgba(249,231,159)'
+                                'rgba(0, 97, 100, 1)'
                                 ]
                             }]
                     }}

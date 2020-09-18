@@ -256,8 +256,6 @@ const Visitante = () => {
         let sintomas = valores
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         var address = document.querySelector('#correo').value;
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        var address = document.querySelector('#correo').value;
         var name = document.querySelector('#nombre').value;
         var ID = document.querySelector('#numeroId').value;
         var tel = document.querySelector('#tel1').value;
@@ -281,7 +279,7 @@ const Visitante = () => {
                 timer: 10500
             })
             return (false);
-        } else if (ID.length < 7) {
+        } else if (ID.length < 5) {
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -346,6 +344,8 @@ const Visitante = () => {
                     telefono,
                     direccionResidencia,
                     eps,
+                    ficha,
+                    programaDeFormacion,
                     transporte,
                     jornada,
                     sintomas
@@ -426,7 +426,7 @@ const Visitante = () => {
                 timer: 10500
             })
             return (false);
-        } else if (ID.length < 7) {
+        } else if (ID.length < 5) {
             Swal.fire({
                 icon: 'error',
                 title: '¡Error!',
@@ -862,7 +862,7 @@ const Visitante = () => {
                                 <ReCAPTCHA
                                     ref={recaptchaRef}
                                     size="visible"
-                                    sitekey="6LdFtcQZAAAAAFKB5F7eSkAemqmgX-awTdZsBMzK"
+                                    sitekey="6LfilsQZAAAAAKRJeT5JuKGaxcKIaQr4ZYh2n4hT"
                                 />
                                 <div style={{marginTop: 25, marginLeft: "44%"}}>
                                     <ButtonIcon
