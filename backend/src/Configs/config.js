@@ -9,10 +9,7 @@ process.env.CADUCIDAD_TOKEN = '8h';
 // SEED
 process.env.SEED = process.env.SEED || 'eventoSena';
 
-// Cadena de conexion a la Base de datos
-//process.env.URLDB='mongodb+srv://gortiza:k1ngk0ng@cluster0-uzpnb.mongodb.net/misena?retryWrites=true&w=majority'
-
-process.env.URLDB='mongodb+srv://jtapiaz:tapias0414@cluster0-hxgql.mongodb.net/test?retryWrites=true&w=majority'
+process.env.URLDB='mongodb+srv://senamecuida:0SV2WcnGWcs5Tgua@cluster0.jguyu.mongodb.net/senamecuida?retryWrites=true&w=majority'
 //process.env.URLDB='mongodb://localhost/BaseDatos'
 
 process.env.SECRET="fabrica2020"

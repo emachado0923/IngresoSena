@@ -217,7 +217,7 @@ function Inicio() {
                         <ReCAPTCHA
                             ref={recaptchaRef}
                             size="visible"
-                            sitekey="6LdFtcQZAAAAAFKB5F7eSkAemqmgX-awTdZsBMzK"
+                            sitekey="6LfFLNEZAAAAACWMrkWTf3aX36H0yMPX-nTjuDrl"
                         /><br/>
                         <ButtonIcon
                             bgColor='#00A7AF'

@@ -12,7 +12,7 @@ exports.emailSend = (data) => {
     let email = 
     {
         from: "senamecuida@gmail.com",
-        to: "jjtapias20@misena.edu.co",
+        to: "sacarvajal19@misena.edu.co",
         cc: "emachadog@sena.edu.co",
         subject: "¡Novedad Incidente!",
         html: `                                                                                         

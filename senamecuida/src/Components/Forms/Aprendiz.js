@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Visitante = () => {
+const Aprendiz = () => {
 
     const recaptchaRef = React.createRef();
     const classes = useStyles();
@@ -692,15 +692,15 @@ const Visitante = () => {
                         <MenuItem value={'Salud total'} onChange={handleEpsChange}>Salud Total</MenuItem>
                         <MenuItem value={'Cafesalud'} onChange={handleEpsChange}>Cafesalud</MenuItem>
                         <MenuItem value={'Sanitas'} onChange={handleEpsChange}>Sanitas</MenuItem>
-                        <MenuItem value={'Saludcoop'} onChange={handleEpsChange}>Saludcoop</MenuItem>
+                        <MenuItem value={'Medimas'} onChange={handleEpsChange}>Medimas</MenuItem>
                         <MenuItem value={'Colseguros'} onChange={handleEpsChange}>Colseguros</MenuItem>
-                        <MenuItem value={'Servicios medicos colpatria'} onChange={handleEpsChange}>Servicios medicos
-                            colpatria</MenuItem>
+                        <MenuItem value={'Colpatria'} onChange={handleEpsChange}>Colpatria</MenuItem>
                         <MenuItem value={'Cruz blanca'} onChange={handleEpsChange}>Cruz Blanca</MenuItem>
                         <MenuItem value={'Sisben'} onChange={handleEpsChange}>Sisben</MenuItem>
                         <MenuItem value={'Sanidad Militar'} onChange={handleEpsChange}>Sanidad Militar</MenuItem>
                         <MenuItem value={'Red Vital'} onChange={handleEpsChange}>Red Vital</MenuItem>
                         <MenuItem value={'Nueva EPS'} onChange={handleEpsChange}>Nueva EPS</MenuItem>
+                        <MenuItem value={'SaviaSalud'} onChange={handleEpsChange}>SaviaSalud</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -862,7 +862,7 @@ const Visitante = () => {
                                 <ReCAPTCHA
                                     ref={recaptchaRef}
                                     size="visible"
-                                    sitekey="6LfilsQZAAAAAKRJeT5JuKGaxcKIaQr4ZYh2n4hT"
+                                    sitekey="6LfFLNEZAAAAACWMrkWTf3aX36H0yMPX-nTjuDrl"
                                 />
                                 <div style={{marginTop: 25, marginLeft: "44%"}}>
                                     <ButtonIcon
@@ -889,4 +889,4 @@ const Visitante = () => {
     )
 }
 
-export default Visitante;
+export default Aprendiz;

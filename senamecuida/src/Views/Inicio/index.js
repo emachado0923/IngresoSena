@@ -9,6 +9,8 @@ import { Modal } from 'react-bootstrap';
 import Visitante from '../../Components/Forms/Visitante';
 import Aprendiz from '../../Components/Forms/Aprendiz';
 import Funcionario from '../../Components/Forms/Funcionario';
+import NuevoReporte from '../../Components/Forms/ReporteSalud/NuevoReporteSalud';
+import Tutorial from '../../Components/Forms/Tutorial/Tutorial';
 import { ButtonIcon } from '../../Components/common/Button';
 import './estilos.css';
 import NavTopLanding from '../../Components/Navs/navTopLanding';
@@ -48,7 +50,7 @@ class Inicio extends Component {
                         <img className='foto1' src={foto1} onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}  />
 
                          <div id="cardf2" onClick={() => { this.setState({ openModal: true, rol: 'Funcionario' }) }}>Funcionario</div><br/>
-                         <Link to='/reporteSalud'>
+                         <Link onClick={() => { this.setState({ openModal: true, rol: 'NuevoReporte' }) }}>
                             <ButtonIconA title='REPORTE DE SALUD' icon={faUserCircle} />
                         </Link>
                    </div>
@@ -69,15 +71,24 @@ class Inicio extends Component {
                         />
                         <Link  to='/soporte'>
                             <a style={{color:'#707070', display:'table', marginLeft:'auto', marginRight:'auto'}}><img src={require('../../Assets/image/iconos/soporte.png')} style={{width:'35px', margin:'10px'}} />SOPORTE TECNICO</a>
-                        </Link><br/>
+                        </Link><br />
+                        <div>
+                        <CardRol onClick={() => { this.setState({ openModal: true, rol: 'Tutorial' }) }} />
+                            <div style={{color:'#707070', display:'table', marginLeft:'auto', marginRight:'auto', cursor:'pointer'}} onClick={() => { this.setState({ openModal: true, rol: 'Tutorial' }) }}>¿COMO REGISTRARSE?</div><br />
+                        </div>
                         </div></div>
                     <Modal show={this.state.openModal} className='widthModal'>
 
                         <Modal.Header>
                         
                             <Modal.Title>
+                                {this.state.rol === 'Tutorial' ?
+                                   <Title title='Tutorial de Registro' /> :
+                                   this.state.rol === 'NuevoReporte' ?
+                                   <Title title='Reporte de Salud' /> :
+                                    <Title title='FORMULARIO  DE  REGISTRO' /> 
 
-                                <Title title='FORMULARIO  DE  REGISTRO' />
+                            }
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
@@ -86,7 +97,11 @@ class Inicio extends Component {
                                     <Visitante /> :
                                     this.state.rol === 'Funcionario' ?
                                         <Funcionario /> :
-                                        <Aprendiz />
+                                        this.state.rol === 'Aprendiz' ?
+                                        <Aprendiz /> :
+                                        this.state.rol === 'NuevoReporte' ?
+                                        <NuevoReporte /> :
+                                        <Tutorial />
                             }
                         </Modal.Body>
                         <Modal.Footer>
