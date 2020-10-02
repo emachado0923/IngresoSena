@@ -686,6 +686,7 @@ const Aprendiz = () => {
                         value={eps}
                         onChange={handleEpsChange}
                     >
+                        <MenuItem value={'NINGUNA'} onChange={handleEpsChange}>NINGUNA</MenuItem>
                         <MenuItem value={'SURA'} onChange={handleEpsChange}>SURA</MenuItem>
                         <MenuItem value={'Coomeva'} onChange={handleEpsChange}>Coomeva</MenuItem>
                         <MenuItem value={'Salud Colmena'} onChange={handleEpsChange}>Salud Colmena</MenuItem>

@@ -19,6 +19,7 @@
     "bootstrap-sweetalert": "^1.0.1",
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
+    "js-base64": "^3.5.2",
     "jwt-decode": "^2.2.0",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
