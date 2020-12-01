@@ -37,6 +37,10 @@ class Inicio extends Component {
                     <Title title='SENA ME CUIDA' />
                     <SubTitle title='Para registrarte selecciona tu cargo en el Sena' />
 
+                            <Link onClick={() => { this.setState({ openModal: true, rol: 'Tutorial' }) }}>
+                            <ButtonIconA title='¿Como Registrarse?' />
+                            </Link>
+
                     <div className='contCards'>
                     <div>
                         <CardRol  bgColor='#78BECE'   onClick={() => { this.setState({ openModal: true, rol: 'Visitante' }) }} />
@@ -72,10 +76,7 @@ class Inicio extends Component {
                         <Link  to='/soporte'>
                             <a style={{color:'#707070', display:'table', marginLeft:'auto', marginRight:'auto'}}><img src={require('../../Assets/image/iconos/soporte.png')} style={{width:'35px', margin:'10px'}} />SOPORTE TECNICO</a>
                         </Link><br />
-                        <div>
-                        <CardRol onClick={() => { this.setState({ openModal: true, rol: 'Tutorial' }) }} />
-                            <div style={{color:'#707070', display:'table', marginLeft:'auto', marginRight:'auto', cursor:'pointer'}} onClick={() => { this.setState({ openModal: true, rol: 'Tutorial' }) }}>¿COMO REGISTRARSE?</div><br />
-                        </div>
+                        
                         </div></div>
                     <Modal show={this.state.openModal} className='widthModal'>
 

@@ -6,17 +6,33 @@ console.clear();
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan')
+<<<<<<< HEAD
 const path = require('path')
 const cors = require('cors')
+=======
+var helmet = require('helmet');
+var cors = require('cors')
+
+
+mongoose.set('useCreateIndex', true);
+
+// Database Connection
+mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
+    .then(() => {
+        console.log('¡Connection Successfully!')
+    });
+>>>>>>> 9d1e7ac8946bf3d90874022dc6d1f53476b0bae4
 
 
 // Initialize the application
 const app = express();
+app.disable('x-powered-by');
 
 //static files
 app.use('/exports', express.static(path.resolve('exports')))
 
 // Middlewares
+app.use(helmet());
 app.use('/static', express.static(__dirname + '/reportes'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: true}));
