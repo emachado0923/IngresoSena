@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const authJWT = require('../Middlewares/Passport')
 const passport = require("passport");
 passport.use(authJWT)
-const User = require("../Models/tbl_administrador");
+const User = require("../Models/Admnistrador/tbl_administrador");
 
 
 // //.......Describe the user registration.......[ ADMIN ]....................................
@@ -89,7 +89,7 @@ const userLogin = async (userCreds, role, res) => {
     );
 
     let result = {
-      token: `${token}`,      
+      token: `${token}`,
     };
     return res.status(200).json({
       ...result
@@ -117,14 +117,14 @@ const checkRole = (req, res, next) => {
     const {token} = req.headers;
     dataToken= jwt.verify(token, process.env.SECRET);
     const {role}= dataToken;
-    
+
   if (role !== 'admin') {
     return res.status(401).json({
       message: "¡Acceso no autorizado!",
       success: false
     });
   }
-  next(); 
+  next();
   } catch (error) {
     // console.log(error);
     res.status(401).send('Token no valido')

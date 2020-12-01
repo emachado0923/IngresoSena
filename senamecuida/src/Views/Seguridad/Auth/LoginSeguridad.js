@@ -44,7 +44,7 @@ function Login() {
 
                 }
                 else{
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     Swal.fire({
                     icon: 'error',
                     title: '¡ERROR!',

@@ -19,7 +19,7 @@ class Admin extends Component {
     render() {
         return (
             <div className='containerAdmin'>
-           
+
                 <NavAdmin></NavAdmin>
 
                 <div style={{padding:'1%'}}></div>
@@ -51,7 +51,6 @@ class Admin extends Component {
                     <div className='contEstadisticas'>
                         <TableAprendiz />
                     </div>
-
                 </div>
 
             </div>

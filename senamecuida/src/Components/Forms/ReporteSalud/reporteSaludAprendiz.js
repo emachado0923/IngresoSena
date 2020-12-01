@@ -55,16 +55,16 @@ const Aprendiz = () => {
         //       error => console.log(error)
         //     )
             console.log(documentoIdentidad);
-        
+
             if (documentoIdentidad!== '') {
                 registro()
             }
         }
-      
+
         let consultarAPI = setTimeout(() => {
           callSearchService();
         }, 2500);
-        
+
         // Se dispara cada vez que se re-renderiza el componente
         return () => {
           clearTimeout(consultarAPI);
@@ -171,11 +171,11 @@ const Aprendiz = () => {
                 break;
             }
         }
-        
+
         if (S_Fiebre && S_Dolor && S_TOS && S_Difcultad && S_Malestar && S_Gripa && S_Diarrea && S_Contacto && S_Tratamiento) {
             if (sintomas.length >= 3) {
                 registroConSintomasNE(valores)
-                
+
             } else {
                 registroConSintomas(valores);
             }
@@ -201,7 +201,7 @@ const Aprendiz = () => {
         })
         .then(function (result) {
             if (result['ok'] === true) {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     setDataState(data);
                     console.log(data);
                 })
@@ -224,7 +224,7 @@ const Aprendiz = () => {
                         })
                         setBoton(true)
                     } else {
-                        result.text().then(function(data) { 
+                        result.text().then(function(data) {
                             Swal.fire({
                                 icon: 'success',
                                 title: '¡APRENDIZ ENCONTRADO!',
@@ -237,7 +237,7 @@ const Aprendiz = () => {
                     })
                 )
             } else {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     Swal.fire({
                         icon: 'error',
                         title: '¡ERROR!',
@@ -271,7 +271,7 @@ const Aprendiz = () => {
         })
         .then(function (result) {
             if (result['ok'] === true) {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     console.log(data);
                     var data1 = JSON.parse(data)
                     console.log(data1.data);
@@ -282,11 +282,11 @@ const Aprendiz = () => {
                     timer: 10500
                     })
                     setTimeout(() => {
-                        window.location.reload();    
+                        window.location.reload();
                     }, 10000);
                 })
             } else {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     Swal.fire({
                         icon: 'error',
                         title: '¡ERROR!',
@@ -326,7 +326,7 @@ const Aprendiz = () => {
         })
         .then(function (result) {
             if (result['ok'] === true) {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     var data1 = JSON.parse(data)
                     console.log(data1.data);
                     Swal.fire({
@@ -336,11 +336,11 @@ const Aprendiz = () => {
                     timer: 10500
                     })
                     setTimeout(() => {
-                        window.location.reload();    
+                        window.location.reload();
                     }, 10000);
                 })
             } else {
-                result.text().then(function(data) { 
+                result.text().then(function(data) {
                     Swal.fire({
                         icon: 'error',
                         title: '¡ERROR!',
@@ -360,7 +360,7 @@ const Aprendiz = () => {
                 })
             });
     }
-    
+
 
     return (
         <div className='containerForm'>
@@ -502,10 +502,10 @@ const Aprendiz = () => {
                 </div>
             </div>
             {/* <div style={{marginTop:25}}>
-            <ButtonIcon 
-                bgColor='#00A7AF' 
+            <ButtonIcon
+                bgColor='#00A7AF'
                 title='Validar'
-                onClick={() => registro()} 
+                onClick={() => registro()}
             />
             </div> */}
         </div>

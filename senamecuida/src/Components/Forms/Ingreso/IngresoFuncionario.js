@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import './estilos.css';
 import Swal from 'sweetalert2';
 import TextField from '@material-ui/core/TextField';
@@ -11,11 +11,11 @@ import Axios from 'axios'
 
 
 // import { Input } from '../../common/Inputs';
-import { ButtonIcon } from '../../../Components/common/Button';
+import {ButtonIcon} from '../../../Components/common/Button';
 
 
 const Funcionario = () => {
-        
+
     const [documentoIdentidad, setDocumentoIdentidad] = React.useState('')
     const [temperatura, setTemperatura] = React.useState('')
     const [cTemperatura, setCTemperatura] = React.useState(true)
@@ -28,60 +28,60 @@ const Funcionario = () => {
                 evt.preventDefault();
             }
         });
-        var NID=  document.querySelector('#documentoIdentidad');
-            NID.addEventListener('input',function(){
-            if (this.value.length > 10) 
-                this.value = this.value.slice(0,10); 
-            })
+        var NID = document.querySelector('#documentoIdentidad');
+        NID.addEventListener('input', function () {
+            if (this.value.length > 10)
+                this.value = this.value.slice(0, 10);
+        })
         document.querySelector("#temperatura").addEventListener("keypress", function (evt) {
-            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 || evt.which > 57) {
+            if (evt.which !== 8 && evt.which !== 0 && evt.which < 48 && evt.which !== 46 && evt.which !== 44 || evt.which > 57) {
                 evt.preventDefault();
             }
         });
-        var NID=  document.querySelector('#temperatura');
-            NID.addEventListener('input',function(){
-            if (this.value.length > 2) 
-                this.value = this.value.slice(0,2);
-            })
+        var NID = document.querySelector('#temperatura');
+        NID.addEventListener('input', function () {
+            if (this.value.length > 4)
+                this.value = this.value.slice(0, 4);
+        })
     }
 
     useEffect(() => {
 
         const callSearchService = () => {
-        //   Api.search(value)
-        //     .then(
-        //       results => setResults(results),
-        //       error => console.log(error)
-        //     )
+            //   Api.search(value)
+            //     .then(
+            //       results => setResults(results),
+            //       error => console.log(error)
+            //     )
             console.log(documentoIdentidad);
-        
-            if (documentoIdentidad!== '') {
+
+            if (documentoIdentidad !== '') {
                 humbral()
             }
         }
-      
+
         let consultarAPI = setTimeout(() => {
-          callSearchService();
+            callSearchService();
         }, 3000);
-        
+
         // Se dispara cada vez que se re-renderiza el componente
         return () => {
-          clearTimeout(consultarAPI);
+            clearTimeout(consultarAPI);
         }
-      }, [documentoIdentidad]);
-    
+    }, [documentoIdentidad]);
+
     useEffect(() => {
 
         const callSearchService = () => {
-        //   Api.search(value)
-        //     .then(
-        //       results => setResults(results),
-        //       error => console.log(error)
-        //     )
+            //   Api.search(value)
+            //     .then(
+            //       results => setResults(results),
+            //       error => console.log(error)
+            //     )
             console.log(documentoIdentidad);
-        
-            if(temperatura < 38) {
-                if (temperatura.length===2) {
+
+            if (temperatura < 38) {
+                if (temperatura.length === 4) {
                     registroConTemperatura()
                 }
             } else {
@@ -94,26 +94,26 @@ const Funcionario = () => {
                 setCDocumento(true)
                 setCTemperatura(true)
                 setTimeout(() => {
-                    window.location.reload();    
+                    window.location.reload();
                 }, 4000);
             }
         }
-      
+
         let consultarAPI = setTimeout(() => {
-          callSearchService();
+            callSearchService();
         }, 3000);
-        
+
         // Se dispara cada vez que se re-renderiza el componente
         return () => {
-          clearTimeout(consultarAPI);
+            clearTimeout(consultarAPI);
         }
-      }, [temperatura]);
+    }, [temperatura]);
 
 
     const handleDocumentoIdentidadChange = (event) => setDocumentoIdentidad(event.target.value)
     const handleTemperaturaChange = (event) => setTemperatura(event.target.value)
 
-    async function humbral(){
+    async function humbral() {
         const resA = await Axios.get(`${process.env.REACT_APP_API_URL}/api/estadoAprendiz/countDocuments`)
         localStorage.setItem('personasActivasA', resA.data.result)
 
@@ -130,20 +130,20 @@ const Funcionario = () => {
         var ssi1 = parseInt(viss)
         var ssi2 = parseInt(aprnn)
 
-        var deAlta = (ssi+ssi1+ssi2);
+        var deAlta = (ssi + ssi1 + ssi2);
         localStorage.setItem('deAlta', deAlta)
 
         const res1 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/funcionario/countDocuments`)
         localStorage.setItem('funcionario', res1.data.result)
-        
-        
+
+
         const res2 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/visitante/countDocuments`)
         localStorage.setItem('visitante', res2.data.result)
-        
+
         const res3 = await Axios.get(`${process.env.REACT_APP_API_URL}/api/aprendiz/countDocuments`)
         localStorage.setItem('aprendiz', res3.data.result)
 
-        
+
         var act = localStorage.getItem('deAlta')
         var func = localStorage.getItem('funcionario')
         var vis = localStorage.getItem('visitante')
@@ -152,16 +152,16 @@ const Funcionario = () => {
         var si1 = parseInt(vis)
         var si2 = parseInt(aprn)
         var si3 = parseInt(act)
-        var sumaR = (si+si1+si2)
+        var sumaR = (si + si1 + si2)
         // var deBaja = ((si+si1+si2)-si3);
-        var porcentajeA = ((si3*100)/sumaR)
-        var restaR = (sumaR-si3)
-        var porcentajeB = ((restaR*100)/sumaR)
+        var porcentajeA = ((si3 * 100) / sumaR)
+        var restaR = (sumaR - si3)
+        var porcentajeB = ((restaR * 100) / sumaR)
         localStorage.setItem('prcAlta', Math.round(porcentajeA))
         localStorage.setItem('prcBaja', Math.round(porcentajeB))
-        localStorage.setItem('TotalR', sumaR) 
+        localStorage.setItem('TotalR', sumaR)
 
-        if(localStorage.getItem('prcAlta') <=35){
+        if (localStorage.getItem('prcAlta') <= 35) {
             registro()
         } else {
             Swal.fire({
@@ -169,16 +169,16 @@ const Funcionario = () => {
                 title: '¡ALERTA!',
                 text: "¡NO SE PUEDE INGRESAR MAS PERSONAS, SE HA SUPERADO EL HUMBRAL!",
                 timer: 10500
-                })
-                setCDocumento(true)
-                setTimeout(() => {
-                    window.location.reload();    
-                }, 3000);
+            })
+            setCDocumento(true)
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
 
         }
     }
 
-    async function registro(){
+    async function registro() {
         await fetch(`${process.env.REACT_APP_API_URL}/api/funcionario/ingreso`, {
             method: 'POST',
             headers: {
@@ -187,90 +187,90 @@ const Funcionario = () => {
             },
             body: JSON.stringify({documentoIdentidad})
         })
-        .then(function (result) {
-            if (result['ok'] === true) {
-                result.text().then(function(data) {
-                    console.log(data);
-                    setDataState(data);
-                })
-                fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/ing`, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({documentoIdentidad})
-                })
-                .then(function (result) {
-                    if (result['ok'] === true) {
-                        fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({documentoIdentidad})
-                        })
+            .then(function (result) {
+                if (result['ok'] === true) {
+                    result.text().then(function (data) {
+                        console.log(data);
+                        setDataState(data);
+                    })
+                    fetch(`${process.env.REACT_APP_API_URL}/api/reporteSaludDia/ing`, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({documentoIdentidad})
+                    })
                         .then(function (result) {
                             if (result['ok'] === true) {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: '¡INGRESASTE MAS DE 3 SINTOMAS EN EL REPORTE DE SALUD!',
-                                    text: "Debes ponerte en contacto con el medico SENA",
-                                    timer: 10500
+                                fetch(`${process.env.REACT_APP_API_URL}/api/ingresoSuspendido/ing`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({documentoIdentidad})
                                 })
-                                setCDocumento(true)
-                                setCTemperatura(true)
-                                setTimeout(() => {
-                                    window.location.reload();    
-                                }, 3000);
+                                    .then(function (result) {
+                                        if (result['ok'] === true) {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: '¡INGRESASTE MAS DE 3 SINTOMAS EN EL REPORTE DE SALUD!',
+                                                text: "Debes ponerte en contacto con el medico SENA",
+                                                timer: 10500
+                                            })
+                                            setCDocumento(true)
+                                            setCTemperatura(true)
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 3000);
+                                        } else {
+                                            result.text().then(function (data) {
+                                                // console.log(data);
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: '¡USUARIO ENCONTRADO!',
+                                                    text: "AHORA DIGITA LA TEMPERATURA",
+                                                    timer: 10500
+                                                })
+
+                                            })
+                                        }
+                                    })
+                                setCTemperatura(false)
                             } else {
-                                result.text().then(function(data) {
-                                    // console.log(data); 
+                                result.text().then(function (data) {
                                     Swal.fire({
-                                        icon: 'success',
-                                        title: '¡USUARIO ENCONTRADO!',
-                                        text: "AHORA DIGITA LA TEMPERATURA",
+                                        icon: 'error',
+                                        title: '¡ERROR!',
+                                        text: '¡NO HA LLENADO EL CUESTIONARIO DE LOS SINTOMAS!',
                                         timer: 10500
                                     })
-                                    
                                 })
                             }
                         })
-                        setCTemperatura(false)
-                    } else {
-                        result.text().then(function(data) { 
-                            Swal.fire({
-                                icon: 'error',
-                                title: '¡ERROR!',
-                                text: '¡NO HA LLENADO EL CUESTIONARIO DE LOS SINTOMAS!',
-                                timer: 10500
-                            })
+                } else {
+                    result.text().then(function (data) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡ERROR!',
+                            text: data,
+                            timer: 10500
+                        })
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 5000);
                     })
-                    }
-                })
-            } else {
-                result.text().then(function(data) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡ERROR!',
-                        text: data,
-                        timer: 10500
-                    })
-                    setTimeout(() => {
-                        window.location.reload();    
-                    }, 5000);
-                })
-            }
-        })
+                }
+            })
     }
 
 
-    async function registroConTemperatura(){
-        
+    async function registroConTemperatura() {
+
 
         let data = JSON.parse(dataState);
-        const temp ={"temperatura":temperatura};
+        const temp = {"temperatura": temperatura};
 
         data = {...data, ...temp};
 
@@ -285,7 +285,7 @@ const Funcionario = () => {
             },
             body: JSON.stringify(data)
         }).then(function (result) {
-            if(result['ok'] === false){
+            if (result['ok'] === false) {
                 Swal.fire({
                     icon: 'warning',
                     title: '¡ALERTA!',
@@ -293,9 +293,9 @@ const Funcionario = () => {
                     timer: 10500
                 })
                 setTimeout(() => {
-                    window.location.reload();    
+                    window.location.reload();
                 }, 3000);
-                
+
             } else {
                 Swal.fire({
                     icon: 'success',
@@ -304,22 +304,21 @@ const Funcionario = () => {
                     timer: 10500
                 })
                 setTimeout(() => {
-                    window.location.reload();    
+                    window.location.reload();
                 }, 3000);
             }
         })
-        .catch(function (error) {
-            console.log(error)
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error,
-            timer: 1500
-        })
-        });
+            .catch(function (error) {
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error,
+                    timer: 1500
+                })
+            });
     }
-    
-    
+
 
     return (
         <div className='containerForm'>
@@ -466,7 +465,7 @@ const Funcionario = () => {
                 </div>
             </div> */}
 
-            <div style={{ marginTop: 25 }}>
+            <div style={{marginTop: 25}}>
                 <ButtonIcon
                     bgColor='#00A7AF'
                     title='Validar'

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const authJWT = require('../Middlewares/PassportSeguridad')
 const passport = require("passport");
 passport.use(authJWT)
-const User = require('../Models/tbl_seguridad');
+const User = require('../Models/Seguridad/tbl_seguridad');
 
 
 // //.......Describe the user registration.......[ ADMIN ]....................................
@@ -89,7 +89,7 @@ const userLogin = async (userCreds, role, res) => {
     );
 
     let result = {
-      token: `${token}`,      
+      token: `${token}`,
     };
     return res.status(200).json({
       ...result
